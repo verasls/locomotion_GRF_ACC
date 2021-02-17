@@ -143,7 +143,8 @@ running_df <- running_df %>%
       "back" = "lower_back",
       "waist" = "hip"
     ),
-    vector = as.factor(vector)
+    vector = fct_relevel(as.factor(vector), "vertical"),
+    speed = as.factor(speed)
   )
 
 save(running_df, file = here("data", "running_df.rda"))
