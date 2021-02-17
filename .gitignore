@@ -79,3 +79,4 @@ vignettes/*.pdf
 *.docx
 *.ppt
 *.pptx
+data/
