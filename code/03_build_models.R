@@ -182,20 +182,3 @@ diff_model_ver_LR <- lmerTest::lmer(
 )
 # Fixed effects test
 anova(diff_model_ver_LR)
-
-# Save the estimated marginal means for each speed and type of value ------
-
-values_by_speed <- c(
-  diff_model_res_GRF, diff_model_ver_GRF,
-  diff_model_res_LR, diff_model_ver_LR
-) %>%
-  map(~ emmeans(.x, ~ type:speed)) %>%
-  map(as.data.frame) %>%
-  set_names(
-    "res_GRF", "ver_GRF", "res_LR", "ver_LR"
-  )
-
-if (!dir.exists(here("output"))) {
-  dir.create(here("output"))
-}
-save(values_by_speed, here("output", "values_by_speed.rda"))
