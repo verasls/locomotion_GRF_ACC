@@ -4,6 +4,7 @@ library(here)
 library(tidyverse)
 library(lme4)
 library(lvmisc)
+library(emmeans)
 
 # Load and prepare data ---------------------------------------------------
 
@@ -109,6 +110,17 @@ plot_ver_LR_models <- map(
   cv_ver_LR_models, plot_bland_altman, color = BMI_cat
 )
 
+# Save leave-one-out cross-validation data --------------------------------
+
+if (!dir.exists(here("output"))) {
+  dir.create(here("output"))
+}
+save(
+  cv_res_GRF_models, cv_ver_GRF_models,
+  cv_res_LR_models, cv_res_LR_models,
+  file = here("output", "loocv_data.rda")
+)
+
 # Test differences between actual and predicted values --------------------
 
 # Prepare data
@@ -127,9 +139,9 @@ prepare_data <- function(dataframe_list) {
       ".predicted" = paste0("predicted_", acc_placement)
     )
   ) %>%
-  filter(type %!in% c("actual_lower_back", "actual_hip")) %>%
+  filter(type %!in% c("actual_ankle", "actual_hip")) %>%
   mutate(
-    type = recode(type, "actual_ankle" = "actual"),
+    type = recode(type, "actual_lower_back" = "actual"),
     across(- value, as.factor)
   )
 }
@@ -170,3 +182,20 @@ diff_model_ver_LR <- lmerTest::lmer(
 )
 # Fixed effects test
 anova(diff_model_ver_LR)
+
+# Save the estimated marginal means for each speed and type of value ------
+
+values_by_speed <- c(
+  diff_model_res_GRF, diff_model_ver_GRF,
+  diff_model_res_LR, diff_model_ver_LR
+) %>%
+  map(~ emmeans(.x, ~ type:speed)) %>%
+  map(as.data.frame) %>%
+  set_names(
+    "res_GRF", "ver_GRF", "res_LR", "ver_LR"
+  )
+
+if (!dir.exists(here("output"))) {
+  dir.create(here("output"))
+}
+save(values_by_speed, here("output", "values_by_speed.rda"))
