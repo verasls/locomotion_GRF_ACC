@@ -9,7 +9,7 @@ library(ragg)
 
 # Load data ---------------------------------------------------------------
 
-load(here("data", "loocv_data.rda"))
+load(here("output", "loocv_data.rda"))
 
 # GRF plots ---------------------------------------------------------------
 
