@@ -108,3 +108,65 @@ accuracy_ver_LR_models <- map(cv_ver_LR_models, accuracy, na.rm = TRUE)
 plot_ver_LR_models <- map(
   cv_ver_LR_models, plot_bland_altman, color = BMI_cat
 )
+
+# Test differences between actual and predicted values --------------------
+
+# Prepare data
+prepare_data <- function(dataframe_list) {
+  map_dfr(dataframe_list, rbind) %>%
+  select(subj, acc_placement, vector, speed, .actual, .predicted) %>%
+  pivot_longer(
+    cols = c(.actual, .predicted),
+    names_to = "type",
+    values_to = "value"
+  ) %>%
+  mutate(
+    type = recode(
+      type,
+      ".actual" = paste0("actual_", acc_placement),
+      ".predicted" = paste0("predicted_", acc_placement)
+    )
+  ) %>%
+  filter(type %!in% c("actual_lower_back", "actual_hip")) %>%
+  mutate(
+    type = recode(type, "actual_ankle" = "actual"),
+    across(- value, as.factor)
+  )
+}
+
+test_res_GRF_df <- prepare_data(cv_res_GRF_models)
+test_ver_GRF_df <- prepare_data(cv_ver_GRF_models)
+test_res_LR_df <- prepare_data(cv_res_LR_models)
+test_ver_LR_df <- prepare_data(cv_ver_LR_models)
+
+# Resultant GRF
+diff_model_res_GRF <- lmerTest::lmer(
+  value ~ type + speed + type:speed + (1 | subj),
+  test_res_GRF_df
+)
+# Fixed effects test
+anova(diff_model_res_GRF)
+
+# Vertical GRF
+diff_model_ver_GRF <- lmerTest::lmer(
+  value ~ type + speed + type:speed + (1 | subj),
+  test_ver_GRF_df
+)
+# Fixed effects test
+anova(diff_model_ver_GRF)
+
+# Resultant LR
+diff_model_res_LR <- lmerTest::lmer(
+  value ~ type + speed + type:speed + (1 | subj),
+  test_res_LR_df
+)
+# Fixed effects test
+anova(diff_model_res_LR)
+
+# Vertical LR
+diff_model_ver_LR <- lmerTest::lmer(
+  value ~ type + speed + type:speed + (1 | subj),
+  test_ver_LR_df
+)
+# Fixed effects test
+anova(diff_model_ver_LR)
