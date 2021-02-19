@@ -117,7 +117,7 @@ if (!dir.exists(here("output"))) {
 }
 save(
   cv_res_GRF_models, cv_ver_GRF_models,
-  cv_res_LR_models, cv_res_LR_models,
+  cv_res_LR_models, cv_ver_LR_models,
   file = here("output", "loocv_data.rda")
 )
 
