@@ -8,18 +8,22 @@ library(emmeans)
 
 # Load and prepare data ---------------------------------------------------
 
-load(here("data", "running_df.rda"))
+load(here("data", "mechanical_load_data.rda"))
 
 # Create a list of 3 data frames: one for each accelerometer placement
-running_df_placements <- map(
+mechanical_load_by_placements <- map(
   c("ankle", "lower_back", "hip"),
-  ~ filter(running_df, acc_placement == .x)
+  ~ filter(mechanical_load_data, acc_placement == .x)
 ) %>% set_names(c("ankle", "lower_back", "hip"))
 
 # Filter the data frames in the list, separating the vertical and resultant
 # vectors
-res_running_df <- map(running_df_placements, filter, vector == "resultant")
-ver_running_df <- map(running_df_placements, filter, vector == "vertical")
+res_mechanical_load_data <- map(
+  mechanical_load_by_placements, filter, vector == "resultant"
+)
+ver_mechanical_load_data <- map(
+  mechanical_load_by_placements, filter, vector == "vertical"
+)
 
 # Build GRF models --------------------------------------------------------
 
@@ -30,12 +34,12 @@ GRF_formula <- as.formula(
 # Resultant vector
 # Build models
 res_GRF_models <- map(
-  res_running_df,
+  res_mechanical_load_data,
   ~ lmer(GRF_formula, data = .x)
 )
 # Cross-validate (leave-one-out cross-validation)
 cv_res_GRF_models <- map2(
-  res_GRF_models, res_running_df,
+  res_GRF_models, res_mechanical_load_data,
   ~ loo_cv(.x, .y, id = subj)
 )
 # Compute accuracy indices
@@ -48,12 +52,12 @@ plot_res_GRF_models <- map(
 # Vertical vector
 # Build models
 ver_GRF_models <- map(
-  ver_running_df,
+  ver_mechanical_load_data,
   ~ lmer(GRF_formula, data = .x)
 )
 # Cross-validate (leave-one-out cross-validation)
 cv_ver_GRF_models <- map2(
-  ver_GRF_models, ver_running_df,
+  ver_GRF_models, ver_mechanical_load_data,
   ~ loo_cv(.x, .y, id = subj)
 )
 # Compute accuracy indices
@@ -71,18 +75,18 @@ LR_formula <- as.formula(
 
 # As LR for the ankle placement is missing at the moment, this placement
 # needs to be removed from the data frame list
-res_running_df_LR <- res_running_df[-1]
-ver_running_df_LR <- ver_running_df[-1]
+res_mechanical_load_data_LR <- res_mechanical_load_data[-1]
+ver_mechanical_load_data_LR <- ver_mechanical_load_data[-1]
 
 # Resultant vector
 # Build models
 res_LR_models <- map(
-  res_running_df_LR,
+  res_mechanical_load_data_LR,
   ~ lmer(LR_formula, data = .x)
 )
 # Cross-validate (leave-one-out cross-validation)
 cv_res_LR_models <- map2(
-  res_LR_models, res_running_df_LR,
+  res_LR_models, res_mechanical_load_data_LR,
   ~ loo_cv(.x, .y, id = subj)
 )
 # Compute accuracy indices
@@ -95,12 +99,12 @@ plot_res_LR_models <- map(
 # Vertical vector
 # Build models
 ver_LR_models <- map(
-  ver_running_df_LR,
+  ver_mechanical_load_data_LR,
   ~ lmer(LR_formula, data = .x)
 )
 # Cross-validate (leave-one-out cross-validation)
 cv_ver_LR_models <- map2(
-  ver_LR_models, ver_running_df_LR,
+  ver_LR_models, ver_mechanical_load_data_LR,
   ~ loo_cv(.x, .y, id = subj)
 )
 # Compute accuracy indices
@@ -120,65 +124,3 @@ save(
   cv_res_LR_models, cv_ver_LR_models,
   file = here("output", "loocv_data.rda")
 )
-
-# Test differences between actual and predicted values --------------------
-
-# Prepare data
-prepare_data <- function(dataframe_list) {
-  map_dfr(dataframe_list, rbind) %>%
-  select(subj, acc_placement, vector, speed, .actual, .predicted) %>%
-  pivot_longer(
-    cols = c(.actual, .predicted),
-    names_to = "type",
-    values_to = "value"
-  ) %>%
-  mutate(
-    type = recode(
-      type,
-      ".actual" = paste0("actual_", acc_placement),
-      ".predicted" = paste0("predicted_", acc_placement)
-    )
-  ) %>%
-  filter(type %!in% c("actual_ankle", "actual_hip")) %>%
-  mutate(
-    type = recode(type, "actual_lower_back" = "actual"),
-    across(- value, as.factor)
-  )
-}
-
-test_res_GRF_df <- prepare_data(cv_res_GRF_models)
-test_ver_GRF_df <- prepare_data(cv_ver_GRF_models)
-test_res_LR_df <- prepare_data(cv_res_LR_models)
-test_ver_LR_df <- prepare_data(cv_ver_LR_models)
-
-# Resultant GRF
-diff_model_res_GRF <- lmerTest::lmer(
-  value ~ type + speed + type:speed + (1 | subj),
-  test_res_GRF_df
-)
-# Fixed effects test
-anova(diff_model_res_GRF)
-
-# Vertical GRF
-diff_model_ver_GRF <- lmerTest::lmer(
-  value ~ type + speed + type:speed + (1 | subj),
-  test_ver_GRF_df
-)
-# Fixed effects test
-anova(diff_model_ver_GRF)
-
-# Resultant LR
-diff_model_res_LR <- lmerTest::lmer(
-  value ~ type + speed + type:speed + (1 | subj),
-  test_res_LR_df
-)
-# Fixed effects test
-anova(diff_model_res_LR)
-
-# Vertical LR
-diff_model_ver_LR <- lmerTest::lmer(
-  value ~ type + speed + type:speed + (1 | subj),
-  test_ver_LR_df
-)
-# Fixed effects test
-anova(diff_model_ver_LR)
