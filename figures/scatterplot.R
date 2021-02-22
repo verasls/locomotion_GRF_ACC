@@ -8,12 +8,12 @@ library(ragg)
 
 # Load data ---------------------------------------------------------------
 
-load(here("data", "running_df.rda"))
+load(here("data", "mechanical_load_data.rda"))
 
 # GRF x ACC plots ---------------------------------------------------------
 
 # Resultant: Ankle
-scatterplot_GRF_res_ankle <- running_df %>%
+scatterplot_GRF_res_ankle <- mechanical_load_data %>%
   filter(vector == "resultant" & acc_placement == "ankle") %>%
   ggplot(aes(x = pACC_g, y = pGRF_N, color = BMI_cat)) +
   geom_point() +
@@ -32,7 +32,7 @@ scatterplot_GRF_res_ankle <- running_df %>%
   labs(title = "Ankle", x = quote("pRACC" ~ (italic(g))), y = "pRGRF (N)")
 
 # Resultant: Lower back
-scatterplot_GRF_res_back <- running_df %>%
+scatterplot_GRF_res_back <- mechanical_load_data %>%
   filter(vector == "resultant" & acc_placement == "lower_back") %>%
   ggplot(aes(x = pACC_g, y = pGRF_N, color = BMI_cat)) +
   geom_point() +
@@ -51,7 +51,7 @@ scatterplot_GRF_res_back <- running_df %>%
   labs(title = "Lower Back", x = quote("pRACC" ~ (italic(g))), y = "pRGRF (N)")
 
 # Resultant: Hip
-scatterplot_GRF_res_hip <- running_df %>%
+scatterplot_GRF_res_hip <- mechanical_load_data %>%
   filter(vector == "resultant" & acc_placement == "hip") %>%
   ggplot(aes(x = pACC_g, y = pGRF_N, color = BMI_cat)) +
   geom_point() +
@@ -70,7 +70,7 @@ scatterplot_GRF_res_hip <- running_df %>%
   labs(title = "Hip", x = quote("pRACC" ~ (italic(g))), y = "pRGRF (N)")
 
 # Vertical: Ankle
-scatterplot_GRF_ver_ankle <- running_df %>%
+scatterplot_GRF_ver_ankle <- mechanical_load_data %>%
   filter(vector == "vertical" & acc_placement == "ankle") %>%
   ggplot(aes(x = pACC_g, y = pGRF_N, color = BMI_cat)) +
   geom_point() +
@@ -89,7 +89,7 @@ scatterplot_GRF_ver_ankle <- running_df %>%
   labs(title = "Ankle", x = quote("pVACC" ~ (italic(g))), y = "pVGRF (N)")
 
 # Vertical: Lower back
-scatterplot_GRF_ver_back <- running_df %>%
+scatterplot_GRF_ver_back <- mechanical_load_data %>%
   filter(vector == "vertical" & acc_placement == "lower_back") %>%
   ggplot(aes(x = pACC_g, y = pGRF_N, color = BMI_cat)) +
   geom_point() +
@@ -108,7 +108,7 @@ scatterplot_GRF_ver_back <- running_df %>%
   labs(title = "Lower Back", x = quote("pVACC" ~ (italic(g))), y = "pVGRF (N)")
 
 # Vertical: Hip
-scatterplot_GRF_ver_hip <- running_df %>%
+scatterplot_GRF_ver_hip <- mechanical_load_data %>%
   filter(vector == "vertical" & acc_placement == "hip") %>%
   ggplot(aes(x = pACC_g, y = pGRF_N, color = BMI_cat)) +
   geom_point() +
@@ -129,7 +129,7 @@ scatterplot_GRF_ver_hip <- running_df %>%
 # LR x ATR plots ----------------------------------------------------------
 
 # Resultant: Ankle
-scatterplot_LR_res_ankle <- running_df %>%
+scatterplot_LR_res_ankle <- mechanical_load_data %>%
   filter(vector == "resultant" & acc_placement == "ankle") %>%
   ggplot(aes(x = pATR_gs, y = pLR_Ns, color = BMI_cat)) +
   geom_point() +
@@ -152,7 +152,7 @@ scatterplot_LR_res_ankle <- running_df %>%
   )
 
 # Resultant: Lower back
-scatterplot_LR_res_back <- running_df %>%
+scatterplot_LR_res_back <- mechanical_load_data %>%
   filter(vector == "resultant" & acc_placement == "lower_back") %>%
   ggplot(aes(x = pATR_gs, y = pLR_Ns, color = BMI_cat)) +
   geom_point() +
@@ -175,7 +175,7 @@ scatterplot_LR_res_back <- running_df %>%
   )
 
 # Resultant: Hip
-scatterplot_LR_res_hip <- running_df %>%
+scatterplot_LR_res_hip <- mechanical_load_data %>%
   filter(vector == "resultant" & acc_placement == "hip") %>%
   ggplot(aes(x = pATR_gs, y = pLR_Ns, color = BMI_cat)) +
   geom_point() +
@@ -198,7 +198,7 @@ scatterplot_LR_res_hip <- running_df %>%
   )
 
 # Vertical: Ankle
-scatterplot_LR_ver_ankle <- running_df %>%
+scatterplot_LR_ver_ankle <- mechanical_load_data %>%
   filter(vector == "vertical" & acc_placement == "ankle") %>%
   ggplot(aes(x = pATR_gs, y = pLR_Ns, color = BMI_cat)) +
   geom_point() +
@@ -221,7 +221,7 @@ scatterplot_LR_ver_ankle <- running_df %>%
   )
 
 # Vertical: Lower back
-scatterplot_LR_ver_back <- running_df %>%
+scatterplot_LR_ver_back <- mechanical_load_data %>%
   filter(vector == "vertical" & acc_placement == "lower_back") %>%
   ggplot(aes(x = pATR_gs, y = pLR_Ns, color = BMI_cat)) +
   geom_point() +
@@ -244,7 +244,7 @@ scatterplot_LR_ver_back <- running_df %>%
   )
 
 # Vertical: Hip
-scatterplot_LR_ver_hip <- running_df %>%
+scatterplot_LR_ver_hip <- mechanical_load_data %>%
   filter(vector == "vertical" & acc_placement == "hip") %>%
   ggplot(aes(x = pATR_gs, y = pLR_Ns, color = BMI_cat)) +
   geom_point() +
