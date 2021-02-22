@@ -18,7 +18,7 @@ anthropometric <- read_csv(here("data", "anthropometric_data.csv")) %>%
 # Read running data -------------------------------------------------------
 
 # Data with force and acceleration
-running_df_wide <- read_xlsx(
+mechanical_load_data_wide <- read_xlsx(
   here("data", "GRF_ACC_data_all.xlsx"), sheet = "all"
 ) %>%
   clean_names() %>%
@@ -37,12 +37,11 @@ running_df_wide <- read_xlsx(
   ) %>%
   filter(
     raw_imu == "imu" &
-    speed > 6 &
     acc_placement %in% c("ankle", "back", "waist")
   ) %>%
   select(id, everything())
 
-running_df_res <- running_df_wide %>%
+mechanical_load_data_res <- mechanical_load_data_wide %>%
   select(
     id, trial, filename, acc_placement, speed,
     n_peaks = res_n_peaks, pACC_g = pRACC_g,
@@ -53,7 +52,7 @@ running_df_res <- running_df_wide %>%
     .after = acc_placement
   )
 
-running_df_ver <- running_df_wide %>%
+mechanical_load_data_ver <- mechanical_load_data_wide %>%
   select(
     id, trial, filename, acc_placement, speed,
     n_peaks = ver_n_peaks, pACC_g = pVACC_g,
@@ -64,7 +63,9 @@ running_df_ver <- running_df_wide %>%
     .after = acc_placement
   )
 
-running_df <- rbind(running_df_res, running_df_ver) %>%
+mechanical_load_data <- rbind(
+  mechanical_load_data_res, mechanical_load_data_ver
+) %>%
   mutate(
     # Create another subj identifier
     subj = paste0(id, "m", trial),
@@ -80,7 +81,7 @@ running_df <- rbind(running_df_res, running_df_ver) %>%
   )
 
 # Data with force and acceleration rates
-running_rates_df_wide <- read_csv(
+mechanical_load_rates_dt_wide <- read_csv(
   here("data", "max_rates_IMU_running.csv")
 ) %>%
   clean_names() %>%
@@ -96,7 +97,7 @@ running_rates_df_wide <- read_csv(
   ) %>%
   filter(speed > 6 & acc_placement %in% c("ankle", "back", "waist"))
 
-running_rates_df_res <- running_rates_df_wide %>%
+mechanical_load_rates_res <- mechanical_load_rates_dt_wide %>%
   select(
     id, trial, filename, acc_placement, speed,
     pATR_gs = pRATR_gs,
@@ -107,7 +108,7 @@ running_rates_df_res <- running_rates_df_wide %>%
     .after = acc_placement
   )
 
-running_rates_df_ver <- running_rates_df_wide %>%
+mechanical_load_rates_ver <- mechanical_load_rates_dt_wide %>%
   select(
     id, trial, filename, acc_placement, speed,
     pATR_gs = pVATR_gs,
@@ -118,7 +119,9 @@ running_rates_df_ver <- running_rates_df_wide %>%
     .after = acc_placement
   )
 
-running_rates_df <- rbind(running_rates_df_res, running_rates_df_ver) %>%
+mechanical_load_rates_df <- rbind(
+  mechanical_load_rates_res, mechanical_load_rates_ver
+) %>%
   mutate(
     # Create another subj identifier
     subj = paste0(id, "m", trial),
@@ -133,9 +136,9 @@ running_rates_df <- rbind(running_rates_df_res, running_rates_df_ver) %>%
     id, trial, filename, subj, body_mass, BMI, BMI_cat, everything()
   )
 
-# Join both running data frames
-running_df <- running_df %>%
-  left_join(running_rates_df) %>%
+# Join both data frames
+mechanical_load_data <- mechanical_load_data %>%
+  left_join(mechanical_load_rates_df) %>%
   mutate(
     acc_placement = recode(
       as.factor(acc_placement),
@@ -147,4 +150,4 @@ running_df <- running_df %>%
     speed = as.factor(speed)
   )
 
-save(running_df, file = here("data", "running_df.rda"))
+save(mechanical_load_data, file = here("data", "mechanical_load_data.rda"))
