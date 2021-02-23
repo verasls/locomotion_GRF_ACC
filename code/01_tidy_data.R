@@ -82,7 +82,7 @@ mechanical_load_data <- rbind(
 
 # Data with force and acceleration rates
 mechanical_load_rates_dt_wide <- read_csv(
-  here("data", "max_rates_IMU_running.csv")
+  here("data", "max_rates_IMU.csv")
 ) %>%
   clean_names() %>%
   select(
@@ -95,7 +95,7 @@ mechanical_load_rates_dt_wide <- read_csv(
     pVLR_Ns = max_rates_fvt_med_fvt_n_s,
     pVLR_BWs = max_rates_fvt_med_fvt_bw
   ) %>%
-  filter(speed > 6 & acc_placement %in% c("ankle", "back", "waist"))
+  filter(acc_placement %in% c("ankle", "back", "waist"))
 
 mechanical_load_rates_res <- mechanical_load_rates_dt_wide %>%
   select(
