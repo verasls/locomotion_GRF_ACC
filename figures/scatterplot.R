@@ -9,15 +9,23 @@ library(ragg)
 # Load data ---------------------------------------------------------------
 
 load(here("data", "mechanical_load_data.rda"))
+mechanical_load_data <- mechanical_load_data %>%
+  mutate(activity = as.factor(ifelse(speed %in% 1:6, "walking", "running")))
 
 # GRF x ACC plots ---------------------------------------------------------
 
 # Resultant: Ankle
 scatterplot_GRF_res_ankle <- mechanical_load_data %>%
   filter(vector == "resultant" & acc_placement == "ankle") %>%
-  ggplot(aes(x = pACC_g, y = pGRF_N, color = BMI_cat)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE) +
+  ggplot() +
+  geom_point(
+    aes(x = pACC_g, y = pGRF_N, color = BMI_cat, shape = activity),
+    show_guide = FALSE
+  ) +
+  geom_smooth(
+    aes(x = pACC_g, y = pGRF_N, color = BMI_cat),
+    method = "lm", se = FALSE
+  ) +
   scale_color_nejm() +
   scale_y_continuous(
     limits = c(0, 3500),
@@ -34,9 +42,15 @@ scatterplot_GRF_res_ankle <- mechanical_load_data %>%
 # Resultant: Lower back
 scatterplot_GRF_res_back <- mechanical_load_data %>%
   filter(vector == "resultant" & acc_placement == "lower_back") %>%
-  ggplot(aes(x = pACC_g, y = pGRF_N, color = BMI_cat)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE) +
+  ggplot() +
+  geom_point(
+    aes(x = pACC_g, y = pGRF_N, color = BMI_cat, shape = activity),
+    show_guide = FALSE
+  ) +
+  geom_smooth(
+    aes(x = pACC_g, y = pGRF_N, color = BMI_cat),
+    method = "lm", se = FALSE
+  ) +
   scale_color_nejm() +
   scale_y_continuous(
     limits = c(0, 3500),
@@ -53,9 +67,15 @@ scatterplot_GRF_res_back <- mechanical_load_data %>%
 # Resultant: Hip
 scatterplot_GRF_res_hip <- mechanical_load_data %>%
   filter(vector == "resultant" & acc_placement == "hip") %>%
-  ggplot(aes(x = pACC_g, y = pGRF_N, color = BMI_cat)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE) +
+  ggplot() +
+  geom_point(
+    aes(x = pACC_g, y = pGRF_N, color = BMI_cat, shape = activity),
+    show_guide = FALSE
+  ) +
+  geom_smooth(
+    aes(x = pACC_g, y = pGRF_N, color = BMI_cat),
+    method = "lm", se = FALSE
+  ) +
   scale_color_nejm() +
   scale_y_continuous(
     limits = c(0, 3500),
@@ -72,9 +92,15 @@ scatterplot_GRF_res_hip <- mechanical_load_data %>%
 # Vertical: Ankle
 scatterplot_GRF_ver_ankle <- mechanical_load_data %>%
   filter(vector == "vertical" & acc_placement == "ankle") %>%
-  ggplot(aes(x = pACC_g, y = pGRF_N, color = BMI_cat)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE) +
+  ggplot() +
+  geom_point(
+    aes(x = pACC_g, y = pGRF_N, color = BMI_cat, shape = activity),
+    show_guide = FALSE
+  ) +
+  geom_smooth(
+    aes(x = pACC_g, y = pGRF_N, color = BMI_cat),
+    method = "lm", se = FALSE
+  ) +
   scale_color_nejm() +
   scale_y_continuous(
     limits = c(0, 3500),
@@ -91,9 +117,15 @@ scatterplot_GRF_ver_ankle <- mechanical_load_data %>%
 # Vertical: Lower back
 scatterplot_GRF_ver_back <- mechanical_load_data %>%
   filter(vector == "vertical" & acc_placement == "lower_back") %>%
-  ggplot(aes(x = pACC_g, y = pGRF_N, color = BMI_cat)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE) +
+  ggplot() +
+  geom_point(
+    aes(x = pACC_g, y = pGRF_N, color = BMI_cat, shape = activity),
+    show_guide = FALSE
+  ) +
+  geom_smooth(
+    aes(x = pACC_g, y = pGRF_N, color = BMI_cat),
+    method = "lm", se = FALSE
+  ) +
   scale_color_nejm() +
   scale_y_continuous(
     limits = c(0, 3500),
@@ -110,9 +142,15 @@ scatterplot_GRF_ver_back <- mechanical_load_data %>%
 # Vertical: Hip
 scatterplot_GRF_ver_hip <- mechanical_load_data %>%
   filter(vector == "vertical" & acc_placement == "hip") %>%
-  ggplot(aes(x = pACC_g, y = pGRF_N, color = BMI_cat)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE) +
+  ggplot() +
+  geom_point(
+    aes(x = pACC_g, y = pGRF_N, color = BMI_cat, shape = activity),
+    show_guide = FALSE
+  ) +
+  geom_smooth(
+    aes(x = pACC_g, y = pGRF_N, color = BMI_cat),
+    method = "lm", se = FALSE
+  ) +
   scale_color_nejm() +
   scale_y_continuous(
     limits = c(0, 3500),
@@ -131,9 +169,15 @@ scatterplot_GRF_ver_hip <- mechanical_load_data %>%
 # Resultant: Ankle
 scatterplot_LR_res_ankle <- mechanical_load_data %>%
   filter(vector == "resultant" & acc_placement == "ankle") %>%
-  ggplot(aes(x = pATR_gs, y = pLR_Ns, color = BMI_cat)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE) +
+  ggplot() +
+  geom_point(
+    aes(x = pATR_gs, y = pLR_Ns, color = BMI_cat, shape = activity),
+    show_guide = FALSE
+  ) +
+  geom_smooth(
+    aes(x = pATR_gs, y = pLR_Ns, color = BMI_cat),
+    method = "lm", se = FALSE
+  ) +
   scale_color_nejm() +
   scale_y_continuous(
     limits = c(0, 60000),
@@ -154,9 +198,15 @@ scatterplot_LR_res_ankle <- mechanical_load_data %>%
 # Resultant: Lower back
 scatterplot_LR_res_back <- mechanical_load_data %>%
   filter(vector == "resultant" & acc_placement == "lower_back") %>%
-  ggplot(aes(x = pATR_gs, y = pLR_Ns, color = BMI_cat)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE) +
+  ggplot() +
+  geom_point(
+    aes(x = pATR_gs, y = pLR_Ns, color = BMI_cat, shape = activity),
+    show_guide = FALSE
+  ) +
+  geom_smooth(
+    aes(x = pATR_gs, y = pLR_Ns, color = BMI_cat),
+    method = "lm", se = FALSE
+  ) +
   scale_color_nejm() +
   scale_y_continuous(
     limits = c(0, 60000),
@@ -177,9 +227,15 @@ scatterplot_LR_res_back <- mechanical_load_data %>%
 # Resultant: Hip
 scatterplot_LR_res_hip <- mechanical_load_data %>%
   filter(vector == "resultant" & acc_placement == "hip") %>%
-  ggplot(aes(x = pATR_gs, y = pLR_Ns, color = BMI_cat)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE) +
+  ggplot() +
+  geom_point(
+    aes(x = pATR_gs, y = pLR_Ns, color = BMI_cat, shape = activity),
+    show_guide = FALSE
+  ) +
+  geom_smooth(
+    aes(x = pATR_gs, y = pLR_Ns, color = BMI_cat),
+    method = "lm", se = FALSE
+  ) +
   scale_color_nejm() +
   scale_y_continuous(
     limits = c(0, 60000),
@@ -200,9 +256,15 @@ scatterplot_LR_res_hip <- mechanical_load_data %>%
 # Vertical: Ankle
 scatterplot_LR_ver_ankle <- mechanical_load_data %>%
   filter(vector == "vertical" & acc_placement == "ankle") %>%
-  ggplot(aes(x = pATR_gs, y = pLR_Ns, color = BMI_cat)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE) +
+  ggplot() +
+  geom_point(
+    aes(x = pATR_gs, y = pLR_Ns, color = BMI_cat, shape = activity),
+    show_guide = FALSE
+  ) +
+  geom_smooth(
+    aes(x = pATR_gs, y = pLR_Ns, color = BMI_cat),
+    method = "lm", se = FALSE
+  ) +
   scale_color_nejm() +
   scale_y_continuous(
     limits = c(0, 60000),
@@ -223,9 +285,15 @@ scatterplot_LR_ver_ankle <- mechanical_load_data %>%
 # Vertical: Lower back
 scatterplot_LR_ver_back <- mechanical_load_data %>%
   filter(vector == "vertical" & acc_placement == "lower_back") %>%
-  ggplot(aes(x = pATR_gs, y = pLR_Ns, color = BMI_cat)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE) +
+  ggplot() +
+  geom_point(
+    aes(x = pATR_gs, y = pLR_Ns, color = BMI_cat, shape = activity),
+    show_guide = FALSE
+  ) +
+  geom_smooth(
+    aes(x = pATR_gs, y = pLR_Ns, color = BMI_cat),
+    method = "lm", se = FALSE
+  ) +
   scale_color_nejm() +
   scale_y_continuous(
     limits = c(0, 60000),
@@ -246,9 +314,15 @@ scatterplot_LR_ver_back <- mechanical_load_data %>%
 # Vertical: Hip
 scatterplot_LR_ver_hip <- mechanical_load_data %>%
   filter(vector == "vertical" & acc_placement == "hip") %>%
-  ggplot(aes(x = pATR_gs, y = pLR_Ns, color = BMI_cat)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE) +
+  ggplot() +
+  geom_point(
+    aes(x = pATR_gs, y = pLR_Ns, color = BMI_cat, shape = activity),
+    show_guide = FALSE
+  ) +
+  geom_smooth(
+    aes(x = pATR_gs, y = pLR_Ns, color = BMI_cat),
+    method = "lm", se = FALSE
+  ) +
   scale_color_nejm() +
   scale_y_continuous(
     limits = c(0, 60000),
