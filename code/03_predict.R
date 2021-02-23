@@ -114,7 +114,7 @@ plot_ver_LR_models <- map(
   cv_ver_LR_models, plot_bland_altman, color = BMI_cat
 )
 
-# Save leave-one-out cross-validation data --------------------------------
+# Save models and leave-one-out cross-validation data ---------------------
 
 if (!dir.exists(here("output"))) {
   dir.create(here("output"))
@@ -123,4 +123,13 @@ save(
   cv_res_GRF_models, cv_ver_GRF_models,
   cv_res_LR_models, cv_ver_LR_models,
   file = here("output", "loocv_data.rda")
+)
+save(
+  res_GRF_models, ver_GRF_models,
+  res_LR_models, ver_LR_models,
+  accuracy_res_GRF_models,
+  accuracy_ver_GRF_models,
+  accuracy_res_LR_models,
+  accuracy_ver_LR_models,
+  file = here("output", "prediction_models.rda")
 )
