@@ -8,16 +8,16 @@ figures/bland-altman_GRF.tiff figures/bland-altman_LR.tiff: output/loocv_data.rd
 	R CMD BATCH figures/bland-altman.R
 
 ## output   : Generates all output
-output: output/tab1.rda output/loocv_data.rda output/prediction_models.rda
-
-output/tab1.rda: output/prediction_models.rda output/loocv_data.rda
-	R CMD BATCH tables/tab1.R
+output: output/loocv_data.rda output/prediction_models.rda output/sub_analyses_accuracy.rda
 
 output/loocv_data.rda: data/mechanical_load_data.rda code/03_predict.R
 	R CMD BATCH code/03_predict.R
 
 output/prediction_models.rda: data/mechanical_load_data.rda code/03_predict.R
 	R CMD BATCH code/03_predict.R
+
+output/sub_analyses_accuracy.rda: data/mechanical_load_data.rda output/loocv_data.rda
+	R CMD BATCH code/04_sub_analyses.R
 
 ## data     : Processes raw data
 data: data/mechanical_load_data.rda
