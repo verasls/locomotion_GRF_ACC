@@ -27,11 +27,17 @@ ba_bias_test_ver_LR <- map(cv_ver_LR_models, bland_altman_t_test)
 # Accuracy per activity ---------------------------------------------------
 
 # Walking
-walking_accuracy <- cv_res_GRF_models %>%
+walking_res_accuracy <- cv_res_GRF_models %>%
+  map(~ filter(.x, speed %in% 1:6)) %>%
+  map(accuracy, na.rm = TRUE)
+walking_ver_accuracy <- cv_ver_GRF_models %>%
   map(~ filter(.x, speed %in% 1:6)) %>%
   map(accuracy, na.rm = TRUE)
 # Running
-running_accuracy <- cv_res_GRF_models %>%
+running_res_accuracy <- cv_res_GRF_models %>%
+  map(~ filter(.x, speed %in% 7:14)) %>%
+  map(accuracy, na.rm = TRUE)
+running_ver_accuracy <- cv_ver_GRF_models %>%
   map(~ filter(.x, speed %in% 7:14)) %>%
   map(accuracy, na.rm = TRUE)
 
@@ -79,5 +85,6 @@ if (!dir.exists(here("output"))) {
 }
 save(
   neug_overall_accuracy, neug_walk_accuracy, neug_run_accuracy,
-  file = here("output", "neug_accuracy.rda")
+  walking_ver_accuracy, running_ver_accuracy,
+  file = here("output", "sub_analyses_accuracy.rda")
 )
