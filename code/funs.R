@@ -11,7 +11,9 @@
 # Returns:
 #    A tibble with the regression formula table.
 build_formula_table <- function(model, cv, outcome, vector) {
-  model_accuracy <- purrr::map(cv_res_GRF_models, accuracy, na.rm = TRUE)
+  model_accuracy <- purrr::map(
+    cv_res_GRF_models, lvmisc::accuracy, na.rm = TRUE
+  )
   R2 <- unname(purrr::map_dbl(model_accuracy, "R2_cond"))
   MAE <- unname(purrr::map_dbl(model_accuracy, "MAE"))
   MAPE <- unname(purrr::map_dbl(model_accuracy, "MAPE"))
@@ -118,5 +120,24 @@ get_bland_altman_data <- function(cv) {
     cv,
     diff = .actual - .predicted,
     mean = (.actual + .predicted) / 2
+  )
+}
+
+# Compute some indices of accuracy
+#
+# Params:
+#    actual, predicted: A numeric vector with actual and predicted values.
+#
+# Returns:
+#    A data.frame with 3 columns: MAE, MAPE and RMSE for mean absolute error,
+# mean absolute percent error and root mean squared error, respectively.
+compute_accuracy <- function(actual, predicted) {
+  round(
+    data.frame(
+      MAE = lvmisc::mean_error_abs(actual, predicted, na.rm = TRUE),
+      MAPE = lvmisc::mean_error_abs_pct(actual, predicted, na.rm = TRUE),
+      RMSE = lvmisc::mean_error_sqr_root(actual, predicted, na.rm = TRUE)
+    ),
+    2
   )
 }
