@@ -53,7 +53,7 @@ walk_predictions <- mechanical_load_data %>%
     )
   )
 run_predictions <- mechanical_load_data %>%
-  filter(vector == "vertical" & acc_placement == "hip" & speed %in% 1:6) %>%
+  filter(vector == "vertical" & acc_placement == "hip" & speed %in% 7:14) %>%
   transmute(
     subj, speed, pACC_g, body_mass, BMI_cat, pGRF_N,
     predicted_Neug = exp(
@@ -61,13 +61,23 @@ run_predictions <- mechanical_load_data %>%
     )
   )
 overall_predictions <- rbind(walk_predictions, run_predictions)
-# Compute MAPE
-neug_walk_accuracy <- mean_error_abs_pct(
-  walk_predictions$pGRF_N, walk_predictions$predicted_Neug, na.rm = TRUE
+# Compute accuracy
+neug_walk_accuracy <- compute_accuracy(
+  walk_predictions$pGRF_N, walk_predictions$predicted_Neug
 )
-neug_run_accuracy <- mean_error_abs_pct(
-  run_predictions$pGRF_N, run_predictions$predicted_Neug, na.rm = TRUE
+neug_run_accuracy <- compute_accuracy(
+  run_predictions$pGRF_N, run_predictions$predicted_Neug
 )
-neug_overall_accuracy <- mean_error_abs_pct(
-  overall_predictions$pGRF_N, overall_predictions$predicted_Neug, na.rm = TRUE
+neug_overall_accuracy <- compute_accuracy(
+  overall_predictions$pGRF_N, overall_predictions$predicted_Neug
+)
+
+# Save Neugebauer 2014 prediction accuracy --------------------------------
+
+if (!dir.exists(here("output"))) {
+  dir.create(here("output"))
+}
+save(
+  neug_overall_accuracy, neug_walk_accuracy, neug_run_accuracy,
+  file = here("output", "neug_accuracy.rda")
 )
