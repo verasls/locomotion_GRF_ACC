@@ -10,12 +10,37 @@ library(ragg)
 # Load data ---------------------------------------------------------------
 
 load(here("output", "loocv_data.rda"))
+cv_res_GRF_models <- map(
+  cv_res_GRF_models,
+  ~ mutate(
+    .x, activity = as.factor(ifelse(speed %in% 1:6, "walking", "running"))
+  )
+)
+cv_ver_GRF_models <- map(
+  cv_ver_GRF_models,
+  ~ mutate(
+    .x, activity = as.factor(ifelse(speed %in% 1:6, "walking", "running"))
+  )
+)
+cv_res_LR_models <- map(
+  cv_res_LR_models,
+  ~ mutate(
+    .x, activity = as.factor(ifelse(speed %in% 1:6, "walking", "running"))
+  )
+)
+cv_ver_LR_models <- map(
+  cv_ver_LR_models,
+  ~ mutate(
+    .x, activity = as.factor(ifelse(speed %in% 1:6, "walking", "running"))
+  )
+)
 
 # GRF plots ---------------------------------------------------------------
 
 # Resultant: Ankle
 BA_GRF_res_ankle <- cv_res_GRF_models$ankle %>%
-  plot_bland_altman(color = BMI_cat) +
+  plot_bland_altman(color = BMI_cat, shape = activity) +
+  guides(shape = FALSE) +
   scale_color_nejm() +
   scale_y_continuous(
     limits = c(-1500, 600),
@@ -35,7 +60,8 @@ BA_GRF_res_ankle <- cv_res_GRF_models$ankle %>%
 
 # Resultant: Lower back
 BA_GRF_res_back <- cv_res_GRF_models$lower_back %>%
-  plot_bland_altman(color = BMI_cat) +
+  plot_bland_altman(color = BMI_cat, shape = activity) +
+  guides(shape = FALSE) +
   scale_color_nejm() +
   scale_y_continuous(
     limits = c(-600, 600),
@@ -55,7 +81,8 @@ BA_GRF_res_back <- cv_res_GRF_models$lower_back %>%
 
 # Resultant: Hip
 BA_GRF_res_hip <- cv_res_GRF_models$hip %>%
-  plot_bland_altman(color = BMI_cat) +
+  plot_bland_altman(color = BMI_cat, shape = activity) +
+  guides(shape = FALSE) +
   scale_color_nejm() +
   scale_y_continuous(
     limits = c(-600, 600),
@@ -75,7 +102,8 @@ BA_GRF_res_hip <- cv_res_GRF_models$hip %>%
 
 # Vertical: Ankle
 BA_GRF_ver_ankle <- cv_ver_GRF_models$ankle %>%
-  plot_bland_altman(color = BMI_cat) +
+  plot_bland_altman(color = BMI_cat, shape = activity) +
+  guides(shape = FALSE) +
   scale_color_nejm() +
   scale_y_continuous(
     limits = c(-900, 600),
@@ -95,7 +123,8 @@ BA_GRF_ver_ankle <- cv_ver_GRF_models$ankle %>%
 
 # Vertical: Lower back
 BA_GRF_ver_back <- cv_ver_GRF_models$lower_back %>%
-  plot_bland_altman(color = BMI_cat) +
+  plot_bland_altman(color = BMI_cat, shape = activity) +
+  guides(shape = FALSE) +
   scale_color_nejm() +
   scale_y_continuous(
     limits = c(-600, 600),
@@ -115,7 +144,8 @@ BA_GRF_ver_back <- cv_ver_GRF_models$lower_back %>%
 
 # Vertical: Hip
 BA_GRF_ver_hip <- cv_ver_GRF_models$hip %>%
-  plot_bland_altman(color = BMI_cat) +
+  plot_bland_altman(color = BMI_cat, shape = activity) +
+  guides(shape = FALSE) +
   scale_color_nejm() +
   scale_y_continuous(
     limits = c(-600, 600),
@@ -138,7 +168,8 @@ BA_GRF_ver_hip <- cv_ver_GRF_models$hip %>%
 # Resultant: Ankle
 BA_LR_res_ankle <- ggplot()
 # BA_LR_res_ankle <- cv_res_LR_models$ankle %>%
-#   plot_bland_altman(color = BMI_cat) +
+#   plot_bland_altman(color = BMI_cat, shape = activity) +
+#   guides(shape = FALSE) +
 #   scale_color_nejm() +
 #   scale_y_continuous(
 #     labels = scales::label_number(),
@@ -159,7 +190,8 @@ BA_LR_res_ankle <- ggplot()
 
 # Resultant: Lower back
 BA_LR_res_back <- cv_res_LR_models$lower_back %>%
-  plot_bland_altman(color = BMI_cat) +
+  plot_bland_altman(color = BMI_cat, shape = activity) +
+  guides(shape = FALSE) +
   scale_color_nejm() +
   scale_y_continuous(
     labels = scales::label_number(),
@@ -180,7 +212,8 @@ BA_LR_res_back <- cv_res_LR_models$lower_back %>%
 
 # Resultant: Hip
 BA_LR_res_hip <- cv_res_LR_models$hip %>%
-  plot_bland_altman(color = BMI_cat) +
+  plot_bland_altman(color = BMI_cat, shape = activity) +
+  guides(shape = FALSE) +
   scale_color_nejm() +
   scale_y_continuous(
     labels = scales::label_number(),
@@ -202,7 +235,8 @@ BA_LR_res_hip <- cv_res_LR_models$hip %>%
 # Vertical: Ankle
 BA_LR_ver_ankle <- ggplot()
 # BA_LR_ver_ankle <- cv_ver_LR_models$ankle %>%
-#   plot_bland_altman(color = BMI_cat) +
+#   plot_bland_altman(color = BMI_cat, shape = activity) +
+#   guides(shape = FALSE) +
 #   scale_color_nejm() +
 #   scale_y_continuous(
 #     labels = scales::label_number(),
@@ -223,7 +257,8 @@ BA_LR_ver_ankle <- ggplot()
 
 # Vertical: Lower back
 BA_LR_ver_back <- cv_ver_LR_models$lower_back %>%
-  plot_bland_altman(color = BMI_cat) +
+  plot_bland_altman(color = BMI_cat, shape = activity) +
+  guides(shape = FALSE) +
   scale_color_nejm() +
   scale_y_continuous(
     labels = scales::label_number(),
@@ -244,7 +279,8 @@ BA_LR_ver_back <- cv_ver_LR_models$lower_back %>%
 
 # Vertical: Hip
 BA_LR_ver_hip <- cv_ver_LR_models$hip %>%
-  plot_bland_altman(color = BMI_cat) +
+  plot_bland_altman(color = BMI_cat, shape = activity) +
+  guides(shape = FALSE) +
   scale_color_nejm() +
   scale_y_continuous(
     labels = scales::label_number(),
