@@ -72,3 +72,51 @@ get_equation <- function(model, outcome, vector) {
   )
   as.character(regression_equation)
 }
+
+# Bland-Altman plot regression
+#
+# Runs a linear regression to test whether the difference of the actual and
+# predicted values are explained by their mean.
+#
+# Params:
+#    cv: A list of length 3 with the lvmisc_cv objects.
+#
+# Returns:
+#    The lm object summary.
+bland_altman_regression <- function(cv) {
+  data <- get_bland_altman_data(cv)
+  summary(stats::lm(diff ~ mean, data))
+}
+
+# Bland-Altman plot t-test
+#
+# Runs a one-sample t-test on the bias value, to test whether it differs
+# from 0.
+#
+# Params:
+#    cv: A list of length 3 with the lvmisc_cv objects.
+#
+# Returns:
+#   The htest object summary.
+bland_altman_t_test <- function(cv) {
+  data <- get_bland_altman_data(cv)
+  t.test(data$diff, mu = 0)
+}
+
+# Get Bland-Altman plot data.
+#
+# Computes the element-wise difference between the  actual and predicted values
+# and their mean.
+#
+# Params:
+#    cv: A list of length 3 with the lvmisc_cv objects.
+#
+# Returns:
+#  A tibble with two columns: diff and mean.
+get_bland_altman_data <- function(cv) {
+  dplyr::transmute(
+    cv,
+    diff = .actual - .predicted,
+    mean = (.actual + .predicted) / 2
+  )
+}
