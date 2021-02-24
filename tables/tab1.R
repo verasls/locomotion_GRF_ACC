@@ -1,4 +1,4 @@
-# Load packages -----------------------------------------------------------
+# Load packages and functions ---------------------------------------------
 
 library(here)
 library(tidyverse)
