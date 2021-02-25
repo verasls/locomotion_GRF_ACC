@@ -12,7 +12,7 @@
 #    A tibble with the regression formula table.
 build_formula_table <- function(model, cv, outcome, vector) {
   model_accuracy <- purrr::map(
-    cv_res_GRF_models, lvmisc::accuracy, na.rm = TRUE
+    cv, lvmisc::accuracy, na.rm = TRUE
   )
   R2 <- unname(purrr::map_dbl(model_accuracy, "R2_cond"))
   MAE <- unname(purrr::map_dbl(model_accuracy, "MAE"))
