@@ -79,6 +79,7 @@ vignettes/*.pdf
 *.docx
 *.ppt
 *.pptx
+*.log
 COMMENTS
 data/
 output/
