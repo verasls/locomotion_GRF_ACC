@@ -1,0 +1,21 @@
+---
+title: "The document title"
+output: 
+  pdf_document:
+    includes:
+      in_header: "preamble.tex"
+---
+
+\begin{center}
+Lucas Veras$^1$, Florêncio Diniz-Sousa$^1$, Giorjines Boppre$^1$, Vítor Devezas$^2$, Hugo Santos-Sousa$^2$, John Preto$^2$, João Paulo Vilas-Boas$^{3,4}$, Leandro Machado$^{3,4}$, José Oliveira$^1$, Hélder Fonseca$^1$
+\end{center}
+
+\bigskip
+
+1 - Research Center in Physical Activity, Health and Leisure (CIAFEL), Faculty of Sport, University of Porto, Porto, Portugal
+
+2 - General Surgery Department, São João Medical Center, Porto, Portugal
+
+3 - Center of Research, Education, Innovation and Intervention in Sport (CIFI2D), Faculty of Sport, University of Porto, Porto, Portugal
+
+4 - Biomechanics Laboratory (LABIOMEP-UP), University of Porto, Porto, Portugal
