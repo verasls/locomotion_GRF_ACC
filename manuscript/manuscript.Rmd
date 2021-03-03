@@ -1,11 +1,24 @@
 ---
-title: "The document title"
+# title: "The document title"
 output: 
   pdf_document:
     includes:
       in_header: "preamble.tex"
 ---
 
+```{r, setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE, results = "hide", message = FALSE, warning = FALSE
+)
+```
+
+```{r source}
+library(here)
+source(here("code", "02_explore.R"))
+```
+
+
+<!--
 \begin{center}
 Lucas Veras$^1$, Florêncio Diniz-Sousa$^1$, Giorjines Boppre$^1$, Vítor Devezas$^2$, Hugo Santos-Sousa$^2$, John Preto$^2$, João Paulo Vilas-Boas$^{3,4}$, Leandro Machado$^{3,4}$, José Oliveira$^1$, Hélder Fonseca$^1$
 \end{center}
@@ -19,3 +32,14 @@ Lucas Veras$^1$, Florêncio Diniz-Sousa$^1$, Giorjines Boppre$^1$, Vítor Deveza
 3 - Center of Research, Education, Innovation and Intervention in Sport (CIFI2D), Faculty of Sport, University of Porto, Porto, Portugal
 
 4 - Biomechanics Laboratory (LABIOMEP-UP), University of Porto, Porto, Portugal
+-->
+
+# Introduction
+
+The aim of this study was to develop pGRF and pLR prediction models based on accelerometer data during walking and running.
+
+# Methods
+
+A convenience sample of `r max(sample_size$pGRF_N)` adults (`r unname(sample_size_sex["M"])` males; $`r sample_descriptives$age_mean`\pm`r sample_descriptives$age_sd`$ years; $`r sample_descriptives$height_mean`\pm`r sample_descriptives$height_sd`$ cm; $`r sample_descriptives$body_mass_mean`\pm`r sample_descriptives$body_mass_sd`$ kg; $`r sample_descriptives$BMI_mean`\pm`r sample_descriptives$BMI_sd`$ $\mathrm{kg\cdot m^{-2}}$, $\overline{X}\pm SD$) with no self-reported neurological or musculoskeletal limitations was recruited. Height and body mass were assessed following standard procedures with a stadiometer and a digital scale, respectively. All participants were informed about the experiments purpose and protocol before giving written informed consent. The study was approved by the local Ethics Committee (CES 192-14).
+
+Data collection took place at Porto Biomechanics Laboratory (LABIOMEP-UP), in an instrumented treadmill with built-in FPs (AMTI Corporation, Watertown, USA). Before starting the data collection, participants were given time to warm up on the treadmill. The protocol consisted of walking and running in 12 incremental speeds, with 0º inclination, from 2 to 14 $\mathrm{km\cdot h^{-1}}$ with 1 $\mathrm{km\cdot h^{-1}}$ increment. Walking and running speeds ranged from 2 to 6 $\mathrm{km\cdot h^{-1}}$ and from 7 to 14 $\mathrm{km\cdot h^{-1}}$, respectively. Each walking speed lasted for 1 minute and each running speed for 30 seconds. To ensure single foot contact on each FP during the trial, feedback regarding location on the treadmill was provided by a researcher. Participants wore their own sports shoes throughout the trials.
