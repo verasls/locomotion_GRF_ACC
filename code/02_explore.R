@@ -20,6 +20,10 @@ knitr::kable(sample_size)
 # Number of peaks median and IQR ------------------------------------------
 
 n_peaks_desc <- mechanical_load_data %>%
+  mutate(
+    locomotion_type = as.factor(ifelse(speed %in% 1:6, "walking", "running"))
+  ) %>%
+  group_by(locomotion_type) %>%
   summarise(
     n_peaks_median = median(n_peaks), n_peaks_iqr = IQR(n_peaks)
   )
