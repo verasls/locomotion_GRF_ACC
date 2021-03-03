@@ -15,7 +15,6 @@ sample_size <- mechanical_load_data %>%
   group_by(acc_placement, vector, speed) %>%
   select(acc_placement, vector, speed, pGRF_N, pLR_Ns) %>%
   summarise_all(~ sum(!is.na(.)))
-knitr::kable(sample_size)
 
 # Number of peaks median and IQR ------------------------------------------
 
@@ -31,25 +30,25 @@ n_peaks_desc <- mechanical_load_data %>%
 # GRF and ACC magnitude and rate per running speeed -----------------------
 
 # Ground reaction force
-mechanical_load_data %>%
+GRF_speed_plots <- mechanical_load_data %>%
   filter(acc_placement == "lower_back") %>%
   ggplot(aes(x = speed, y = pGRF_BW, fill = vector)) +
   geom_boxplot()
 
 # Loading rate
-mechanical_load_data %>%
+LR_speed_plots <- mechanical_load_data %>%
   filter(acc_placement == "lower_back") %>%
   ggplot(aes(x = speed, y = pLR_BWs, fill = vector)) +
   geom_boxplot()
 
 # Acceleration
-mechanical_load_data %>%
+ACC_speed_plots <- mechanical_load_data %>%
   ggplot(aes(x = speed, y = pACC_g, fill = vector)) +
   geom_boxplot() +
   facet_wrap(~ acc_placement)
 
 # Acceleration transient rate
-mechanical_load_data %>%
+ATR_speed_plots <- mechanical_load_data %>%
   ggplot(aes(x = speed, y = pATR_gs, fill = vector)) +
   geom_boxplot() +
   facet_wrap(~ acc_placement)
@@ -72,9 +71,13 @@ correlations <- map2(
 # Scatterplots ------------------------------------------------------------
 
 # GRF x ACC
-plot_scatter(mechanical_load_data, pACC_g, pGRF_N, color = BMI_cat) +
+GRF_ACC_scatterplot <- plot_scatter(
+  mechanical_load_data, pACC_g, pGRF_N, color = BMI_cat
+) +
   facet_wrap(~ acc_placement)
 
 # LR x ATR
-plot_scatter(mechanical_load_data, pATR_gs, pLR_Ns, color = BMI_cat) +
+LR_ATR_scatterplot <- plot_scatter(
+  mechanical_load_data, pATR_gs, pLR_Ns, color = BMI_cat
+) +
   facet_wrap(~ acc_placement)
