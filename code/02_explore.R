@@ -16,6 +16,25 @@ sample_size <- mechanical_load_data %>%
   select(acc_placement, vector, speed, pGRF_N, pLR_Ns) %>%
   summarise_all(~ sum(!is.na(.)))
 
+# Sample descriptives -----------------------------------------------------
+
+sample_descriptives <- mechanical_load_data %>%
+  # Filter only one data point per participant
+  filter(acc_placement == "hip" & vector == "resultant" & speed == 2) %>%
+  select(age, height, body_mass, BMI) %>%
+  summarise(
+    across(where(is.double), list(mean = mean, sd = sd))
+  ) %>%
+  round(1)
+
+sample_size_sex <- mechanical_load_data %>%
+  # Filter only one data point per participant
+  filter(acc_placement == "hip" & vector == "resultant" & speed == 2) %>%
+  select(sex) %>%
+  as_vector() %>%
+  unname() %>%
+  table()
+
 # Number of peaks median and IQR ------------------------------------------
 
 n_peaks_desc <- mechanical_load_data %>%
