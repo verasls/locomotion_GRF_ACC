@@ -73,7 +73,9 @@ mechanical_load_data <- rbind(
     subj = ifelse(str_length(subj) == 4, paste0("0", subj), subj)
   ) %>%
   left_join(
-    select(anthropometric, id, trial, body_mass, BMI, BMI_cat),
+    select(
+      anthropometric, id, trial, sex, age, height, body_mass, BMI, BMI_cat
+    ),
     by = c("id", "trial")
   ) %>%
   select(
@@ -129,7 +131,9 @@ mechanical_load_rates_df <- rbind(
     subj = ifelse(str_length(subj) == 4, paste0("0", subj), subj)
   ) %>%
   left_join(
-    select(anthropometric, id, trial, body_mass, BMI, BMI_cat),
+    select(
+      anthropometric, id, trial, sex, age, height, body_mass, BMI, BMI_cat
+    ),
     by = c("id", "trial")
   ) %>%
   select(
