@@ -90,10 +90,10 @@ mechanical_load_rates_dt_wide <- read_csv(
   select(
     id, trial = visita, filename = nome, acc_placement = local_acelerometro,
     speed = velocidade_km_h,
-    pRATR_gs = max_rates_atot_med_atot_g_s,
+    pRAR_gs = max_rates_atot_med_atot_g_s,
     pRLR_Ns = max_rates_ftot_med_ftot_n_s,
     pRLR_BWs = max_rates_ftot_med_ftot_bw,
-    pVATR_gs = max_rates_avt_med_avt_g_s,
+    pVAR_gs = max_rates_avt_med_avt_g_s,
     pVLR_Ns = max_rates_fvt_med_fvt_n_s,
     pVLR_BWs = max_rates_fvt_med_fvt_bw
   ) %>%
@@ -102,7 +102,7 @@ mechanical_load_rates_dt_wide <- read_csv(
 mechanical_load_rates_res <- mechanical_load_rates_dt_wide %>%
   select(
     id, trial, filename, acc_placement, speed,
-    pATR_gs = pRATR_gs,
+    pAR_gs = pRAR_gs,
     pLR_Ns = pRLR_Ns, pLR_BWs = pRLR_BWs
   ) %>%
   mutate(
@@ -113,7 +113,7 @@ mechanical_load_rates_res <- mechanical_load_rates_dt_wide %>%
 mechanical_load_rates_ver <- mechanical_load_rates_dt_wide %>%
   select(
     id, trial, filename, acc_placement, speed,
-    pATR_gs = pVATR_gs,
+    pAR_gs = pVAR_gs,
     pLR_Ns = pVLR_Ns, pLR_BWs = pVLR_BWs
   ) %>%
   mutate(

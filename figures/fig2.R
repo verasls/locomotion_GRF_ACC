@@ -54,11 +54,11 @@ scatterplot_LR_res_back <- mechanical_load_data %>%
   filter(vector == "resultant" & acc_placement == "lower_back") %>%
   ggplot() +
   geom_point(
-    aes(x = pATR_gs, y = pLR_Ns, color = BMI_cat, shape = activity),
+    aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat, shape = activity),
     show_guide = FALSE
   ) +
   geom_smooth(
-    aes(x = pATR_gs, y = pLR_Ns, color = BMI_cat),
+    aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat),
     method = "lm", se = FALSE
   ) +
   scale_color_nejm() +
@@ -84,7 +84,7 @@ scatterplot_LR_res_back <- mechanical_load_data %>%
   ) +
   labs(
     title = "Lower Back",
-    x = quote("pRATR" ~ (italic(g) %.% s^-1)),
+    x = quote("pRAR" ~ (italic(g) %.% s^-1)),
     y = quote("pRLR" ~ (N %.% s^-1))
   )
 

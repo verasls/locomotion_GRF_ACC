@@ -66,9 +66,9 @@ ACC_speed_plots <- mechanical_load_data %>%
   geom_boxplot() +
   facet_wrap(~ acc_placement)
 
-# Acceleration transient rate
-ATR_speed_plots <- mechanical_load_data %>%
-  ggplot(aes(x = speed, y = pATR_gs, fill = vector)) +
+# Acceleration rate
+AR_speed_plots <- mechanical_load_data %>%
+  ggplot(aes(x = speed, y = pAR_gs, fill = vector)) +
   geom_boxplot() +
   facet_wrap(~ acc_placement)
 
@@ -82,7 +82,7 @@ correlations <- map2(
   info$vectors, info$placement,
   ~ mechanical_load_data %>%
     filter(vector == .x & acc_placement == .y) %>%
-    select(pGRF_N, pLR_Ns, pACC_g, pATR_gs, body_mass)
+    select(pGRF_N, pLR_Ns, pACC_g, pAR_gs, body_mass)
 ) %>%
   set_names(paste(info$vectors, info$placement, sep = "_")) %>%
   map(correlate)
@@ -95,8 +95,8 @@ GRF_ACC_scatterplot <- plot_scatter(
 ) +
   facet_wrap(~ acc_placement)
 
-# LR x ATR
-LR_ATR_scatterplot <- plot_scatter(
-  mechanical_load_data, pATR_gs, pLR_Ns, color = BMI_cat
+# LR x AR
+LR_AR_scatterplot <- plot_scatter(
+  mechanical_load_data, pAR_gs, pLR_Ns, color = BMI_cat
 ) +
   facet_wrap(~ acc_placement)
