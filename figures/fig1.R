@@ -18,7 +18,7 @@ sample_size <- mechanical_load_data %>%
 
 # Plot BMI distribution per speed -----------------------------------------
 
-bmi_speed_plot <- mechanical_load_data %>%
+fig1 <- mechanical_load_data %>%
   filter(acc_placement == "hip" & vector == "resultant") %>%
   ggplot(aes(x = speed, y = BMI)) +
   geom_boxplot(outlier.shape = NA, fill = "gray", alpha = 0.6, width = 0.5) +
@@ -61,5 +61,5 @@ agg_tiff(
   res = 100,
   scaling = 2
 )
-plot(bmi_speed_plot)
+plot(fig1)
 dev.off()
