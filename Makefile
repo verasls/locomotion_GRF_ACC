@@ -5,13 +5,28 @@ manuscript/manuscript.pdf: manuscript/manuscript.Rmd manuscript/bibliography.bib
 	Rscript -e 'rmarkdown::render("$<")'
 
 ## figures    : Generates all figures
-figures: figures/scatterplot_GRF.tiff figures/scatterplot_LR.tiff figures/bland-altman_GRF.tiff figures/bland-altman_LR.tiff
+figures: figures/fig1.R figures/fig2.R figures/fig3.R figures/figS1.R figures/figS2.R figures/figS3.R figures/figS4.R
 
-figures/scatterplot_GRF.tiff figures/scatterplot_LR.tiff: data/mechanical_load_data.rda figures/scatterplot.R
-	R CMD BATCH figures/scatterplot.R
+figures/fig1.R: data/mechanical_load_data.rda figures/fig1.R 
+	R CMD BATCH figures/fig1.R
 
-figures/bland-altman_GRF.tiff figures/bland-altman_LR.tiff: output/loocv_data.rda figures/bland-altman.R
-	R CMD BATCH figures/bland-altman.R
+figures/fig2.R: data/mechanical_load_data.rda figures/fig2.R
+	R CMD BATCH figures/fig2.R
+
+figures/fig3.R: output/loocv_data.rda figures/fig3.R
+	R CMD BATCH figures/fig3.R
+
+figures/figS1.R: data/mechanical_load_data.rda figures/figS1.R
+	R CMD BATCH figures/figS1.R
+
+figures/figS2.R: data/mechanical_load_data.rda figures/figS2.R
+	R CMD BATCH figures/figS2.R
+
+figures/figS3.R: output/loocv_data.rda figures/figS3.R
+	R CMD BATCH figures/figS3.R
+
+figures/figS4.R: output/loocv_data.rda figures/figS4.R
+	R CMD BATCH figures/figS4.R
 
 ## output     : Generates all output
 output: output/loocv_data.rda output/prediction_models.rda output/sub_analyses_accuracy.rda
