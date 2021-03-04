@@ -1,7 +1,7 @@
 ## manuscript : Generates the manuscript pdf file
 manuscript: manuscript/manuscript.pdf
 
-manuscript/manuscript.pdf: manuscript/manuscript.Rmd
+manuscript/manuscript.pdf: manuscript/manuscript.Rmd manuscript/bibliography.bib manuscript/nlm.csl
 	Rscript -e 'rmarkdown::render("$<")'
 
 ## figures    : Generates all figures
