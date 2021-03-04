@@ -55,14 +55,24 @@ BA_LR_res_back <- cv_res_LR_models$lower_back %>%
   scale_color_nejm() +
   scale_y_continuous(
     labels = scales::label_number(),
-    limits = c(-30000, 30000),
+    limits = c(-20000, 20000),
     expand = c(0, 0),
-    breaks = seq(-30000, 30000, 10000)
+    breaks = seq(-20000, 20000, 10000)
+  ) +
+  scale_x_continuous(
+    limits = c(2500, 27500),
+    expand = c(0, 0),
+    breaks = seq(5000, 25000, 5000)
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(hjust = 0.5),
-    legend.title = element_blank()
+    plot.title = element_text(size = 15, hjust = 0.5),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 13),
+    axis.title.y = element_text(size = 13),
+    axis.title.x = element_text(size = 13),
+    axis.text.y = element_text(size = 13),
+    axis.text.x = element_text(size = 13)
   ) +
   labs(
     title = "Lower Back",
@@ -77,14 +87,24 @@ BA_LR_res_hip <- cv_res_LR_models$hip %>%
   scale_color_nejm() +
   scale_y_continuous(
     labels = scales::label_number(),
-    limits = c(-30000, 30000),
+    limits = c(-20000, 20000),
     expand = c(0, 0),
-    breaks = seq(-30000, 30000, 10000)
+    breaks = seq(-20000, 20000, 10000)
+  ) +
+  scale_x_continuous(
+    limits = c(2500, 27500),
+    expand = c(0, 0),
+    breaks = seq(5000, 25000, 5000)
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(hjust = 0.5),
-    legend.title = element_blank()
+    plot.title = element_text(size = 15, hjust = 0.5),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 13),
+    axis.title.y = element_text(size = 13),
+    axis.title.x = element_text(size = 13),
+    axis.text.y = element_text(size = 13),
+    axis.text.x = element_text(size = 13)
   ) +
   labs(
     title = "Hip",
@@ -122,14 +142,24 @@ BA_LR_ver_back <- cv_ver_LR_models$lower_back %>%
   scale_color_nejm() +
   scale_y_continuous(
     labels = scales::label_number(),
-    limits = c(-30000, 30000),
+    limits = c(-20000, 20000),
     expand = c(0, 0),
-    breaks = seq(-30000, 30000, 10000)
+    breaks = seq(-20000, 20000, 10000)
+  ) +
+  scale_x_continuous(
+    limits = c(2500, 27500),
+    expand = c(0, 0),
+    breaks = seq(5000, 25000, 5000)
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(hjust = 0.5),
-    legend.title = element_blank()
+    plot.title = element_text(size = 15, hjust = 0.5),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 13),
+    axis.title.y = element_text(size = 13),
+    axis.title.x = element_text(size = 13),
+    axis.text.y = element_text(size = 13),
+    axis.text.x = element_text(size = 13)
   ) +
   labs(
     title = "Lower Back",
@@ -144,14 +174,24 @@ BA_LR_ver_hip <- cv_ver_LR_models$hip %>%
   scale_color_nejm() +
   scale_y_continuous(
     labels = scales::label_number(),
-    limits = c(-30000, 30000),
+    limits = c(-20000, 20000),
     expand = c(0, 0),
-    breaks = seq(-30000, 30000, 10000)
+    breaks = seq(-20000, 20000, 10000)
+  ) +
+  scale_x_continuous(
+    limits = c(2500, 27500),
+    expand = c(0, 0),
+    breaks = seq(5000, 25000, 5000)
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(hjust = 0.5),
-    legend.title = element_blank()
+    plot.title = element_text(size = 15, hjust = 0.5),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 13),
+    axis.title.y = element_text(size = 13),
+    axis.title.x = element_text(size = 13),
+    axis.text.y = element_text(size = 13),
+    axis.text.x = element_text(size = 13)
   ) +
   labs(
     title = "Hip",
@@ -169,7 +209,10 @@ figS4 <- BA_LR_res_ankle +
   BA_LR_ver_hip +
   plot_annotation(tag_levels = "A") +
   plot_layout(guides = "collect") &
-  theme(legend.position = "bottom")
+  theme(
+    legend.position = "bottom",
+    plot.tag = element_text(size = 16)
+  )
 agg_tiff(
   here("figures", "figS4.tiff"),
   width = 120,

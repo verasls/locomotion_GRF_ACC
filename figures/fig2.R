@@ -19,7 +19,7 @@ scatterplot_GRF_res_hip <- mechanical_load_data %>%
   ggplot() +
   geom_point(
     aes(x = pACC_g, y = pGRF_N, color = BMI_cat, shape = activity),
-    show_guide = FALSE
+    show.legend = FALSE
   ) +
   geom_smooth(
     aes(x = pACC_g, y = pGRF_N, color = BMI_cat),
@@ -31,10 +31,20 @@ scatterplot_GRF_res_hip <- mechanical_load_data %>%
     expand = c(0, 0),
     breaks = seq(0, 3500, 500)
   ) +
+  scale_x_continuous(
+    limits = c(0.5, 6.5),
+    expand = c(0, 0),
+    breaks = seq(1, 6, 1)
+  ) +
   theme_light() +
   theme(
-    plot.title = element_text(hjust = 0.5),
-    legend.title = element_blank()
+    plot.title = element_text(size = 15, hjust = 0.5),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 13),
+    axis.title.y = element_text(size = 13),
+    axis.title.x = element_text(size = 13),
+    axis.text.y = element_text(size = 13),
+    axis.text.x = element_text(size = 13)
   ) +
   labs(title = "Hip", x = quote("pRACC" ~ (italic(g))), y = "pRGRF (N)")
 
@@ -53,14 +63,24 @@ scatterplot_LR_res_back <- mechanical_load_data %>%
   ) +
   scale_color_nejm() +
   scale_y_continuous(
-    limits = c(0, 60000),
+    limits = c(0, 30000),
     expand = c(0, 0),
-    breaks = seq(0, 60000, 10000)
+    breaks = seq(0, 30000, 5000)
+  ) +
+  scale_x_continuous(
+    limits = c(0, 50),
+    expand = c(0, 0),
+    breaks = seq(5, 45, 5)
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(hjust = 0.5),
-    legend.title = element_blank()
+    plot.title = element_text(size = 15, hjust = 0.5),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 13),
+    axis.title.y = element_text(size = 13),
+    axis.title.x = element_text(size = 13),
+    axis.text.y = element_text(size = 13),
+    axis.text.x = element_text(size = 13)
   ) +
   labs(
     title = "Lower Back",
@@ -74,7 +94,10 @@ fig2 <- scatterplot_GRF_res_hip +
   scatterplot_LR_res_back +
   plot_annotation(tag_levels = "A") +
   plot_layout(guides = "collect") &
-  theme(legend.position = "bottom")
+  theme(
+    legend.position = "bottom",
+    plot.tag = element_text(size = 16)
+  )
 agg_tiff(
   here("figures", "fig2.tiff"),
   width = 80,

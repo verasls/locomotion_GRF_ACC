@@ -31,14 +31,19 @@ BA_GRF_res_ankle <- cv_res_GRF_models$ankle %>%
   guides(shape = FALSE) +
   scale_color_nejm() +
   scale_y_continuous(
-    limits = c(-1500, 600),
+    limits = c(-600, 600),
     expand = c(0, 0),
-    breaks = seq(-1500, 600, 300)
+    breaks = seq(-600, 600, 300)
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(hjust = 0.5),
-    legend.title = element_blank()
+    plot.title = element_text(size = 15, hjust = 0.5),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 13),
+    axis.title.y = element_text(size = 13),
+    axis.title.x = element_text(size = 13),
+    axis.text.y = element_text(size = 13),
+    axis.text.x = element_text(size = 13)
   ) +
   labs(
     title = "Ankle",
@@ -58,8 +63,13 @@ BA_GRF_res_back <- cv_res_GRF_models$lower_back %>%
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(hjust = 0.5),
-    legend.title = element_blank()
+    plot.title = element_text(size = 15, hjust = 0.5),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 13),
+    axis.title.y = element_text(size = 13),
+    axis.title.x = element_text(size = 13),
+    axis.text.y = element_text(size = 13),
+    axis.text.x = element_text(size = 13)
   ) +
   labs(
     title = "Lower Back",
@@ -79,8 +89,13 @@ BA_GRF_res_hip <- cv_res_GRF_models$hip %>%
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(hjust = 0.5),
-    legend.title = element_blank()
+    plot.title = element_text(size = 15, hjust = 0.5),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 13),
+    axis.title.y = element_text(size = 13),
+    axis.title.x = element_text(size = 13),
+    axis.text.y = element_text(size = 13),
+    axis.text.x = element_text(size = 13)
   ) +
   labs(
     title = "Hip",
@@ -94,14 +109,19 @@ BA_GRF_ver_ankle <- cv_ver_GRF_models$ankle %>%
   guides(shape = FALSE) +
   scale_color_nejm() +
   scale_y_continuous(
-    limits = c(-900, 600),
+    limits = c(-600, 600),
     expand = c(0, 0),
-    breaks = seq(-900, 600, 300)
+    breaks = seq(-600, 600, 300)
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(hjust = 0.5),
-    legend.title = element_blank()
+    plot.title = element_text(size = 15, hjust = 0.5),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 13),
+    axis.title.y = element_text(size = 13),
+    axis.title.x = element_text(size = 13),
+    axis.text.y = element_text(size = 13),
+    axis.text.x = element_text(size = 13)
   ) +
   labs(
     title = "Ankle",
@@ -121,8 +141,13 @@ BA_GRF_ver_back <- cv_ver_GRF_models$lower_back %>%
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(hjust = 0.5),
-    legend.title = element_blank()
+    plot.title = element_text(size = 15, hjust = 0.5),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 13),
+    axis.title.y = element_text(size = 13),
+    axis.title.x = element_text(size = 13),
+    axis.text.y = element_text(size = 13),
+    axis.text.x = element_text(size = 13)
   ) +
   labs(
     title = "Lower Back",
@@ -142,8 +167,13 @@ BA_GRF_ver_hip <- cv_ver_GRF_models$hip %>%
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(hjust = 0.5),
-    legend.title = element_blank()
+    plot.title = element_text(size = 15, hjust = 0.5),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 13),
+    axis.title.y = element_text(size = 13),
+    axis.title.x = element_text(size = 13),
+    axis.text.y = element_text(size = 13),
+    axis.text.x = element_text(size = 13)
   ) +
   labs(
     title = "Hip",
@@ -161,7 +191,10 @@ figS3 <- BA_GRF_res_ankle +
   BA_GRF_ver_hip +
   plot_annotation(tag_levels = "A") +
   plot_layout(guides = "collect") &
-  theme(legend.position = "bottom")
+  theme(
+    legend.position = "bottom",
+    plot.tag = element_text(size = 16)
+  )
 agg_tiff(
   here("figures", "figS3.tiff"),
   width = 120,

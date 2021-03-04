@@ -20,7 +20,7 @@ scatterplot_GRF_res_ankle <- mechanical_load_data %>%
   ggplot() +
   geom_point(
     aes(x = pACC_g, y = pGRF_N, color = BMI_cat, shape = activity),
-    show_guide = FALSE
+    show.legend = FALSE
   ) +
   geom_smooth(
     aes(x = pACC_g, y = pGRF_N, color = BMI_cat),
@@ -32,10 +32,20 @@ scatterplot_GRF_res_ankle <- mechanical_load_data %>%
     expand = c(0, 0),
     breaks = seq(0, 3500, 500)
   ) +
+  scale_x_continuous(
+    limits = c(0.5, 14.5),
+    expand = c(0, 0),
+    breaks = seq(1, 14, 2)
+  ) +
   theme_light() +
   theme(
-    plot.title = element_text(hjust = 0.5),
-    legend.title = element_blank()
+    plot.title = element_text(size = 15, hjust = 0.5),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 13),
+    axis.title.y = element_text(size = 13),
+    axis.title.x = element_text(size = 13),
+    axis.text.y = element_text(size = 13),
+    axis.text.x = element_text(size = 13)
   ) +
   labs(title = "Ankle", x = quote("pRACC" ~ (italic(g))), y = "pRGRF (N)")
 
@@ -45,7 +55,7 @@ scatterplot_GRF_res_back <- mechanical_load_data %>%
   ggplot() +
   geom_point(
     aes(x = pACC_g, y = pGRF_N, color = BMI_cat, shape = activity),
-    show_guide = FALSE
+    show.legend = FALSE
   ) +
   geom_smooth(
     aes(x = pACC_g, y = pGRF_N, color = BMI_cat),
@@ -57,10 +67,20 @@ scatterplot_GRF_res_back <- mechanical_load_data %>%
     expand = c(0, 0),
     breaks = seq(0, 3500, 500)
   ) +
+  scale_x_continuous(
+    limits = c(0.5, 5.5),
+    expand = c(0, 0),
+    breaks = seq(1, 6, 1)
+  ) +
   theme_light() +
   theme(
-    plot.title = element_text(hjust = 0.5),
-    legend.title = element_blank()
+    plot.title = element_text(size = 15, hjust = 0.5),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 13),
+    axis.title.y = element_text(size = 13),
+    axis.title.x = element_text(size = 13),
+    axis.text.y = element_text(size = 13),
+    axis.text.x = element_text(size = 13)
   ) +
   labs(title = "Lower Back", x = quote("pRACC" ~ (italic(g))), y = "pRGRF (N)")
 
@@ -70,7 +90,7 @@ scatterplot_GRF_res_hip <- mechanical_load_data %>%
   ggplot() +
   geom_point(
     aes(x = pACC_g, y = pGRF_N, color = BMI_cat, shape = activity),
-    show_guide = FALSE
+    show.legend = FALSE
   ) +
   geom_smooth(
     aes(x = pACC_g, y = pGRF_N, color = BMI_cat),
@@ -82,10 +102,20 @@ scatterplot_GRF_res_hip <- mechanical_load_data %>%
     expand = c(0, 0),
     breaks = seq(0, 3500, 500)
   ) +
+  scale_x_continuous(
+    limits = c(0.5, 6.5),
+    expand = c(0, 0),
+    breaks = seq(1, 6, 1)
+  ) +
   theme_light() +
   theme(
-    plot.title = element_text(hjust = 0.5),
-    legend.title = element_blank()
+    plot.title = element_text(size = 15, hjust = 0.5),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 13),
+    axis.title.y = element_text(size = 13),
+    axis.title.x = element_text(size = 13),
+    axis.text.y = element_text(size = 13),
+    axis.text.x = element_text(size = 13)
   ) +
   labs(title = "Hip", x = quote("pRACC" ~ (italic(g))), y = "pRGRF (N)")
 
@@ -95,7 +125,7 @@ scatterplot_GRF_ver_ankle <- mechanical_load_data %>%
   ggplot() +
   geom_point(
     aes(x = pACC_g, y = pGRF_N, color = BMI_cat, shape = activity),
-    show_guide = FALSE
+    show.legend = FALSE
   ) +
   geom_smooth(
     aes(x = pACC_g, y = pGRF_N, color = BMI_cat),
@@ -107,10 +137,20 @@ scatterplot_GRF_ver_ankle <- mechanical_load_data %>%
     expand = c(0, 0),
     breaks = seq(0, 3500, 500)
   ) +
+  scale_x_continuous(
+    limits = c(0.5, 10.5),
+    expand = c(0, 0),
+    breaks = seq(1, 10, 2)
+  ) +
   theme_light() +
   theme(
-    plot.title = element_text(hjust = 0.5),
-    legend.title = element_blank()
+    plot.title = element_text(size = 15, hjust = 0.5),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 13),
+    axis.title.y = element_text(size = 13),
+    axis.title.x = element_text(size = 13),
+    axis.text.y = element_text(size = 13),
+    axis.text.x = element_text(size = 13)
   ) +
   labs(title = "Ankle", x = quote("pVACC" ~ (italic(g))), y = "pVGRF (N)")
 
@@ -120,7 +160,7 @@ scatterplot_GRF_ver_back <- mechanical_load_data %>%
   ggplot() +
   geom_point(
     aes(x = pACC_g, y = pGRF_N, color = BMI_cat, shape = activity),
-    show_guide = FALSE
+    show.legend = FALSE
   ) +
   geom_smooth(
     aes(x = pACC_g, y = pGRF_N, color = BMI_cat),
@@ -132,10 +172,20 @@ scatterplot_GRF_ver_back <- mechanical_load_data %>%
     expand = c(0, 0),
     breaks = seq(0, 3500, 500)
   ) +
+  scale_x_continuous(
+    limits = c(0.5, 5.5),
+    expand = c(0, 0),
+    breaks = seq(0, 6, 1)
+  ) +
   theme_light() +
   theme(
-    plot.title = element_text(hjust = 0.5),
-    legend.title = element_blank()
+    plot.title = element_text(size = 15, hjust = 0.5),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 13),
+    axis.title.y = element_text(size = 13),
+    axis.title.x = element_text(size = 13),
+    axis.text.y = element_text(size = 13),
+    axis.text.x = element_text(size = 13)
   ) +
   labs(title = "Lower Back", x = quote("pVACC" ~ (italic(g))), y = "pVGRF (N)")
 
@@ -145,7 +195,7 @@ scatterplot_GRF_ver_hip <- mechanical_load_data %>%
   ggplot() +
   geom_point(
     aes(x = pACC_g, y = pGRF_N, color = BMI_cat, shape = activity),
-    show_guide = FALSE
+    show.legend = FALSE
   ) +
   geom_smooth(
     aes(x = pACC_g, y = pGRF_N, color = BMI_cat),
@@ -157,10 +207,20 @@ scatterplot_GRF_ver_hip <- mechanical_load_data %>%
     expand = c(0, 0),
     breaks = seq(0, 3500, 500)
   ) +
+  scale_x_continuous(
+    limits = c(0.5, 6.5),
+    expand = c(0, 0),
+    breaks = seq(1, 6, 1)
+  ) +
   theme_light() +
   theme(
-    plot.title = element_text(hjust = 0.5),
-    legend.title = element_blank()
+    plot.title = element_text(size = 15, hjust = 0.5),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 13),
+    axis.title.y = element_text(size = 13),
+    axis.title.x = element_text(size = 13),
+    axis.text.y = element_text(size = 13),
+    axis.text.x = element_text(size = 13)
   ) +
   labs(title = "Hip", x = quote("pVACC" ~ (italic(g))), y = "pVGRF (N)")
 
@@ -174,7 +234,10 @@ figS1 <- scatterplot_GRF_res_ankle +
   scatterplot_GRF_ver_hip +
   plot_annotation(tag_levels = "A") +
   plot_layout(guides = "collect") &
-  theme(legend.position = "bottom")
+  theme(
+    legend.position = "bottom",
+    plot.tag = element_text(size = 16)
+  )
 agg_tiff(
   here("figures", "figS1.tiff"),
   width = 120,

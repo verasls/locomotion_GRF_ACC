@@ -46,6 +46,11 @@ fig1 <- mechanical_load_data %>%
     )
   ) +
   theme_light() +
+  theme(
+    axis.title.y = element_text(size = 18),
+    axis.text.y = element_text(size = 16),
+    axis.text.x = element_text(size = 16)
+  ) +
   labs(
     x = "",
     y = quote("BMI" ~ (kg %.% m^-2))
@@ -55,7 +60,7 @@ fig1 <- mechanical_load_data %>%
 
 agg_tiff(
   here("figures", "fig1.tiff"),
-  width = 60,
+  width = 80,
   height = 50,
   units = "cm",
   res = 100,

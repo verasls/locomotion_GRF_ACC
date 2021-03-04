@@ -28,14 +28,24 @@ scatterplot_LR_res_ankle <- mechanical_load_data %>%
   ) +
   scale_color_nejm() +
   scale_y_continuous(
-    limits = c(0, 60000),
+    limits = c(0, 30000),
     expand = c(0, 0),
-    breaks = seq(0, 60000, 10000)
+    breaks = seq(0, 30000, 10000)
+  ) +
+  scale_x_continuous(
+    limits = c(0, 50),
+    expand = c(0, 0),
+    breaks = seq(5, 45, 5)
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(hjust = 0.5),
-    legend.title = element_blank()
+    plot.title = element_text(size = 15, hjust = 0.5),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 13),
+    axis.title.y = element_text(size = 13),
+    axis.title.x = element_text(size = 13),
+    axis.text.y = element_text(size = 13),
+    axis.text.x = element_text(size = 13)
   ) +
   labs(
     title = "Ankle",
@@ -57,14 +67,24 @@ scatterplot_LR_res_back <- mechanical_load_data %>%
   ) +
   scale_color_nejm() +
   scale_y_continuous(
-    limits = c(0, 60000),
+    limits = c(0, 30000),
     expand = c(0, 0),
-    breaks = seq(0, 60000, 10000)
+    breaks = seq(0, 30000, 5000)
+  ) +
+  scale_x_continuous(
+    limits = c(0, 50),
+    expand = c(0, 0),
+    breaks = seq(5, 45, 5)
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(hjust = 0.5),
-    legend.title = element_blank()
+    plot.title = element_text(size = 15, hjust = 0.5),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 13),
+    axis.title.y = element_text(size = 13),
+    axis.title.x = element_text(size = 13),
+    axis.text.y = element_text(size = 13),
+    axis.text.x = element_text(size = 13)
   ) +
   labs(
     title = "Lower Back",
@@ -86,14 +106,24 @@ scatterplot_LR_res_hip <- mechanical_load_data %>%
   ) +
   scale_color_nejm() +
   scale_y_continuous(
-    limits = c(0, 60000),
+    limits = c(0, 30000),
     expand = c(0, 0),
-    breaks = seq(0, 60000, 10000)
+    breaks = seq(0, 30000, 5000)
+  ) +
+  scale_x_continuous(
+    limits = c(0, 50),
+    expand = c(0, 0),
+    breaks = seq(5, 45, 5)
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(hjust = 0.5),
-    legend.title = element_blank()
+    plot.title = element_text(size = 15, hjust = 0.5),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 13),
+    axis.title.y = element_text(size = 13),
+    axis.title.x = element_text(size = 13),
+    axis.text.y = element_text(size = 13),
+    axis.text.x = element_text(size = 13)
   ) +
   labs(
     title = "Hip",
@@ -115,14 +145,24 @@ scatterplot_LR_ver_ankle <- mechanical_load_data %>%
   ) +
   scale_color_nejm() +
   scale_y_continuous(
-    limits = c(0, 60000),
+    limits = c(0, 30000),
     expand = c(0, 0),
-    breaks = seq(0, 60000, 10000)
+    breaks = seq(0, 30000, 5000)
+  ) +
+  scale_x_continuous(
+    limits = c(0, 50),
+    expand = c(0, 0),
+    breaks = seq(5, 45, 5)
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(hjust = 0.5),
-    legend.title = element_blank()
+    plot.title = element_text(size = 15, hjust = 0.5),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 13),
+    axis.title.y = element_text(size = 13),
+    axis.title.x = element_text(size = 13),
+    axis.text.y = element_text(size = 13),
+    axis.text.x = element_text(size = 13)
   ) +
   labs(
     title = "Ankle",
@@ -144,14 +184,24 @@ scatterplot_LR_ver_back <- mechanical_load_data %>%
   ) +
   scale_color_nejm() +
   scale_y_continuous(
-    limits = c(0, 60000),
+    limits = c(0, 30000),
     expand = c(0, 0),
-    breaks = seq(0, 60000, 10000)
+    breaks = seq(0, 30000, 5000)
+  ) +
+  scale_x_continuous(
+    limits = c(0, 45),
+    expand = c(0, 0),
+    breaks = seq(5, 40, 5)
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(hjust = 0.5),
-    legend.title = element_blank()
+    plot.title = element_text(size = 15, hjust = 0.5),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 13),
+    axis.title.y = element_text(size = 13),
+    axis.title.x = element_text(size = 13),
+    axis.text.y = element_text(size = 13),
+    axis.text.x = element_text(size = 13)
   ) +
   labs(
     title = "Lower Back",
@@ -173,14 +223,24 @@ scatterplot_LR_ver_hip <- mechanical_load_data %>%
   ) +
   scale_color_nejm() +
   scale_y_continuous(
-    limits = c(0, 60000),
+    limits = c(0, 30000),
     expand = c(0, 0),
-    breaks = seq(0, 60000, 10000)
+    breaks = seq(0, 30000, 5000)
+  ) +
+  scale_x_continuous(
+    limits = c(0, 50),
+    expand = c(0, 0),
+    breaks = seq(5, 45, 5)
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(hjust = 0.5),
-    legend.title = element_blank()
+    plot.title = element_text(size = 15, hjust = 0.5),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 13),
+    axis.title.y = element_text(size = 13),
+    axis.title.x = element_text(size = 13),
+    axis.text.y = element_text(size = 13),
+    axis.text.x = element_text(size = 13)
   ) +
   labs(
     title = "Hip",
@@ -198,7 +258,10 @@ figS2 <- scatterplot_LR_res_ankle +
   scatterplot_LR_ver_hip +
   plot_annotation(tag_levels = "A") +
   plot_layout(guides = "collect") &
-  theme(legend.position = "bottom")
+  theme(
+    legend.position = "bottom",
+    plot.tag = element_text(size = 16)
+  )
 agg_tiff(
   here("figures", "figS2.tiff"),
   width = 120,
