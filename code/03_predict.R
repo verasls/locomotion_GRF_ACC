@@ -28,7 +28,7 @@ ver_mechanical_load_data <- map(
 # Build GRF models --------------------------------------------------------
 
 GRF_formula <- as.formula(
-  "pGRF_N ~ pACC_g + body_mass + pACC_g:body_mass + (1 | subj)"
+  "pGRF_N ~ pACC_g + body_mass + pACC_g:body_mass + (1 | subj) + (1 | speed)"
 )
 
 # Resultant vector
