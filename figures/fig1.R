@@ -54,7 +54,7 @@ bmi_speed_plot <- mechanical_load_data %>%
 # Save plot ---------------------------------------------------------------
 
 agg_tiff(
-  here("figures", "bmi_speed.tiff"),
+  here("figures", "fig1.tiff"),
   width = 60,
   height = 50,
   units = "cm",
