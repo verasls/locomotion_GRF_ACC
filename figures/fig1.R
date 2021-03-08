@@ -53,7 +53,7 @@ fig1 <- mechanical_load_data %>%
   ) +
   labs(
     x = "",
-    y = quote("BMI" ~ (kg %.% m^-2))
+    y = quote("Body mass index" ~ (kg %.% m^-2))
   )
 
 # Save plot ---------------------------------------------------------------
