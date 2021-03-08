@@ -5,27 +5,27 @@ manuscript/manuscript.pdf: manuscript/manuscript.Rmd manuscript/bibliography.bib
 	Rscript -e 'rmarkdown::render("$<")'
 
 ## figures    : Generates all figures
-figures: figures/fig1.tiff figures/fig2.tiff figures/fig3.tiff figures/figS1.tiff figures/figS2.tiff figures/figS3.tiff figures/figS4.tiff
+figures: figures/fig1.tiff figures/fig2.tiff figures/fig3.tiff figures/figS1.tiff figures/figS2.tiff figures/figS3.tiff figures/figS4.tiff figures/fig1.png figures/fig2.png figures/fig3.png figures/figS1.png figures/figS2.png figures/figS3.png figures/figS4.png
 
-figures/fig1.tiff: data/mechanical_load_data.rda figures/fig1.R
+figures/fig1.tiff figures/fig1.png: data/mechanical_load_data.rda figures/fig1.R
 	R CMD BATCH figures/fig1.R
 
-figures/fig2.tiff: data/mechanical_load_data.rda figures/fig2.R
+figures/fig2.tiff figures/fig2.png: data/mechanical_load_data.rda figures/fig2.R
 	R CMD BATCH figures/fig2.R
 
-figures/fig3.tiff: output/loocv_data.rda figures/fig3.R
+figures/fig3.tiff figures/fig3.png: output/loocv_data.rda figures/fig3.R
 	R CMD BATCH figures/fig3.R
 
-figures/figS1.tiff: data/mechanical_load_data.rda figures/figS1.R
+figures/figS1.tiff figures/figS1.png: data/mechanical_load_data.rda figures/figS1.R
 	R CMD BATCH figures/figS1.R
 
-figures/figS2.tiff: data/mechanical_load_data.rda figures/figS2.R
+figures/figS2.tiff figures/figS2.png: data/mechanical_load_data.rda figures/figS2.R
 	R CMD BATCH figures/figS2.R
 
-figures/figS3.tiff: output/loocv_data.rda figures/figS3.R
+figures/figS3.tiff figures/figS3.png: output/loocv_data.rda figures/figS3.R
 	R CMD BATCH figures/figS3.R
 
-figures/figS4.tiff: output/loocv_data.rda figures/figS4.R
+figures/figS4.tiff figures/figS4.png: output/loocv_data.rda figures/figS4.R
 	R CMD BATCH figures/figS4.R
 
 ## output     : Generates all output
@@ -56,7 +56,7 @@ clean:
 
 ## cleanall   : Removes auto-generated files, including processed data, figures and the manuscript pdf
 cleanall:
-	\rm -f *.Rout .Rdata data/*.rda output/* figures/*.tiff manuscript/manuscript.pdf
+	\rm -f *.Rout .Rdata manuscript/*.log data/*.rda output/* figures/*.tiff manuscript/manuscript.pdf
 
 .PHONY : help
 help : Makefile
