@@ -1,7 +1,8 @@
 ---
 # title: "The document title"
 output:
-  pdf_document:
+  bookdown::pdf_document2:
+    toc: false
     includes:
       in_header: "preamble.tex"
     latex_engine: lualatex
@@ -36,17 +37,19 @@ Lucas Veras$^1$, Florêncio Diniz-Sousa$^1$, Giorjines Boppre$^1$, Vítor Deveza
 4 - Biomechanics Laboratory (LABIOMEP-UP), University of Porto, Porto, Portugal
 -->
 
-# Introduction
+\section*{Introduction}
 
 The aim of this study was to develop pGRF and pLR prediction models based on accelerometer data during walking and running.
 
-# Methods
+\section*{Methods}
+
+\subsection*{Participants}
 
 A convenience sample of `r max(sample_size$pGRF_N)` adults (`r unname(sample_size_sex["M"])` males; $`r sample_descriptives$age_mean`\pm`r sample_descriptives$age_sd`$ years; $`r sample_descriptives$height_mean`\pm`r sample_descriptives$height_sd`$ cm; $`r sample_descriptives$body_mass_mean`\pm`r sample_descriptives$body_mass_sd`$ kg; $`r sample_descriptives$BMI_mean`\pm`r sample_descriptives$BMI_sd`$ $\mathrm{kg\cdot m^{-2}}$, $\overline{X}\pm SD$) with no self-reported neurological or musculoskeletal limitations was recruited. Height and body mass were assessed following standard procedures with a stadiometer and a digital scale, respectively. All participants were informed about the experiments purpose and protocol before giving written informed consent. The study was approved by the local Ethics Committee (CES 192-14).
 
-\medskip
+\subsection*{Protocol}
 
-Data collection took place at Porto Biomechanics Laboratory (LABIOMEP-UP), in an instrumented treadmill with built-in FP (AMTI Corporation, Watertown, USA). Before starting the data collection, participants were given time to warm up on the treadmill. The protocol consisted of walking and running in 13 incremental speeds, with 0º inclination, from 2 to 14 $\mathrm{km\cdot h^{-1}}$ with 1 $\mathrm{km\cdot h^{-1}}$ increment. Walking and running speeds ranged from 2 to 6 $\mathrm{km\cdot h^{-1}}$ and from 7 to 14 $\mathrm{km\cdot h^{-1}}$, respectively. Each walking speed lasted for 1 minute and each running speed for 30 seconds. To ensure single foot contact on each FP during the trial, feedback regarding location on the treadmill was provided by a researcher. Participants wore their own sports shoes throughout the trials.
+Data collection took place at Porto Biomechanics Laboratory (LABIOMEP-UP) in an instrumented treadmill with built-in FP (AMTI Corporation, Watertown, USA). Before starting the data collection, participants were given time to warm up on the treadmill. The protocol consisted of walking and running in 13 incremental speeds, with 0º inclination, from 2 to 14 $\mathrm{km\cdot h^{-1}}$ with 1 $\mathrm{km\cdot h^{-1}}$ increment. Walking and running speeds ranged from 2 to 6 $\mathrm{km\cdot h^{-1}}$ and from 7 to 14 $\mathrm{km\cdot h^{-1}}$, respectively. Each walking speed lasted for 1 minute and each running speed for 30 seconds. To ensure single foot contact on each FP during the trial, feedback regarding location on the treadmill was provided by a researcher. Participants wore their own sports shoes throughout the trials.
 
 \medskip
 
@@ -58,12 +61,11 @@ Activity monitors used were the GT9X Link model ($\mathrm{\pm16}$\textit{g} rang
 
 \medskip
 
-Data from FP and accelerometers were collected at 1000 Hz and 100 Hz sampling frequency, respectively, and operated through the manufacturer supplied software (for the FP: Netforce, Version 3.5.1; AMTI Corporation, Watertown, USA; for the accelerometers: ActiLife version 6.13.3; Actigraph, Pensacola, USA). Raw GRF (expressed in N) and ACC (expressed in gravitational ACC units; 1\textit{g} =
-9.807 $\mathrm{m\cdot s^{-2}}$) from the x, y and z vectors were exported to plain text files.
+Data from FP and accelerometers were collected at 1000 Hz and 100 Hz sampling frequency, respectively, and operated through the manufacturer supplied software (for the FP: Netforce, Version 3.5.1; AMTI Corporation, Watertown, USA; for the accelerometers: ActiLife version 6.13.3; Actigraph, Pensacola, USA). Raw GRF (expressed in N) and ACC (expressed in gravitational ACC units; 1\textit{g} = 9.807 $\mathrm{m\cdot s^{-2}}$) from the x, y and z vectors were exported to plain text files.
 
-\medskip
+\subsection*{Data processing}
 
-FP and accelerometer data were processed using MATLAB (Version 8.3, Mathworks, Natick, USA), as described elsewhere [@Veras2020]. Briefly, both GRF and ACC signals were filtered using a Butterworth fourth-order low-pass filter, with 20 Hz cut-off frequency, and their resultant vector calculated ($r_i = \sqrt{x_i^2 + y_i^2 + z_i^2}$). After that, peak ACC (pACC) values were defined as minimum height of twice the positive ACC average, during any given walking speed, and separated by 0.4 seconds minimum. Then, GRF and ACC signals were synchronized using the following sequence: i) signal adjustment through time set by the systems clock; ii) manual correction based on visual inspection for possible errors in time adjustment; iii) determination of pGRF as the highest values between 0.4 seconds before and after each pACC; iv) synchronization by the maximum cross-correlation coefficient of GRF and ACC peak values for both the resultant and its vertical component. The rates of change, LR for the GRF and ACC rate (AR) for the ACC, were computed through a second-order centered derivative from the beggining of the foot contact to the pGRF, and pLR and peak AR (pAR) were defined as the maximum value in the array.
+FP and accelerometer data were processed using MATLAB (Version 8.3, Mathworks, Natick, USA), as described elsewhere [@Veras2020]. Briefly, both GRF and ACC signals were filtered using a Butterworth fourth-order low-pass filter, with 20 Hz cut-off frequency, and their resultant vector calculated ($r_i = \sqrt{x_i^2 + y_i^2 + z_i^2}$). After that, peak ACC (pACC) values were defined as minimum height of twice the positive ACC average, during any given speed, and separated by 0.4 seconds minimum. GRF and ACC signals were adjusted through the time set by the systems clock, with manual correction based on visual inspection for possible errors, and then synchronized by the maximum cross-correlation coefficient. Peak GRF (pGRF) was determined as the highest value between 0.4 seconds before and after each pACC. The rates of change, LR for the GRF and ACC rate (AR) for the ACC, were computed through a second-order centered derivative from the beginning of the foot contact to the pGRF, and pLR and peak AR (pAR) were defined as the maximum value in the array.
 
 \[f_i^{'} = \frac{f_{i + 1} - f_{i - 1}}{t_{i + 1} - t_{i - 1}}\]
 
@@ -71,7 +73,7 @@ FP and accelerometer data were processed using MATLAB (Version 8.3, Mathworks, N
 
 Regions of interest for data analysis were manually selected where locomotion patterns were constant, which corresponded of 20-45 seconds periods, on average. Then, pGRF, pACC, pLR and pAR means of the resultant and its vertical component for each participant at each speed were extracted and used in all remaining analyses. In walking trials, a median of `r n_peaks_desc[which(n_peaks_desc$locomotion_type == "walking"), "n_peaks_median"]` peaks (interquartile range `r n_peaks_desc[which(n_peaks_desc$locomotion_type == "walking"), "n_peaks_median"] - n_peaks_desc[which(n_peaks_desc$locomotion_type == "walking"), "n_peaks_iqr"]`\textendash`r n_peaks_desc[which(n_peaks_desc$locomotion_type == "walking"), "n_peaks_median"] + n_peaks_desc[which(n_peaks_desc$locomotion_type == "walking"), "n_peaks_iqr"]`) were used to calculate these means, while in running trials it was a median of `r n_peaks_desc[which(n_peaks_desc$locomotion_type == "running"), "n_peaks_median"]` peaks (interquartile range `r n_peaks_desc[which(n_peaks_desc$locomotion_type == "running"), "n_peaks_median"] - n_peaks_desc[which(n_peaks_desc$locomotion_type == "running"), "n_peaks_iqr"]`\textendash`r n_peaks_desc[which(n_peaks_desc$locomotion_type == "running"), "n_peaks_median"] + n_peaks_desc[which(n_peaks_desc$locomotion_type == "running"), "n_peaks_iqr"]`).
 
-\medskip
+\subsection*{Statistical analyses}
 
 Statistical analyses were conducted using R statistical software (version `r paste(R.Version()$major, R.Version()$minor, sep = ".")`, R Foundation for Statistical Computing, Vienna, Austria). All statistical analyses were registered in an open platform, where R code utilized and detailed information can be assessed (LINK).
 
@@ -89,7 +91,7 @@ To assess the models prediction accuracy, mean absolute error (MAE), mean absolu
 
 \medskip
 
-Our pGRF prediction equation was compared with a previously published reference equation [@Neugebauer2014], that was developed using similar methods. This compaarison was performed in three ways using: i) the whole sample; ii) a subsample of walking trials; iii) a subsample of running trials. To assess the prediction accuracy, MAE, MAPE and RMSE were calculated using pVGRF values predicted from both equations. No pLR prediction equation suited to be compared with ours was found.
+Finally, our pGRF prediction equation was compared with a previously published reference equation [@Neugebauer2014], that was developed using similar methods. This compaarison was performed in three ways using: i) the whole sample; ii) a subsample of walking trials; iii) a subsample of running trials. To assess the prediction accuracy, MAE, MAPE and RMSE were calculated using pVGRF values predicted from both equations. No pLR prediction equation suited to be compared with ours was found.
 
 \newpage
 
