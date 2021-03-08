@@ -10,7 +10,12 @@ library(ragg)
 
 load(here("data", "mechanical_load_data.rda"))
 mechanical_load_data <- mechanical_load_data %>%
-  mutate(activity = as.factor(ifelse(speed %in% 1:6, "walking", "running")))
+  mutate(
+    activity = fct_relevel(
+      as.factor(ifelse(speed %in% 1:6, "Walking", "Running")),
+      "Walking"
+    )
+  )
 
 # LR x AR plots -----------------------------------------------------------
 
@@ -19,8 +24,7 @@ scatterplot_LR_res_ankle <- mechanical_load_data %>%
   filter(vector == "resultant" & acc_placement == "ankle") %>%
   ggplot() +
   geom_point(
-    aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat, shape = activity),
-    show_guide = FALSE
+    aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat, shape = activity)
   ) +
   geom_smooth(
     aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat),
@@ -40,12 +44,16 @@ scatterplot_LR_res_ankle <- mechanical_load_data %>%
   theme_light() +
   theme(
     plot.title = element_text(size = 15, hjust = 0.5),
-    legend.title = element_blank(),
-    legend.text = element_text(size = 13),
+    legend.title = element_text(size = 13),
+    legend.text = element_text(size = 12),
     axis.title.y = element_text(size = 13),
     axis.title.x = element_text(size = 13),
     axis.text.y = element_text(size = 13),
     axis.text.x = element_text(size = 13)
+  ) +
+  guides(
+    color = guide_legend(title = "Body mass index category:"),
+    shape = guide_legend(title = "Locomotion type:")
   ) +
   labs(
     title = "Ankle",
@@ -58,8 +66,7 @@ scatterplot_LR_res_back <- mechanical_load_data %>%
   filter(vector == "resultant" & acc_placement == "lower_back") %>%
   ggplot() +
   geom_point(
-    aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat, shape = activity),
-    show_guide = FALSE
+    aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat, shape = activity)
   ) +
   geom_smooth(
     aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat),
@@ -79,12 +86,16 @@ scatterplot_LR_res_back <- mechanical_load_data %>%
   theme_light() +
   theme(
     plot.title = element_text(size = 15, hjust = 0.5),
-    legend.title = element_blank(),
-    legend.text = element_text(size = 13),
+    legend.title = element_text(size = 13),
+    legend.text = element_text(size = 12),
     axis.title.y = element_text(size = 13),
     axis.title.x = element_text(size = 13),
     axis.text.y = element_text(size = 13),
     axis.text.x = element_text(size = 13)
+  ) +
+  guides(
+    color = guide_legend(title = "Body mass index category:"),
+    shape = guide_legend(title = "Locomotion type:")
   ) +
   labs(
     title = "Lower Back",
@@ -97,8 +108,7 @@ scatterplot_LR_res_hip <- mechanical_load_data %>%
   filter(vector == "resultant" & acc_placement == "hip") %>%
   ggplot() +
   geom_point(
-    aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat, shape = activity),
-    show_guide = FALSE
+    aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat, shape = activity)
   ) +
   geom_smooth(
     aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat),
@@ -118,12 +128,16 @@ scatterplot_LR_res_hip <- mechanical_load_data %>%
   theme_light() +
   theme(
     plot.title = element_text(size = 15, hjust = 0.5),
-    legend.title = element_blank(),
-    legend.text = element_text(size = 13),
+    legend.title = element_text(size = 13),
+    legend.text = element_text(size = 12),
     axis.title.y = element_text(size = 13),
     axis.title.x = element_text(size = 13),
     axis.text.y = element_text(size = 13),
     axis.text.x = element_text(size = 13)
+  ) +
+  guides(
+    color = guide_legend(title = "Body mass index category:"),
+    shape = guide_legend(title = "Locomotion type:")
   ) +
   labs(
     title = "Hip",
@@ -136,8 +150,7 @@ scatterplot_LR_ver_ankle <- mechanical_load_data %>%
   filter(vector == "vertical" & acc_placement == "ankle") %>%
   ggplot() +
   geom_point(
-    aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat, shape = activity),
-    show_guide = FALSE
+    aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat, shape = activity)
   ) +
   geom_smooth(
     aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat),
@@ -157,12 +170,16 @@ scatterplot_LR_ver_ankle <- mechanical_load_data %>%
   theme_light() +
   theme(
     plot.title = element_text(size = 15, hjust = 0.5),
-    legend.title = element_blank(),
-    legend.text = element_text(size = 13),
+    legend.title = element_text(size = 13),
+    legend.text = element_text(size = 12),
     axis.title.y = element_text(size = 13),
     axis.title.x = element_text(size = 13),
     axis.text.y = element_text(size = 13),
     axis.text.x = element_text(size = 13)
+  ) +
+  guides(
+    color = guide_legend(title = "Body mass index category:"),
+    shape = guide_legend(title = "Locomotion type:")
   ) +
   labs(
     title = "Ankle",
@@ -175,8 +192,7 @@ scatterplot_LR_ver_back <- mechanical_load_data %>%
   filter(vector == "vertical" & acc_placement == "lower_back") %>%
   ggplot() +
   geom_point(
-    aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat, shape = activity),
-    show_guide = FALSE
+    aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat, shape = activity)
   ) +
   geom_smooth(
     aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat),
@@ -196,12 +212,16 @@ scatterplot_LR_ver_back <- mechanical_load_data %>%
   theme_light() +
   theme(
     plot.title = element_text(size = 15, hjust = 0.5),
-    legend.title = element_blank(),
-    legend.text = element_text(size = 13),
+    legend.title = element_text(size = 13),
+    legend.text = element_text(size = 12),
     axis.title.y = element_text(size = 13),
     axis.title.x = element_text(size = 13),
     axis.text.y = element_text(size = 13),
     axis.text.x = element_text(size = 13)
+  ) +
+  guides(
+    color = guide_legend(title = "Body mass index category:"),
+    shape = guide_legend(title = "Locomotion type:")
   ) +
   labs(
     title = "Lower Back",
@@ -214,8 +234,7 @@ scatterplot_LR_ver_hip <- mechanical_load_data %>%
   filter(vector == "vertical" & acc_placement == "hip") %>%
   ggplot() +
   geom_point(
-    aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat, shape = activity),
-    show_guide = FALSE
+    aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat, shape = activity)
   ) +
   geom_smooth(
     aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat),
@@ -235,12 +254,16 @@ scatterplot_LR_ver_hip <- mechanical_load_data %>%
   theme_light() +
   theme(
     plot.title = element_text(size = 15, hjust = 0.5),
-    legend.title = element_blank(),
-    legend.text = element_text(size = 13),
+    legend.title = element_text(size = 13),
+    legend.text = element_text(size = 12),
     axis.title.y = element_text(size = 13),
     axis.title.x = element_text(size = 13),
     axis.text.y = element_text(size = 13),
     axis.text.x = element_text(size = 13)
+  ) +
+  guides(
+    color = guide_legend(title = "Body mass index category:"),
+    shape = guide_legend(title = "Locomotion type:")
   ) +
   labs(
     title = "Hip",

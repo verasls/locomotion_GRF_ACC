@@ -13,13 +13,21 @@ load(here("output", "loocv_data.rda"))
 cv_res_GRF_models <- map(
   cv_res_GRF_models,
   ~ mutate(
-    .x, activity = as.factor(ifelse(speed %in% 1:6, "walking", "running"))
+    .x,
+    activity = fct_relevel(
+      as.factor(ifelse(speed %in% 1:6, "Walking", "Running")),
+      "Walking"
+    )
   )
 )
 cv_res_LR_models <- map(
   cv_res_LR_models,
   ~ mutate(
-    .x, activity = as.factor(ifelse(speed %in% 1:6, "walking", "running"))
+    .x,
+    activity = fct_relevel(
+      as.factor(ifelse(speed %in% 1:6, "Walking", "Running")),
+      "Walking"
+    )
   )
 )
 
@@ -27,7 +35,6 @@ cv_res_LR_models <- map(
 
 BA_GRF_res_hip <- cv_res_GRF_models$hip %>%
   plot_bland_altman(color = BMI_cat, shape = activity) +
-  guides(shape = FALSE) +
   scale_color_nejm() +
   scale_y_continuous(
     limits = c(-600, 600),
@@ -37,12 +44,16 @@ BA_GRF_res_hip <- cv_res_GRF_models$hip %>%
   theme_light() +
   theme(
     plot.title = element_text(size = 15, hjust = 0.5),
-    legend.title = element_blank(),
-    legend.text = element_text(size = 13),
+    legend.title = element_text(size = 13),
+    legend.text = element_text(size = 12),
     axis.title.y = element_text(size = 13),
     axis.title.x = element_text(size = 13),
     axis.text.y = element_text(size = 13),
     axis.text.x = element_text(size = 13)
+  ) +
+  guides(
+    color = guide_legend(title = "Body mass index category:"),
+    shape = guide_legend(title = "Locomotion type:")
   ) +
   labs(
     title = "Hip",
@@ -54,7 +65,6 @@ BA_GRF_res_hip <- cv_res_GRF_models$hip %>%
 
 BA_LR_res_hip <- cv_res_LR_models$hip %>%
   plot_bland_altman(color = BMI_cat, shape = activity) +
-  guides(shape = FALSE) +
   scale_color_nejm() +
   scale_y_continuous(
     labels = scales::label_number(),
@@ -70,12 +80,16 @@ BA_LR_res_hip <- cv_res_LR_models$hip %>%
   theme_light() +
   theme(
     plot.title = element_text(size = 15, hjust = 0.5),
-    legend.title = element_blank(),
-    legend.text = element_text(size = 13),
+    legend.title = element_text(size = 13),
+    legend.text = element_text(size = 12),
     axis.title.y = element_text(size = 13),
     axis.title.x = element_text(size = 13),
     axis.text.y = element_text(size = 13),
     axis.text.x = element_text(size = 13)
+  ) +
+  guides(
+    color = guide_legend(title = "Body mass index category:"),
+    shape = guide_legend(title = "Locomotion type:")
   ) +
   labs(
     title = "Hip",
