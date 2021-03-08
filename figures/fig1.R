@@ -58,6 +58,17 @@ fig1 <- mechanical_load_data %>%
 
 # Save plot ---------------------------------------------------------------
 
+agg_png(
+  here("figures", "fig1.png"),
+  width = 80,
+  height = 50,
+  units = "cm",
+  res = 100,
+  scaling = 2
+)
+plot(fig1)
+dev.off()
+
 agg_tiff(
   here("figures", "fig1.tiff"),
   width = 80,

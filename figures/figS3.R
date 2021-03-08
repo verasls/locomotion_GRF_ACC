@@ -195,6 +195,18 @@ figS3 <- BA_GRF_res_ankle +
     legend.position = "bottom",
     plot.tag = element_text(size = 16)
   )
+
+agg_png(
+  here("figures", "figS3.png"),
+  width = 120,
+  height = 50,
+  units = "cm",
+  res = 100,
+  scaling = 2
+)
+plot(figS3)
+dev.off()
+
 agg_tiff(
   here("figures", "figS3.tiff"),
   width = 120,

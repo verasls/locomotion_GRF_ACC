@@ -50,9 +50,9 @@ BA_GRF_res_hip <- cv_res_GRF_models$hip %>%
     y = "Actual - Predicted pRGRF (N)"
   )
 
-# Back pRLR Bland-Altman plot ---------------------------------------------
+# Hip pRLR Bland-Altman plot ----------------------------------------------
 
-BA_LR_res_back <- cv_res_LR_models$lower_back %>%
+BA_LR_res_hip <- cv_res_LR_models$hip %>%
   plot_bland_altman(color = BMI_cat, shape = activity) +
   guides(shape = FALSE) +
   scale_color_nejm() +
@@ -63,9 +63,9 @@ BA_LR_res_back <- cv_res_LR_models$lower_back %>%
     breaks = seq(-20000, 20000, 10000)
   ) +
   scale_x_continuous(
-    limits = c(2500, 27500),
+    limits = c(0, 50000),
     expand = c(0, 0),
-    breaks = seq(5000, 25000, 5000)
+    breaks = seq(5000, 50000, 10000)
   ) +
   theme_light() +
   theme(
@@ -78,7 +78,7 @@ BA_LR_res_back <- cv_res_LR_models$lower_back %>%
     axis.text.x = element_text(size = 13)
   ) +
   labs(
-    title = "Lower Back",
+    title = "Hip",
     x = quote("Mean of Actual and Predicted pRLR" ~ (N %.% s^-1)),
     y = quote("Actual - Predicted pRLR" ~ (N %.% s^-1))
   )
@@ -86,13 +86,25 @@ BA_LR_res_back <- cv_res_LR_models$lower_back %>%
 # Combine and save plots --------------------------------------------------
 
 fig3 <- BA_GRF_res_hip +
-  BA_LR_res_back +
+  BA_LR_res_hip +
   plot_annotation(tag_levels = "A") +
   plot_layout(guides = "collect") &
   theme(
     legend.position = "bottom",
     plot.tag = element_text(size = 16)
   )
+
+agg_png(
+  here("figures", "fig3.png"),
+  width = 80,
+  height = 25,
+  units = "cm",
+  res = 100,
+  scaling = 2
+)
+plot(fig3)
+dev.off()
+
 agg_tiff(
   here("figures", "fig3.tiff"),
   width = 80,

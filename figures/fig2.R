@@ -48,10 +48,10 @@ scatterplot_GRF_res_hip <- mechanical_load_data %>%
   ) +
   labs(title = "Hip", x = quote("pRACC" ~ (italic(g))), y = "pRGRF (N)")
 
-# Back pRLR x pRAR plot ---------------------------------------------------
+# Hip pRLR x pRAR plot ----------------------------------------------------
 
-scatterplot_LR_res_back <- mechanical_load_data %>%
-  filter(vector == "resultant" & acc_placement == "lower_back") %>%
+scatterplot_LR_res_hip <- mechanical_load_data %>%
+  filter(vector == "resultant" & acc_placement == "hip") %>%
   ggplot() +
   geom_point(
     aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat, shape = activity),
@@ -63,14 +63,14 @@ scatterplot_LR_res_back <- mechanical_load_data %>%
   ) +
   scale_color_nejm() +
   scale_y_continuous(
-    limits = c(0, 30000),
+    limits = c(0, 60000),
     expand = c(0, 0),
-    breaks = seq(0, 30000, 5000)
+    breaks = seq(0, 60000, 10000)
   ) +
   scale_x_continuous(
-    limits = c(0, 50),
+    limits = c(0, 175),
     expand = c(0, 0),
-    breaks = seq(5, 45, 5)
+    breaks = seq(25, 170, 25)
   ) +
   theme_light() +
   theme(
@@ -83,7 +83,7 @@ scatterplot_LR_res_back <- mechanical_load_data %>%
     axis.text.x = element_text(size = 13)
   ) +
   labs(
-    title = "Lower Back",
+    title = "Hip",
     x = quote("pRAR" ~ (italic(g) %.% s^-1)),
     y = quote("pRLR" ~ (N %.% s^-1))
   )
@@ -91,13 +91,25 @@ scatterplot_LR_res_back <- mechanical_load_data %>%
 # Combine and save plots --------------------------------------------------
 
 fig2 <- scatterplot_GRF_res_hip +
-  scatterplot_LR_res_back +
+  scatterplot_LR_res_hip +
   plot_annotation(tag_levels = "A") +
   plot_layout(guides = "collect") &
   theme(
     legend.position = "bottom",
     plot.tag = element_text(size = 16)
   )
+
+agg_png(
+  here("figures", "fig2.png"),
+  width = 80,
+  height = 25,
+  units = "cm",
+  res = 100,
+  scaling = 2
+)
+plot(fig2)
+dev.off()
+
 agg_tiff(
   here("figures", "fig2.tiff"),
   width = 80,
