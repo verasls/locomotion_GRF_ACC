@@ -15,9 +15,14 @@ build_formula_table <- function(model, cv, outcome, vector) {
     cv, lvmisc::accuracy, na.rm = TRUE
   )
   R2 <- unname(purrr::map_dbl(model_accuracy, "R2_cond"))
-  MAE <- unname(purrr::map_dbl(model_accuracy, "MAE"))
-  MAPE <- unname(purrr::map_dbl(model_accuracy, "MAPE"))
-  RMSE <- unname(purrr::map_dbl(model_accuracy, "RMSE"))
+  MAE <- broman::myround(unname(purrr::map_dbl(model_accuracy, "MAE")), 1)
+  MAPE <- paste0(
+    broman::myround(
+      unname(purrr::map_dbl(model_accuracy, "MAPE")) * 100, 1
+    ),
+    "\\%"
+  )
+  RMSE <- broman::myround(unname(purrr::map_dbl(model_accuracy, "RMSE")), 1)
 
   tibble::tibble(
     "Accelerometer placement" = c("Ankle", "Lower back", "Hip"),
@@ -40,16 +45,16 @@ build_formula_table <- function(model, cv, outcome, vector) {
 # Returns:
 #    A character vector with the model equation.
 get_equation <- function(model, outcome, vector) {
-  model_coefs <- as.character(round(coef(summary(model))[, 1], 3))
+  model_coefs <- coef(summary(model))[, 1]
   model_coefs[1] <- ifelse(
     model_coefs[1] > 0,
-    model_coefs[1],
-    paste0("- ", abs(as.numeric(model_coefs[1])))
+    broman::myround(model_coefs[1], 3),
+    paste0("- ", broman::myround(abs(as.numeric(model_coefs[1])), 3))
   )
   model_coefs[-1] <- ifelse(
-    as.numeric(model_coefs[-1]) > 0,
-    paste0(" + ", abs(as.numeric(model_coefs[-1]))),
-    paste0(" - ", abs(as.numeric(model_coefs[-1])))
+    model_coefs[-1] > 0,
+    paste0(" + ", broman::myround(abs(as.numeric(model_coefs[-1])), 3)),
+    paste0(" - ", broman::myround(abs(as.numeric(model_coefs[-1])), 3))
   )
 
   if (stringr::str_detect(outcome, "GRF") & vector == "resultant") {
