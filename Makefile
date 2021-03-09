@@ -1,7 +1,7 @@
 ## manuscript : Generates the manuscript pdf file
 manuscript: manuscript/manuscript.pdf
 
-manuscript/manuscript.pdf: manuscript/manuscript.Rmd manuscript/bibliography.bib manuscript/nlm.csl code/02_explore.R data/mechanical_load_data.rda figures/fig1.png figures/fig2.png figures/figS1.png figures/figS2.png
+manuscript/manuscript.pdf: manuscript/manuscript.Rmd manuscript/bibliography.bib manuscript/nlm.csl manuscript/preamble.tex code/02_explore.R data/mechanical_load_data.rda figures/fig1.png figures/fig2.png figures/figS1.png figures/figS2.png tables/tab1.R tables/tab1.R code/funs.R output/prediction_models.rda
 	Rscript -e 'rmarkdown::render("$<")'
 
 ## figures    : Generates all figures
@@ -52,11 +52,11 @@ install:
 
 ## clean      : Removes auto-generated files
 clean:
-	\rm -f *.Rout .Rdata manuscript/*.log
+	\rm -f *.Rout .Rdata manuscript/*.log manuscript/manuscript.tex
 
 ## cleanall   : Removes auto-generated files, including processed data, figures and the manuscript pdf
 cleanall:
-	\rm -f *.Rout .Rdata manuscript/*.log data/*.rda output/* figures/*.tiff manuscript/manuscript.pdf
+	\rm -f *.Rout .Rdata manuscript/*.log manuscript/manuscript.tex data/*.rda output/* figures/*.tiff manuscript/manuscript.pdf
 
 .PHONY : help
 help : Makefile
