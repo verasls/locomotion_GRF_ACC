@@ -20,18 +20,16 @@ ver_GRF_tb <- build_formula_table(
   ver_GRF_models, cv_ver_GRF_models, "pGRF", "vertical"
 )
 
-tab1 <- rbind(res_GRF_tb, ver_GRF_tb) %>%
-  mutate(
-    MAPE = paste0(myround(MAPE * 100, 2), "\\%")
-  )
+tab1 <- rbind(res_GRF_tb, ver_GRF_tb)
 # Reorder table rows
 tab1 <- tab1[c(1, 4, 2, 5, 3, 6), ]
 # Remove placemente name duplicates
 tab1[c(2, 4, 6), 1] <- ""
 
-
-tab1 <- kbl(
+tab1 <- knitr::kable(
   tab1, booktabs = TRUE, escape = FALSE, linesep = "",
+  label = "none",
+  caption = "Regession equations, $R^2$ and accuracy indices",
   col.names = c(
     linebreak("Accelerometer\nplacement"),
     "Regression equations",
@@ -42,6 +40,11 @@ tab1 <- kbl(
   ),
   align = c(rep("l", 2), rep("r", 4))
 ) %>%
+  footnote(
+    general = "Abbreviations: MAE, mean absolute error; MAPE, mean absolute percent error; pRACC, peak resultant acceleration; pRAR, peak resultant acceleration rate; pRGRF, peak resultant ground reaction force; pRLR, peak resultant loading rate; pVACC, peak vertical acceleration; pVAR, peak vertical acceleration rate; pVGRF, peak vertical ground reaction force; pVLR peak vertical loading rate; RMSE, root mean square error",
+    general_title = "",
+    threeparttable = TRUE
+  ) %>%
   kable_styling(latex_options = "scale_down") %>%
   pack_rows(
     "Peak ground reaction force prediction", 1, 6,
