@@ -3,6 +3,7 @@
 library(here)
 library(tidyverse)
 library(kableExtra)
+library(broman)
 source(here("code", "funs.R"))
 
 # Load and prepare data ---------------------------------------------------
@@ -45,12 +46,26 @@ tab2 <- data.frame(
     neug_run_accuracy$RMSE
   )
 ) %>%
+  mutate(
+    across(starts_with("MAPE"), as.numeric),
+    across(starts_with("MAPE"), ~ .x * 100),
+    across(where(is.numeric), myround),
+    across(starts_with("MAPE"), ~ paste0(.x, "\\%"))
+  ) %>%
   kbl(
+    booktabs = TRUE, escape = FALSE,
+    label = "none2",
+    caption = "Accuracy indices of ours and Neugebauer’s equation to predict peak vertical ground reaction force with data from hip-worn accelerometers",
     col.names = c(
       "Prediction",
       "MAE", "MAPE", "RMSE",
       "MAE", "MAPE", "RMSE"
-    ),
-    booktabs = TRUE
+    )
   ) %>%
+  footnote(
+    general = "Abbreviations: MAE, mean absolute error; MAPE, mean absolute percent error; RMSE, root mean square error",
+    general_title = "",
+    threeparttable = TRUE
+  ) %>%
+  kable_styling(position = "center") %>%
   add_header_above(c("", "Our equation" = 3, "Neugebauer equation" = 3))
