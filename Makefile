@@ -1,6 +1,7 @@
 ## manuscript : Generates the manuscript pdf file
 manuscript: manuscript/manuscript.pdf
 
+## word       : Generates the manuscript docx file
 word: manuscript/manuscript.docx
 
 manuscript/manuscript.pdf: manuscript/manuscript.Rmd manuscript/bibliography.bib manuscript/nlm.csl manuscript/preamble.tex code/02_explore.R data/mechanical_load_data.rda figures/fig1.png figures/fig2.png figures/figS1.png figures/figS2.png tables/tab1.R tables/tab2.R code/funs.R output/prediction_models.rda
