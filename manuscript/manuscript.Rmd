@@ -18,6 +18,8 @@ knitr::opts_chunk$set(
 
 ```{r source}
 library(here)
+library(broman)
+library(kableExtra)
 source(here("code", "02_explore.R"))
 ```
 
@@ -75,7 +77,7 @@ Regions of interest for data analysis were manually selected where locomotion pa
 
 \subsection*{Statistical analyses}
 
-Statistical analyses were conducted using R statistical software (version `r paste(R.Version()$major, R.Version()$minor, sep = ".")`, R Foundation for Statistical Computing, Vienna, Austria). All statistical analyses were registered in an open platform, where R code utilized and detailed information can be assessed (LINK).
+Statistical analyses were conducted using R statistical software (version `r paste(R.Version()$major, R.Version()$minor, sep = ".")`, R Foundation for Statistical Computing, Vienna, Austria). All statistical analyses were registered in an open platform, where R code utilized and detailed information can be assessed (LINK). The statistically significant value was set as $\alpha$ = 0.05.
 
 \medskip
 
@@ -87,7 +89,7 @@ Model was validated using the leave-one-out cross-validation approach [@Staudenm
 
 \medskip
 
-To assess the models prediction accuracy, mean absolute error (MAE), mean absolute percent error (MAPE) and root mean square error (RMSE) were calculated. Also, methods agreement was evaluated with Bland-Altman plots by plotting the difference between the actual (FP measured) and predicted values against their mean. Bias was computed as the mean of these differences and the limits of agreement were obtained using \pm 1.96 standard deviation of the mean between actual and predicted values [@Bland1986]. Linear regressions were applied to identify if the magnitude of the mean between actual and predicted values influenced the magnitude of their difference. This was done to ascertain if the prediction accuracy was constant throughout the assayed magnitude range [@Giavarina2015]. These analyses were conducted separately for data from each accelerometer placement and outcome.
+To assess the models prediction accuracy, mean absolute error (MAE), mean absolute percent error (MAPE) and root mean square error (RMSE) were calculated. Also, methods agreement was evaluated with Bland-Altman plots by plotting the difference between the actual (FP measured) and predicted values against their mean. Bias was computed as the mean of these differences and the limits of agreement were obtained using \pm 1.96 standard deviation of the mean between actual and predicted values [@Bland1986]. In order to test whether there was a consistent over or underestimation of the acual values, one-sample \textit{t} tests were performed to assess if the difference between actual and predicted values are different than zero. Linear regressions were applied to identify if the magnitude of the mean between actual and predicted values influenced the magnitude of their difference. This was done to ascertain if the prediction accuracy was constant throughout the assayed magnitude range [@Giavarina2015]. These analyses were conducted separately for data from each accelerometer placement and outcome.
 
 \medskip
 
@@ -140,6 +142,93 @@ As the main variables collected in this experiment are the peak magnitudes and r
 
 \medskip
 
+```{r GRF_accuracy}
+load(here("output", "prediction_models.rda"))
+res_GRF_accuracy <- purrr::map(
+  accuracy_res_GRF_models,
+  ~ dplyr::mutate(.x, MAPE = as.numeric(MAPE))
+) %>%
+  purrr::map_dfr(rbind) %>%
+  dplyr::mutate(
+    placement = c("ankle", "lower back", "hip"),
+    vector = "resultant"
+  )
+ver_GRF_accuracy <- purrr::map(
+  accuracy_ver_GRF_models,
+  ~ dplyr::mutate(.x, MAPE = as.numeric(MAPE))
+) %>%
+  purrr::map_dfr(rbind) %>%
+  dplyr::mutate(
+    placement = c("ankle", "lower back", "hip"),
+    vector = "vertical"
+  )
+GRF_accuracy <- rbind(res_GRF_accuracy, ver_GRF_accuracy)
+hip_GRF_accuracy <- GRF_accuracy %>%
+  filter(placement == "hip" & vector == "resultant")
+```
+
+Regression equations were developed to predict the mechanical loading variables based on accelerometry data. In the pGRF prediction equations, body mass and pACC were significant predictors and included in the models. Table 1 shows the regression coefficients, $\mathrm{R^2}$ and accuracy indices from models derived from accelerometers placed at ankle, lower back and hip, and from the resultant vector and its vertical component. In all pGRF prediction models, $\mathrm{R^2}$ ranged from `r min(GRF_accuracy$R2_cond)` to `r max(GRF_accuracy$R2_cond)`, which shows that the predictor variables are able to explain in a great extent the outcome. Also, MAE ranged between `r myround(min(GRF_accuracy$MAE), 1)` N and `r myround(max(GRF_accuracy$MAE), 1)` N, and the MAPE from `r myround(min(GRF_accuracy$MAPE) * 100, 1)`\% to `r myround(max(GRF_accuracy$MAPE) * 100, 1)`\%, which is a smaller error than previously published equations [@Neugebauer2014; @Fortune2014], and similar to the error from equations previously published by out group, but which included walking only [@Veras2020]. RMSE were also computed and shown to range between `r myround(min(GRF_accuracy$RMSE), 1)` N and `r myround(max(GRF_accuracy$RMSE), 1)` N. Of all the pGRF predictions equations developed, the one based on hip-worn accelerometers and the resultant vector has shown the best performance, with an $\mathrm{R^2}$ of `r hip_GRF_accuracy$R2_cond`, and the lowest MAE (`r myround(hip_GRF_accuracy$MAE, 1)` N), MAPE (`r myround(hip_GRF_accuracy$MAPE * 100, 1)`\%) and RMSE (`r myround(hip_GRF_accuracy$RMSE, 1)` N).
+
+\medskip
+
+```{r LR_accuracy}
+load(here("output", "prediction_models.rda"))
+res_LR_accuracy <- purrr::map(
+  accuracy_res_LR_models,
+  ~ dplyr::mutate(.x, MAPE = as.numeric(MAPE))
+) %>%
+  purrr::map_dfr(rbind) %>%
+  dplyr::mutate(
+    placement = c("lower back", "hip"),
+    vector = "resultant"
+  )
+ver_LR_accuracy <- purrr::map(
+  accuracy_ver_LR_models,
+  ~ dplyr::mutate(.x, MAPE = as.numeric(MAPE))
+) %>%
+  purrr::map_dfr(rbind) %>%
+  dplyr::mutate(
+    placement = c("lower back", "hip"),
+    vector = "vertical"
+  )
+LR_accuracy <- rbind(res_LR_accuracy, ver_LR_accuracy)
+back_LR_accuracy <- LR_accuracy %>%
+  filter(placement == "lower back" & vector == "resultant")
+```
+
+Moreover, pLR prediction equations were developed, and these included as predictors the pAR and again body mass. Regression coefficients, $\mathrm{R^2}$ and accuracy indices for these equations are also shown in Table 1. For these equations, the lowest $\mathrm{R^2}$ found was `r min(LR_accuracy$R2_cond)` and the highest was `r max(LR_accuracy$R2_cond)`, reflecting a moderate prediction ability. MAE, MAPE and RMSE values ranged from `r myround(min(LR_accuracy$MAE), 1)` N to `r myround(max(LR_accuracy$MAE), 1)` N, from `r myround(min(LR_accuracy$MAPE) * 100, 1)`\% to `r myround(max(LR_accuracy$MAPE) * 100, 1)`\%, and from `r myround(min(LR_accuracy$RMSE), 1)` N to `r myround(max(LR_accuracy$RMSE), 1)` N, respectively. The results found for the pLR prediction equations were all considerably poorer than those for the pGRF equations. The accuracy indices values were also somewhat worse than previously published pLR prediction equations [@Veras2020; @Fortune2014], although equations from both studies were only validate for walking. The best-performing pLR prediction equation was the one for accelerometers worn at lower back and the resultant vector, with an $\mathrm{R^2}$ of `r back_LR_accuracy$R2_cond` and a MAE, MAPE and RMSE of `r myround(back_LR_accuracy$MAE, 1)` N, `r myround(back_LR_accuracy$MAPE * 100, 1)`\% and `r myround(back_LR_accuracy$RMSE, 1)` N, respectively.
+
+\medskip
+
+```{r accuracy_table, results = "show"}
+source(here("tables", "tab1.R"))
+tab1
+```
+
+```{r ba_regression}
+source(here("code", "04_sub_analyses.R"))
+```
+
+Afterwards, Bland-Altman plots were built to visualize the agreement between the actual and predicted pGRF and pLR, for both the resultant vector and its vertical component and all accelerometer placements. A good agreement in a Bland-Altman plot is observed when values tend to cluster around zero, showing no consistent over or underestimation of the actual values. Also, the majority of data points should lie within the limits of agreement, which are determined by \pm 1.96 standard deviation of the bias (average difference between actual and predicted values). Bland-Altman plots for the pRGRF and pRLR from hip-worn accelerometers can be seen in Figure 3, and for all accelerometers placements and both resultant and vertical vectors in the Supplemental Figures S3 and S4. Values for all pGRF and pLR prediction equations developed tended to assemble around zero and between the limits of agreement. For the pGRF equations, a tendency to higher dispersion can be observed in the higher magnitudes, which correspond to the running trials, and especially in values derived from ankle-worn accelerometers (Supplemental Figure S3, Panels A and D). Prediction equations for pLR showed a more accentuated dispersion, and again in the higher magnitudes. None of the regression models presented a bias different than zero ($p > 0.05$), demonstrating that these models do not consistently over or underestimate the pGRF and pLR values. Furthermore, linear regressions were applied to identify proportional bias, that is, to test whether pGRF and pLR prediction errors were systematically influenced by their magnitude. The pGRF prediction equation based on ankle-worn accelerometers data for the resultant vector showed a significant proportional bias ($p = `r myround(coefficients(ba_regression_res_GRF$ankle)[2, 4], 2)`$), although with a low magnitude ($\mathrm{R^2} = `r myround(ba_regression_res_GRF$ankle["adj.r.squared"], 2)`$).
+
+\begin{figure}[ht]
+	\captionsetup{singlelinecheck = false, format = hang, justification = raggedright, font = footnotesize, labelsep = space}
+	\centering
+	\begin{measuredfigure}
+		\includegraphics[width=\textwidth]{fig3.png}
+		\caption{Bland-Altman plots showing agreement between actual and predicted pRGRF (Panel A) and pRLR (Panel B) for hip-worn accelerometers. Continuous thick lines show bias (average of the differences between actual and predicted values) while dashed lines show the limits of agreement (bias \pm 1.96 standard deviation). Abbreviations: pRGRF, peak resultant ground reaction force; pRLR, peak resultant loading rate.}
+	\end{measuredfigure}
+\end{figure}
+
+\medskip
+
+Lastly, we compared the performance of our equations with a reference equation previously published. As the only comparable equation found was the one to predict pVGRF using hip-worn accelerometer data developed by Neugebauer et al [@Neugebauer2014], we applied it to our data and computed the MAE, MAPE and RMSE. Then, these indices were compared to the indices for our equation (Table 1). Apart from the overall equations performance, it was done a sub-analysis separating the walking and running trials. The results of these comparisons can be observed in the Table 2. Accuracy indices of our equations were all remarkably better compared to the reference equation, with a MAPE approximately 2 to 3 times lower. Furthermore, our equation performance was constant between walking and running, indicating that it can be used for both activities without loss of accuracy.
+
+```{r comparison_table, results = "show"}
+source(here("tables", "tab2.R"))
+tab2
+```
+
 \newpage
 
 \section*{References}
@@ -171,3 +260,25 @@ As the main variables collected in this experiment are the peak magnitudes and r
 	\end{measuredfigure}
 \end{figure}
 \footnotesize Relationship between peak loading and acceleration rates. Data from accelerometers worn at ankle (Panels A and D), lower back (Panels B and E) and hip (Panels C and F), for both the resultant vector (Panels A to C) and its vertical component (Panels D to F). Linear trends for each body mass index category are also depicted. Abbreviations: pRAR, peak resultant acceleration rate; pRLR, peak resultant loading rate; pVAR, peak vertical acceleration rate; pVLR, peak vertical loading rate.
+
+\newpage
+
+\subsection*{Supplemental Figure S3}
+\begin{figure}[ht]
+	\captionsetup{singlelinecheck = false, format = hang, justification = raggedright, font = footnotesize, labelsep = space}
+	\centering
+	\begin{measuredfigure}
+		\includegraphics[width=\textwidth]{figS3.png}
+	\end{measuredfigure}
+\end{figure}
+\footnotesize Bland-Altman plots showing agreement between actual and predicted pGRF for accelerometers worn at ankle (Panels A and D), lower back (Panels B and E) and hip (Panels C and F), for both the resultant vector (Panels A to C) and its vertical component (Panels D to F). Continuous thick lines show bias (average of the differences between actual and predicted values) while dashed lines show the limits of agreement (bias \pm 1.96 standard deviation). Abbreviations: pGRF, peak ground reaction force; pRGRF, peak resultant ground reaction force; pVGRF, peak vertical ground reaction force.
+
+\subsection*{Supplemental Figure S4}
+\begin{figure}[ht]
+	\captionsetup{singlelinecheck = false, format = hang, justification = raggedright, font = footnotesize, labelsep = space}
+	\centering
+	\begin{measuredfigure}
+		\includegraphics[width=\textwidth]{figS4.png}
+	\end{measuredfigure}
+\end{figure}
+\footnotesize Bland-Altman plots showing agreement between actual and predicted pLR for accelerometers worn at ankle (Panels A and D), lower back (Panels B and E) and hip (Panels C and F), for both the resultant vector (Panels A to C) and its vertical component (Panels D to F). Continuous thick lines show bias (average of the differences between actual and predicted values) while dashed lines show the limits of agreement (bias \pm 1.96 standard deviation). Abbreviations: pLR, peak loading rate; pRLR, peak resultant loading rate; pVLR, peak vertical loading rate.
