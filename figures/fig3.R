@@ -31,7 +31,7 @@ cv_res_LR_models <- map(
   )
 )
 
-# Hip pRGRF Bland-Altman plot ---------------------------------------------
+# Hip pGRF Bland-Altman plot ---------------------------------------------
 
 BA_GRF_res_hip <- cv_res_GRF_models$hip %>%
   plot_bland_altman(color = BMI_cat, shape = activity) +
@@ -56,12 +56,12 @@ BA_GRF_res_hip <- cv_res_GRF_models$hip %>%
     shape = guide_legend(title = "Locomotion type:")
   ) +
   labs(
-    title = "Hip",
-    x = "Mean of Actual and Predicted pRGRF (N)",
-    y = "Actual - Predicted pRGRF (N)"
+    title = "Resultant vector - Hip placement",
+    x = "Mean of Actual and Predicted pGRF (N)",
+    y = "Actual - Predicted pGRF (N)"
   )
 
-# Hip pRLR Bland-Altman plot ----------------------------------------------
+# Hip pLR Bland-Altman plot ----------------------------------------------
 
 BA_LR_res_hip <- cv_res_LR_models$hip %>%
   plot_bland_altman(color = BMI_cat, shape = activity) +
@@ -92,9 +92,9 @@ BA_LR_res_hip <- cv_res_LR_models$hip %>%
     shape = guide_legend(title = "Locomotion type:")
   ) +
   labs(
-    title = "Hip",
-    x = quote("Mean of Actual and Predicted pRLR" ~ (N %.% s^-1)),
-    y = quote("Actual - Predicted pRLR" ~ (N %.% s^-1))
+    title = "Resultant vector - Hip placement",
+    x = quote("Mean of Actual and Predicted pLR" ~ (N %.% s^-1)),
+    y = quote("Actual - Predicted pLR" ~ (N %.% s^-1))
   )
 
 # Combine and save plots --------------------------------------------------

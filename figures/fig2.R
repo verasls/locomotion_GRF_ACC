@@ -17,7 +17,7 @@ mechanical_load_data <- mechanical_load_data %>%
     )
   )
 
-# Hip pRGRF x pRACC plot --------------------------------------------------
+# Hip pGRF x pACC plot --------------------------------------------------
 
 scatterplot_GRF_res_hip <- mechanical_load_data %>%
   filter(vector == "resultant" & acc_placement == "hip") %>%
@@ -54,9 +54,13 @@ scatterplot_GRF_res_hip <- mechanical_load_data %>%
     color = guide_legend(title = "Body mass index category:"),
     shape = guide_legend(title = "Locomotion type:")
   ) +
-  labs(title = "Hip", x = quote("pRACC" ~ (italic(g))), y = "pRGRF (N)")
+  labs(
+    title = "Resultant vector - Hip placement",
+    x = quote("pACC" ~ (italic(g))),
+    y = "pGRF (N)"
+  )
 
-# Hip pRLR x pRAR plot ----------------------------------------------------
+# Hip pLR x pAR plot ----------------------------------------------------
 
 scatterplot_LR_res_hip <- mechanical_load_data %>%
   filter(vector == "resultant" & acc_placement == "hip") %>%
@@ -94,9 +98,9 @@ scatterplot_LR_res_hip <- mechanical_load_data %>%
     shape = guide_legend(title = "Locomotion type:")
   ) +
   labs(
-    title = "Hip",
-    x = quote("pRAR" ~ (italic(g) %.% s^-1)),
-    y = quote("pRLR" ~ (N %.% s^-1))
+    title = "Resultant vector - Hip placement",
+    x = quote("pAR" ~ (italic(g) %.% s^-1)),
+    y = quote("pLR" ~ (N %.% s^-1))
   )
 
 # Combine and save plots --------------------------------------------------

@@ -21,16 +21,15 @@ ver_GRF_tb <- build_formula_table(
 )
 
 tab1 <- rbind(res_GRF_tb, ver_GRF_tb)
-# Reorder table rows
-tab1 <- tab1[c(1, 4, 2, 5, 3, 6), ]
-# Remove placemente name duplicates
-tab1[c(2, 4, 6), 1] <- ""
+# Remove vector name duplicates
+tab1[c(2, 3, 5, 6), 1] <- ""
 
 tab1 <- knitr::kable(
   tab1, booktabs = TRUE, escape = FALSE, linesep = "",
   label = "none",
   caption = "Regession equations, $R^2$ and accuracy indices",
   col.names = c(
+    "Vector",
     linebreak("Accelerometer\nplacement"),
     "Regression equations",
     "$R^2$",
@@ -38,10 +37,10 @@ tab1 <- knitr::kable(
     "MAPE",
     "RMSE"
   ),
-  align = c(rep("l", 2), rep("r", 4))
+  align = c(rep("l", 3), rep("r", 4))
 ) %>%
   footnote(
-    general = "Abbreviations: MAE, mean absolute error; MAPE, mean absolute percent error; pRACC, peak resultant acceleration; pRAR, peak resultant acceleration rate; pRGRF, peak resultant ground reaction force; pRLR, peak resultant loading rate; pVACC, peak vertical acceleration; pVAR, peak vertical acceleration rate; pVGRF, peak vertical ground reaction force; pVLR peak vertical loading rate; RMSE, root mean square error",
+    general = "Abbreviations: MAE, mean absolute error; MAPE, mean absolute percent error; pACC, peak acceleration; pAR, peak acceleration rate; pGRF, peak ground reaction force; pLR, peak loading rate; RMSE, root mean square error",
     general_title = "",
     threeparttable = TRUE
   ) %>%

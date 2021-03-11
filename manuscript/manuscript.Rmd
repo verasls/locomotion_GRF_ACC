@@ -84,11 +84,11 @@ Statistical analyses were conducted using R statistical software (version `r pas
 
 \medskip
 
-Regression equations to predict pRGFR, pVGRF, pRLR and pVLR were developed by linear mixed models. Body mass (kg) was tested as a predictor in all models. In addition, in the pRGRF and pVGRF models, pRACC and peak vertical ACC (pVACC; \textit{g}), respectively, were tested as predictors, while in the pRLR and pVLR models, peak resultant ATR (pRATR; $g\phantom{ }\mathrm{\phantom{ }\cdot s^{-1}}$) and peak vertical ATR (pVATR; $g\phantom{ }\mathrm{\phantom{ }\cdot s^{-1}}$), respectively, were tested as predictors. All predictors were tested as fixed effects and were shown to be significant. Subject and speed were tested as random effects, and the inclusion of both has showed to improve the models. Final models were chosen according to -2 log-likelihood statistics [@Field2012]. Traditional coefficient of determination ($\mathrm{R^2}$) was represented by conditional $\mathrm{R^2}$, that estimates the variance explained by the whole model [@Nakagawa2013].
+Regression equations to predict pGFR and pLR for each accelerometer placement (ankle, lower back and hip) and vector (resultant and vertical) were developed by linear mixed models. Body mass (kg) was tested as a predictor in all models. In addition, in the pGRF models pACC was tested as predictor, while in the pLR models pAR was tested as predictor. All predictors were tested as fixed effects and were shown to be significant. Subject and speed were tested as random effects, and the inclusion of both has showed to improve the models. Final models were chosen according to -2 log-likelihood statistics [@Field2012]. Traditional coefficient of determination ($\mathrm{R^2}$) was represented by conditional $\mathrm{R^2}$, that estimates the variance explained by the whole model [@Nakagawa2013].
 
 \medskip
 
-Model was validated using the leave-one-out cross-validation approach [@Staudenmayer2012]. For leave-one-out cross-validation each participant’s data was separated into a testing dataset (one participant at a time) with the remaining data in the training dataset. New linear mixed models with the same outcomes and predictors as determined for the entire sample were developed using the training dataset and then used to predict the outcome for the participant in the testing dataset. This process was repeated for all participants (`r max(sample_size$pGRF_N)` times). Data from the testing dataset was used in the remaining statistical analysis.
+Models were validated using the leave-one-out cross-validation approach [@Staudenmayer2012]. For leave-one-out cross-validation each participant’s data was separated into a testing dataset (one participant at a time) with the remaining data in the training dataset. New linear mixed models with the same outcomes and predictors as determined for the entire sample were developed using the training dataset and then used to predict the outcome for the participant in the testing dataset. This process was repeated for all participants (`r max(sample_size$pGRF_N)` times). Data from the testing dataset was used in the remaining statistical analysis.
 
 \medskip
 
@@ -117,6 +117,7 @@ if (BMI_avg >= 18.5 & BMI_avg < 25) {
   BMI_class <- "obesity class III"
 }
 ```
+
 Our recruited sample presented an average BMI of `r sample_descriptives$BMI_mean` $\mathrm{kg\cdot m^{-2}}$, which is relatively high and classified as `r BMI_class`. 
 It would be expected that participants with higher BMI values, due to low motor ability and physical capacity, are able to perform the trials only at the lowest speeds.
 This is precisely what happened and, as can be observed in Figure 1, from 2 to 5 $\mathrm{km\cdot h^{-1}}$ the BMI median is around 30 $\mathrm{kg\cdot m^{-2}}$, decreasing to around 27 $\mathrm{kg\cdot m^{-2}}$ at 6 $\mathrm{km\cdot h^{-1}}$, which is the fastest walking speed, with a further reduction to less than 25 $\mathrm{kg\cdot m^{-2}}$ at the running speeds. Furthermore, only one participant with a BMI higher than 30 $\mathrm{kg\cdot m^{-2}}$ was able to run. This implies in a sample size reduction from `r filter(sample_size, acc_placement == "hip" & vector == "resultant" & speed == "2")$pGRF_N` at the slowest speed to `r filter(sample_size, acc_placement == "hip" & vector == "resultant" & speed == "14")$pGRF_N` at the fastest.
@@ -139,7 +140,7 @@ As the main variables collected in this experiment are the peak magnitudes and r
 	\centering
 	\begin{measuredfigure}
 		\includegraphics[width=\textwidth]{fig2.png}
-		\caption{Relationship between variables collected by force plates and accelerometers worn at hip, for the resultant vector. Linear trends for each body mass index category are also depicted. Panel A shows peak magnitudes (pRGRF and pRACC) while Panel B shows peak rates (pRLR and pRAR). Abbreviations: pRACC, peak resultant acceleration; pRAR, peak resultant acceleration rate; pRGRF, peak resultant ground reaction force; pRLR, peak resultant loading rate.}
+		\caption{Relationship between variables collected by force plates and accelerometers worn at hip, for the resultant vector. Linear trends for each body mass index category are also depicted. Panel A shows peak magnitudes (pGRF and pACC) while Panel B shows peak rates (pLR and pAR). Abbreviations: pACC, peak acceleration; pAR, peak acceleration rate; pGRF, peak ground reaction force; pLR, peak loading rate.}
 	\end{measuredfigure}
 \end{figure}
 
@@ -212,20 +213,20 @@ tab1
 source(here("code", "04_sub_analyses.R"))
 ```
 
-Afterwards, Bland-Altman plots were built to visualize the agreement between the actual and predicted pGRF and pLR, for both the resultant vector and its vertical component and all accelerometer placements. A good agreement in a Bland-Altman plot is observed when values tend to cluster around zero, showing no consistent over or underestimation of the actual values. Also, the majority of data points should lie within the limits of agreement, which are determined by \pm 1.96 standard deviation of the bias (average difference between actual and predicted values). Bland-Altman plots for the pRGRF and pRLR from hip-worn accelerometers can be seen in Figure 3, and for all accelerometers placements and both resultant and vertical vectors in the Supplemental Figures S3 and S4. Values for all pGRF and pLR prediction equations developed tended to assemble around zero and between the limits of agreement. For the pGRF equations, a tendency to higher dispersion can be observed in the higher magnitudes, which correspond to the running trials, and especially in values derived from ankle-worn accelerometers (Supplemental Figure S3, Panels A and D). Prediction equations for pLR showed a more accentuated dispersion, and again in the higher magnitudes. None of the regression models presented a bias different than zero ($p > 0.05$), demonstrating that these models do not consistently over or underestimate the pGRF and pLR values. Furthermore, linear regressions were applied to identify proportional bias, that is, to test whether pGRF and pLR prediction errors were systematically influenced by their magnitude. The pGRF prediction equation based on ankle-worn accelerometers data for the resultant vector showed a significant proportional bias ($p = `r myround(coefficients(ba_regression_res_GRF$ankle)[2, 4], 2)`$), although with a low magnitude ($\mathrm{R^2} = `r myround(ba_regression_res_GRF$ankle["adj.r.squared"], 2)`$).
+Afterwards, Bland-Altman plots were built to visualize the agreement between the actual and predicted pGRF and pLR, for both the resultant vector and its vertical component and all accelerometer placements. A good agreement in a Bland-Altman plot is observed when values tend to cluster around zero, showing no consistent over or underestimation of the actual values. Also, the majority of data points should lie within the limits of agreement, which are determined by \pm 1.96 standard deviation of the bias (average difference between actual and predicted values). Bland-Altman plots for the pGRF and pLR resultant vector from hip-worn accelerometers can be seen in Figure 3, and for all accelerometers placements and both resultant and vertical vectors in the Supplemental Figures S3 and S4. Values for all pGRF and pLR prediction equations developed tended to assemble around zero and between the limits of agreement. For the pGRF equations, a tendency to higher dispersion can be observed in the higher magnitudes, which correspond to the running trials, and especially in values derived from ankle-worn accelerometers (Supplemental Figure S3, Panels A and D). Prediction equations for pLR showed a more accentuated dispersion, and again in the higher magnitudes. None of the regression models presented a bias different than zero ($p > 0.05$), demonstrating that these models do not consistently over or underestimate the pGRF and pLR values. Furthermore, linear regressions were applied to identify proportional bias, that is, to test whether pGRF and pLR prediction errors were systematically influenced by their magnitude. The pGRF prediction equation based on ankle-worn accelerometers data for the resultant vector showed a significant proportional bias ($p = `r myround(coefficients(ba_regression_res_GRF$ankle)[2, 4], 2)`$), although with a low magnitude ($\mathrm{R^2} = `r myround(ba_regression_res_GRF$ankle["adj.r.squared"], 2)`$).
 
 \begin{figure}[ht]
 	\captionsetup{singlelinecheck = false, format = hang, justification = raggedright, font = footnotesize, labelsep = space}
 	\centering
 	\begin{measuredfigure}
 		\includegraphics[width=\textwidth]{fig3.png}
-		\caption{Bland-Altman plots showing agreement between actual and predicted pRGRF (Panel A) and pRLR (Panel B) for hip-worn accelerometers. Continuous thick lines show bias (average of the differences between actual and predicted values) while dashed lines show the limits of agreement (bias \pm 1.96 standard deviation). Abbreviations: pRGRF, peak resultant ground reaction force; pRLR, peak resultant loading rate.}
+		\caption{Bland-Altman plots showing agreement between actual and predicted peak ground reaction force (Panel A) and loading rate (Panel B) for the resultant vector from hip-worn accelerometers. Continuous thick lines show bias (average of the differences between actual and predicted values) while dashed lines show the limits of agreement (bias \pm 1.96 standard deviation). Abbreviations: pGRF, peak ground reaction force; pLR, peak loading rate.}
 	\end{measuredfigure}
 \end{figure}
 
 \medskip
 
-Lastly, we compared the performance of our equations with a reference equation previously published. As the only comparable equation found was the one to predict pVGRF using hip-worn accelerometer data developed by Neugebauer et al [@Neugebauer2014], we applied it to our data and computed the MAE, MAPE and RMSE. Then, these indices were compared to the indices for our equation (Table 1). Apart from the overall equations performance, it was done a sub-analysis separating the walking and running trials. The results of these comparisons can be observed in the Table 2. Accuracy indices of our equations were all remarkably better compared to the reference equation, with a MAPE approximately 2 to 3 times lower. Furthermore, our equation performance was constant between walking and running, indicating that it can be used for both activities without loss of accuracy.
+Lastly, we compared the performance of our equations with a reference equation previously published. As the only comparable equation found was the one to predict pGRF vertical vector using hip-worn accelerometer data developed by Neugebauer et al [@Neugebauer2014], we applied it to our data and computed the MAE, MAPE and RMSE. Then, these indices were compared to the indices for our equation (Table 1). Apart from the overall equations performance, it was done a sub-analysis separating the walking and running trials. The results of these comparisons can be observed in the Table 2. Accuracy indices of our equations were all remarkably better compared to the reference equation, with a MAPE approximately 2 to 3 times lower. Furthermore, our equation performance was constant between walking and running, indicating that it can be used for both activities without loss of accuracy.
 
 ```{r comparison_table, results = "show"}
 source(here("tables", "tab2.R"))
@@ -250,7 +251,7 @@ tab2
 		\includegraphics[width=\textwidth]{figS1.png}
 	\end{measuredfigure}
 \end{figure}
-\footnotesize Relationship between peak ground reaction force and acceleration magnitudes. Data from accelerometers worn at ankle (Panels A and D), lower back (Panels B and E) and hip (Panels C and F), for both the resultant vector (Panels A to C) and its vertical component (Panels D to F). Linear trends for each body mass index category are also depicted. Abbreviations: pRACC, peak resultant acceleration; pRGRF, peak resultant ground reaction force; pVACC, peak vertical acceleration; pVGRF, peak vertical ground reaction force.
+\footnotesize Relationship between peak ground reaction force and acceleration magnitudes. Data from accelerometers worn at ankle (Panels A and D), lower back (Panels B and E) and hip (Panels C and F), for both the resultant vector (Panels A to C) and its vertical component (Panels D to F). Linear trends for each body mass index category are also depicted. Abbreviations: pACC, peak acceleration; pGRF, peak ground reaction force.
 
 \medskip
 
@@ -262,7 +263,7 @@ tab2
 		\includegraphics[width=\textwidth]{figS2.png}
 	\end{measuredfigure}
 \end{figure}
-\footnotesize Relationship between peak loading and acceleration rates. Data from accelerometers worn at ankle (Panels A and D), lower back (Panels B and E) and hip (Panels C and F), for both the resultant vector (Panels A to C) and its vertical component (Panels D to F). Linear trends for each body mass index category are also depicted. Abbreviations: pRAR, peak resultant acceleration rate; pRLR, peak resultant loading rate; pVAR, peak vertical acceleration rate; pVLR, peak vertical loading rate.
+\footnotesize Relationship between peak loading and acceleration rates. Data from accelerometers worn at ankle (Panels A and D), lower back (Panels B and E) and hip (Panels C and F), for both the resultant vector (Panels A to C) and its vertical component (Panels D to F). Linear trends for each body mass index category are also depicted. Abbreviations: pAR, peak acceleration rate; pLR, peak loading rate.
 
 \newpage
 
@@ -274,7 +275,7 @@ tab2
 		\includegraphics[width=\textwidth]{figS3.png}
 	\end{measuredfigure}
 \end{figure}
-\footnotesize Bland-Altman plots showing agreement between actual and predicted pGRF for accelerometers worn at ankle (Panels A and D), lower back (Panels B and E) and hip (Panels C and F), for both the resultant vector (Panels A to C) and its vertical component (Panels D to F). Continuous thick lines show bias (average of the differences between actual and predicted values) while dashed lines show the limits of agreement (bias \pm 1.96 standard deviation). Abbreviations: pGRF, peak ground reaction force; pRGRF, peak resultant ground reaction force; pVGRF, peak vertical ground reaction force.
+\footnotesize Bland-Altman plots showing agreement between actual and predicted peak ground reaction force for accelerometers worn at ankle (Panels A and D), lower back (Panels B and E) and hip (Panels C and F), for both the resultant vector (Panels A to C) and its vertical component (Panels D to F). Continuous thick lines show bias (average of the differences between actual and predicted values) while dashed lines show the limits of agreement (bias \pm 1.96 standard deviation). Abbreviations: pGRF, peak ground reaction force.
 
 ## Supplemental Figure S4 {.unnumbered}
 \begin{figure}[ht]
@@ -284,4 +285,4 @@ tab2
 		\includegraphics[width=\textwidth]{figS4.png}
 	\end{measuredfigure}
 \end{figure}
-\footnotesize Bland-Altman plots showing agreement between actual and predicted pLR for accelerometers worn at ankle (Panels A and D), lower back (Panels B and E) and hip (Panels C and F), for both the resultant vector (Panels A to C) and its vertical component (Panels D to F). Continuous thick lines show bias (average of the differences between actual and predicted values) while dashed lines show the limits of agreement (bias \pm 1.96 standard deviation). Abbreviations: pLR, peak loading rate; pRLR, peak resultant loading rate; pVLR, peak vertical loading rate.
+\footnotesize Bland-Altman plots showing agreement between actual and predicted peak loading rate for accelerometers worn at ankle (Panels A and D), lower back (Panels B and E) and hip (Panels C and F), for both the resultant vector (Panels A to C) and its vertical component (Panels D to F). Continuous thick lines show bias (average of the differences between actual and predicted values) while dashed lines show the limits of agreement (bias \pm 1.96 standard deviation). Abbreviations: pLR, peak loading rate.

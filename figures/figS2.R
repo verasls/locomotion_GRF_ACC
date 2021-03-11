@@ -56,9 +56,9 @@ scatterplot_LR_res_ankle <- mechanical_load_data %>%
     shape = guide_legend(title = "Locomotion type:")
   ) +
   labs(
-    title = "Ankle",
-    x = quote("pRAR" ~ (italic(g) %.% s^-1)),
-    y = quote("pRLR" ~ (N %.% s^-1))
+    title = "Resultant vector - Ankle placement",
+    x = quote("pAR" ~ (italic(g) %.% s^-1)),
+    y = quote("pLR" ~ (N %.% s^-1))
   )
 
 # Resultant: Lower back
@@ -98,9 +98,9 @@ scatterplot_LR_res_back <- mechanical_load_data %>%
     shape = guide_legend(title = "Locomotion type:")
   ) +
   labs(
-    title = "Lower Back",
-    x = quote("pRAR" ~ (italic(g) %.% s^-1)),
-    y = quote("pRLR" ~ (N %.% s^-1))
+    title = "Resultant vector - Lower back placement",
+    x = quote("pAR" ~ (italic(g) %.% s^-1)),
+    y = quote("pLR" ~ (N %.% s^-1))
   )
 
 # Resultant: Hip
@@ -140,9 +140,9 @@ scatterplot_LR_res_hip <- mechanical_load_data %>%
     shape = guide_legend(title = "Locomotion type:")
   ) +
   labs(
-    title = "Hip",
-    x = quote("pRAR" ~ (italic(g) %.% s^-1)),
-    y = quote("pRLR" ~ (N %.% s^-1))
+    title = "Resultant vector - Hip placement",
+    x = quote("pAR" ~ (italic(g) %.% s^-1)),
+    y = quote("pLR" ~ (N %.% s^-1))
   )
 
 # Vertical: Ankle
@@ -182,9 +182,9 @@ scatterplot_LR_ver_ankle <- mechanical_load_data %>%
     shape = guide_legend(title = "Locomotion type:")
   ) +
   labs(
-    title = "Ankle",
-    x = quote("pVAR" ~ (italic(g) %.% s^-1)),
-    y = quote("pVLR" ~ (N %.% s^-1))
+    title = "Vertical vector - Ankle placement",
+    x = quote("pAR" ~ (italic(g) %.% s^-1)),
+    y = quote("pLR" ~ (N %.% s^-1))
   )
 
 # Vertical: Lower back
@@ -224,9 +224,9 @@ scatterplot_LR_ver_back <- mechanical_load_data %>%
     shape = guide_legend(title = "Locomotion type:")
   ) +
   labs(
-    title = "Lower Back",
-    x = quote("pVAR" ~ (italic(g) %.% s^-1)),
-    y = quote("pVLR" ~ (N %.% s^-1))
+    title = "Vertical vector - Lower back placement",
+    x = quote("pAR" ~ (italic(g) %.% s^-1)),
+    y = quote("pLR" ~ (N %.% s^-1))
   )
 
 # Vertical: Hip
@@ -266,9 +266,9 @@ scatterplot_LR_ver_hip <- mechanical_load_data %>%
     shape = guide_legend(title = "Locomotion type:")
   ) +
   labs(
-    title = "Hip",
-    x = quote("pVAR" ~ (italic(g) %.% s^-1)),
-    y = quote("pVLR" ~ (N %.% s^-1))
+    title = "Vertical vector - Hip placement",
+    x = quote("pAR" ~ (italic(g) %.% s^-1)),
+    y = quote("pLR" ~ (N %.% s^-1))
   )
 
 # Combine and save plots --------------------------------------------------

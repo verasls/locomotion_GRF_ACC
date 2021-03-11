@@ -52,8 +52,8 @@ BA_LR_res_ankle <- ggplot()
 #   ) +
 #   labs(
 #     title = "Ankle",
-#     x = quote("Mean of Actual and Predicted pRLR" ~ (N %.% s^-1)),
-#     y = quote("Actual - Predicted pRLR" ~ (N %.% s^-1))
+#     x = quote("Mean of Actual and Predicted pLR" ~ (N %.% s^-1)),
+#     y = quote("Actual - Predicted pLR" ~ (N %.% s^-1))
 #   )
 
 # Resultant: Lower back
@@ -86,9 +86,9 @@ BA_LR_res_back <- cv_res_LR_models$lower_back %>%
     shape = guide_legend(title = "Locomotion type:")
   ) +
   labs(
-    title = "Lower Back",
-    x = quote("Mean of Actual and Predicted pRLR" ~ (N %.% s^-1)),
-    y = quote("Actual - Predicted pRLR" ~ (N %.% s^-1))
+    title = "Resultant vector - Lower back placement",
+    x = quote("Mean of Actual and Predicted pLR" ~ (N %.% s^-1)),
+    y = quote("Actual - Predicted pLR" ~ (N %.% s^-1))
   )
 
 # Resultant: Hip
@@ -121,9 +121,9 @@ BA_LR_res_hip <- cv_res_LR_models$hip %>%
     shape = guide_legend(title = "Locomotion type:")
   ) +
   labs(
-    title = "Hip",
-    x = quote("Mean of Actual and Predicted pRLR" ~ (N %.% s^-1)),
-    y = quote("Actual - Predicted pRLR" ~ (N %.% s^-1))
+    title = "Resultant vector - Hip placement",
+    x = quote("Mean of Actual and Predicted pLR" ~ (N %.% s^-1)),
+    y = quote("Actual - Predicted pLR" ~ (N %.% s^-1))
   )
 
 # Vertical: Ankle
@@ -145,8 +145,8 @@ BA_LR_ver_ankle <- ggplot()
 #   ) +
 #   labs(
 #     title = "Ankle",
-#     x = quote("Mean of Actual and Predicted pVLR" ~ (N %.% s^-1)),
-#     y = quote("Actual - Predicted pVLR" ~ (N %.% s^-1))
+#     x = quote("Mean of Actual and Predicted pLR" ~ (N %.% s^-1)),
+#     y = quote("Actual - Predicted pLR" ~ (N %.% s^-1))
 #   )
 
 # Vertical: Lower back
@@ -179,9 +179,9 @@ BA_LR_ver_back <- cv_ver_LR_models$lower_back %>%
     shape = guide_legend(title = "Locomotion type:")
   ) +
   labs(
-    title = "Lower Back",
-    x = quote("Mean of Actual and Predicted pVLR" ~ (N %.% s^-1)),
-    y = quote("Actual - Predicted pVLR" ~ (N %.% s^-1))
+    title = "Vertical vector - Lower back placement",
+    x = quote("Mean of Actual and Predicted pLR" ~ (N %.% s^-1)),
+    y = quote("Actual - Predicted pLR" ~ (N %.% s^-1))
   )
 
 # Vertical: Hip
@@ -214,9 +214,9 @@ BA_LR_ver_hip <- cv_ver_LR_models$hip %>%
     shape = guide_legend(title = "Locomotion type:")
   ) +
   labs(
-    title = "Hip",
-    x = quote("Mean of Actual and Predicted pVLR" ~ (N %.% s^-1)),
-    y = quote("Actual - Predicted pVLR" ~ (N %.% s^-1))
+    title = "Vertical vector - Hip placement",
+    x = quote("Mean of Actual and Predicted pLR" ~ (N %.% s^-1)),
+    y = quote("Actual - Predicted pLR" ~ (N %.% s^-1))
   )
 
 # Combine and save plots --------------------------------------------------

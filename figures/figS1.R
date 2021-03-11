@@ -55,7 +55,11 @@ scatterplot_GRF_res_ankle <- mechanical_load_data %>%
     color = guide_legend(title = "Body mass index category:"),
     shape = guide_legend(title = "Locomotion type:")
   ) +
-  labs(title = "Ankle", x = quote("pRACC" ~ (italic(g))), y = "pRGRF (N)")
+  labs(
+    title = "Resultant vector - Ankle placement",
+    x = quote("pACC" ~ (italic(g))),
+    y = "pGRF (N)"
+  )
 
 # Resultant: Lower back
 scatterplot_GRF_res_back <- mechanical_load_data %>%
@@ -93,7 +97,11 @@ scatterplot_GRF_res_back <- mechanical_load_data %>%
     color = guide_legend(title = "Body mass index category:"),
     shape = guide_legend(title = "Locomotion type:")
   ) +
-  labs(title = "Lower Back", x = quote("pRACC" ~ (italic(g))), y = "pRGRF (N)")
+  labs(
+    title = "Resultant vector - Lower back placement",
+    x = quote("pACC" ~ (italic(g))),
+    y = "pGRF (N)"
+  )
 
 # Resultant: Hip
 scatterplot_GRF_res_hip <- mechanical_load_data %>%
@@ -131,7 +139,11 @@ scatterplot_GRF_res_hip <- mechanical_load_data %>%
     color = guide_legend(title = "Body mass index category:"),
     shape = guide_legend(title = "Locomotion type:")
   ) +
-  labs(title = "Hip", x = quote("pRACC" ~ (italic(g))), y = "pRGRF (N)")
+  labs(
+    title = "Resultant vector - Hip placement",
+    x = quote("pACC" ~ (italic(g))),
+    y = "pGRF (N)"
+  )
 
 # Vertical: Ankle
 scatterplot_GRF_ver_ankle <- mechanical_load_data %>%
@@ -169,7 +181,11 @@ scatterplot_GRF_ver_ankle <- mechanical_load_data %>%
     color = guide_legend(title = "Body mass index category:"),
     shape = guide_legend(title = "Locomotion type:")
   ) +
-  labs(title = "Ankle", x = quote("pVACC" ~ (italic(g))), y = "pVGRF (N)")
+  labs(
+    title = "Vertical vector - Ankle placement",
+    x = quote("pACC" ~ (italic(g))),
+    y = "pGRF (N)"
+  )
 
 # Vertical: Lower back
 scatterplot_GRF_ver_back <- mechanical_load_data %>%
@@ -207,7 +223,11 @@ scatterplot_GRF_ver_back <- mechanical_load_data %>%
     color = guide_legend(title = "Body mass index category:"),
     shape = guide_legend(title = "Locomotion type:")
   ) +
-  labs(title = "Lower Back", x = quote("pVACC" ~ (italic(g))), y = "pVGRF (N)")
+  labs(
+    title = "Vertical vector - Lower back placement",
+    x = quote("pACC" ~ (italic(g))),
+    y = "pGRF (N)"
+  )
 
 # Vertical: Hip
 scatterplot_GRF_ver_hip <- mechanical_load_data %>%
@@ -245,7 +265,11 @@ scatterplot_GRF_ver_hip <- mechanical_load_data %>%
     color = guide_legend(title = "Body mass index category:"),
     shape = guide_legend(title = "Locomotion type:")
   ) +
-  labs(title = "Hip", x = quote("pVACC" ~ (italic(g))), y = "pVGRF (N)")
+  labs(
+    title = "Vertical vector - Hip placement",
+    x = quote("pACC" ~ (italic(g))),
+    y = "pGRF (N)"
+  )
 
 # Combine and save plots --------------------------------------------------
 

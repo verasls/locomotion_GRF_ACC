@@ -25,9 +25,10 @@ build_formula_table <- function(model, cv, outcome, vector) {
   RMSE <- broman::myround(unname(purrr::map_dbl(model_accuracy, "RMSE")), 1)
 
   tibble::tibble(
+    "Vector" = stringr::str_to_sentence(vector),
     "Accelerometer placement" = c("Ankle", "Lower back", "Hip"),
     "Regression equations" = unname(
-      purrr::map_chr(model, get_equation, outcome, vector)
+      purrr::map_chr(model, get_equation, outcome)
     ),
     "R2" = R2, "MAE" = MAE, "MAPE" = MAPE, "RMSE" = RMSE
   )
@@ -44,7 +45,7 @@ build_formula_table <- function(model, cv, outcome, vector) {
 #
 # Returns:
 #    A character vector with the model equation.
-get_equation <- function(model, outcome, vector) {
+get_equation <- function(model, outcome) {
   model_coefs <- coef(summary(model))[, 1]
   model_coefs[1] <- ifelse(
     model_coefs[1] > 0,
@@ -57,19 +58,12 @@ get_equation <- function(model, outcome, vector) {
     paste0(" - ", broman::myround(abs(as.numeric(model_coefs[-1])), 3))
   )
 
-  if (stringr::str_detect(outcome, "GRF") & vector == "resultant") {
-    model_outcome <- "pRGRF (N)"
-    model_acceleration <- "pRACC"
-  } else if (stringr::str_detect(outcome, "GRF") & vector == "vertical") {
-    model_outcome <- "pVGRF (N)"
-    model_acceleration <- "pVACC"
-  } else if (stringr::str_detect(outcome, "LR") & vector == "resultant") {
-    model_outcome <- "pVLR (Ns)"
-    model_acceleration <- "pRATR"
-  } else if (stringr::str_detect(outcome, "LR") & vector == "resultant") {
-  } else if (stringr::str_detect(outcome, "LR") & vector == "vertical") {
-    model_outcome <- "pVLR (Ns)"
-    model_acceleration <- "pVATR"
+  if (stringr::str_detect(outcome, "GRF")) {
+    model_outcome <- "pGRF (N)"
+    model_acceleration <- "pACC"
+  } else if (stringr::str_detect(outcome, "LR")) {
+    model_outcome <- "pLR (Ns)"
+    model_acceleration <- "pAR"
   }
 
   regression_equation <- glue::glue(
