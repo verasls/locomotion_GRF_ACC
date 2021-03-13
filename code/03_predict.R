@@ -73,20 +73,15 @@ LR_formula <- as.formula(
   "pLR_Ns ~ pAR_gs + body_mass + pAR_gs:body_mass + (1 | subj)"
 )
 
-# As LR for the ankle placement is missing at the moment, this placement
-# needs to be removed from the data frame list
-res_mechanical_load_data_LR <- res_mechanical_load_data[-1]
-ver_mechanical_load_data_LR <- ver_mechanical_load_data[-1]
-
 # Resultant vector
 # Build models
 res_LR_models <- map(
-  res_mechanical_load_data_LR,
+  res_mechanical_load_data,
   ~ lmer(LR_formula, data = .x)
 )
 # Cross-validate (leave-one-out cross-validation)
 cv_res_LR_models <- map2(
-  res_LR_models, res_mechanical_load_data_LR,
+  res_LR_models, res_mechanical_load_data,
   ~ loo_cv(.x, .y, id = subj)
 )
 # Compute accuracy indices
@@ -99,12 +94,12 @@ plot_res_LR_models <- map(
 # Vertical vector
 # Build models
 ver_LR_models <- map(
-  ver_mechanical_load_data_LR,
+  ver_mechanical_load_data,
   ~ lmer(LR_formula, data = .x)
 )
 # Cross-validate (leave-one-out cross-validation)
 cv_ver_LR_models <- map2(
-  ver_LR_models, ver_mechanical_load_data_LR,
+  ver_LR_models, ver_mechanical_load_data,
   ~ loo_cv(.x, .y, id = subj)
 )
 # Compute accuracy indices
