@@ -13,7 +13,7 @@ load(here("output", "sub_analyses_accuracy.rda"))
 
 # Build table -------------------------------------------------------------
 
-tab2 <- data.frame(
+tab2_df <- data.frame(
   Prediction = c("Overall", "Walking", "Running"),
   MAE_our = c(
     accuracy_ver_GRF_models$hip$MAE,
@@ -51,7 +51,10 @@ tab2 <- data.frame(
     across(starts_with("MAPE"), ~ .x * 100),
     across(where(is.numeric), myround),
     across(starts_with("MAPE"), ~ paste0(.x, "\\%"))
-  ) %>%
+  )
+
+
+tab2 <- tab2_df %>%
   kbl(
     booktabs = TRUE, escape = FALSE,
     label = "none2",
@@ -69,3 +72,12 @@ tab2 <- data.frame(
   ) %>%
   kable_styling(position = "center") %>%
   add_header_above(c("", "Our equation" = 3, "Neugebauer equation" = 3))
+
+
+tab2_html <- tab2_df %>%
+  kbl(caption = "Accuracy indices of ours and Neugebauer’s equation to predict peak vertical ground reaction force with data from hip-worn accelerometers") %>%
+  kable_classic(full_width = F, html_font = "Cambria") %>%
+  footnote(
+    general = "Abbreviations: MAE, mean absolute error; MAPE, mean absolute percent error; RMSE, root mean square error",
+    general_title = ""
+  )

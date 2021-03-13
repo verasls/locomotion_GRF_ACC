@@ -20,12 +20,12 @@ ver_GRF_tb <- build_formula_table(
   ver_GRF_models, cv_ver_GRF_models, "pGRF", "vertical"
 )
 
-tab1 <- rbind(res_GRF_tb, ver_GRF_tb)
+tab1_df <- rbind(res_GRF_tb, ver_GRF_tb)
 # Remove vector name duplicates
-tab1[c(2, 3, 5, 6), 1] <- ""
+tab1_df[c(2, 3, 5, 6), 1] <- ""
 
 tab1 <- knitr::kable(
-  tab1, booktabs = TRUE, escape = FALSE, linesep = "",
+  tab1_df, booktabs = TRUE, escape = FALSE, linesep = "",
   label = "none",
   caption = "Regession equations, $R^2$ and accuracy indices",
   col.names = c(
@@ -51,3 +51,12 @@ tab1 <- knitr::kable(
     bold = FALSE
   ) %>%
   landscape()
+
+
+tab1_html <- tab1_df %>%
+  kbl(caption = "Regession equations, $R^2$ and accuracy indices") %>%
+  kable_classic(full_width = F, html_font = "Cambria") %>%
+  footnote(
+    general = "Abbreviations: MAE, mean absolute error; MAPE, mean absolute percent error; pACC, peak acceleration; pAR, peak acceleration rate; pGRF, peak ground reaction force; pLR, peak loading rate; RMSE, root mean square error",
+    general_title = ""
+  )
