@@ -19,10 +19,16 @@ res_GRF_tb <- build_formula_table(
 ver_GRF_tb <- build_formula_table(
   ver_GRF_models, cv_ver_GRF_models, "pGRF", "vertical"
 )
+res_LR_tb <- build_formula_table(
+  res_LR_models, cv_res_LR_models, "pLR", "resultant"
+)
+ver_LR_tb <- build_formula_table(
+  ver_LR_models, cv_ver_LR_models, "pLR", "vertical"
+)
 
-tab1_df <- rbind(res_GRF_tb, ver_GRF_tb)
+tab1_df <- rbind(res_GRF_tb, ver_GRF_tb, res_LR_tb, ver_LR_tb)
 # Remove vector name duplicates
-tab1_df[c(2, 3, 5, 6), 1] <- ""
+tab1_df[c(2, 3, 5, 6, 8, 9, 11, 12), 1] <- ""
 
 tab1 <- knitr::kable(
   tab1_df, booktabs = TRUE, escape = FALSE, linesep = "",
@@ -47,6 +53,11 @@ tab1 <- knitr::kable(
   kable_styling(latex_options = "scale_down") %>%
   pack_rows(
     "Peak ground reaction force prediction", 1, 6,
+    latex_gap_space = "0.5em",
+    bold = FALSE
+  ) %>%
+  pack_rows(
+    "Peak loading rate prediction", 7, 12,
     latex_gap_space = "0.5em",
     bold = FALSE
   ) %>%
