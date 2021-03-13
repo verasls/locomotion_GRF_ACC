@@ -62,7 +62,7 @@ get_equation <- function(model, outcome) {
     model_outcome <- "pGRF (N)"
     model_acceleration <- "pACC"
   } else if (stringr::str_detect(outcome, "LR")) {
-    model_outcome <- "pLR (Ns)"
+    model_outcome <- "pLR ($\\mathrm{N\\cdot s^{-1}}$)"
     model_acceleration <- "pAR"
   }
 
