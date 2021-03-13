@@ -34,27 +34,39 @@ cv_ver_LR_models <- map(
 # LR plots ----------------------------------------------------------------
 
 # Resultant: Ankle
-BA_LR_res_ankle <- ggplot()
-# BA_LR_res_ankle <- cv_res_LR_models$ankle %>%
-#   plot_bland_altman(color = BMI_cat, shape = activity) +
-#   guides(shape = FALSE) +
-#   scale_color_nejm() +
-#   scale_y_continuous(
-#     labels = scales::label_number(),
-#     limits = c(-100000, 125000),
-#     expand = c(0, 0),
-#     breaks = seq(-100000, 125000, 50000)
-#   ) +
-#   theme_light() +
-#   theme(
-#     plot.title = element_text(hjust = 0.5),
-#     legend.title = element_blank()
-#   ) +
-#   labs(
-#     title = "Ankle",
-#     x = quote("Mean of Actual and Predicted pLR" ~ (N %.% s^-1)),
-#     y = quote("Actual - Predicted pLR" ~ (N %.% s^-1))
-#   )
+BA_LR_res_ankle <- cv_res_LR_models$ankle %>%
+  plot_bland_altman(color = BMI_cat, shape = activity) +
+  scale_color_nejm() +
+  scale_y_continuous(
+    labels = scales::label_number(),
+    limits = c(-20000, 20000),
+    expand = c(0, 0),
+    breaks = seq(-20000, 20000, 10000)
+  ) +
+  scale_x_continuous(
+    limits = c(2500, 27500),
+    expand = c(0, 0),
+    breaks = seq(5000, 25000, 5000)
+  ) +
+  theme_light() +
+  theme(
+    plot.title = element_text(size = 15, hjust = 0.5),
+    legend.title = element_text(size = 13),
+    legend.text = element_text(size = 12),
+    axis.title.y = element_text(size = 13),
+    axis.title.x = element_text(size = 13),
+    axis.text.y = element_text(size = 13),
+    axis.text.x = element_text(size = 13)
+  ) +
+  guides(
+    color = guide_legend(title = "Body mass index category:"),
+    shape = guide_legend(title = "Locomotion type:")
+  ) +
+  labs(
+    title = "Resultant vector - Ankle placement",
+    x = quote("Mean of Actual and Predicted pLR" ~ (N %.% s^-1)),
+    y = quote("Actual - Predicted pLR" ~ (N %.% s^-1))
+  )
 
 # Resultant: Lower back
 BA_LR_res_back <- cv_res_LR_models$lower_back %>%
@@ -127,27 +139,39 @@ BA_LR_res_hip <- cv_res_LR_models$hip %>%
   )
 
 # Vertical: Ankle
-BA_LR_ver_ankle <- ggplot()
-# BA_LR_ver_ankle <- cv_ver_LR_models$ankle %>%
-#   plot_bland_altman(color = BMI_cat, shape = activity) +
-#   guides(shape = FALSE) +
-#   scale_color_nejm() +
-#   scale_y_continuous(
-#     labels = scales::label_number(),
-#     limits = c(-100000, 150000),
-#     expand = c(0, 0),
-#     breaks = seq(-100000, 150000, 50000)
-#   ) +
-#   theme_light() +
-#   theme(
-#     plot.title = element_text(hjust = 0.5),
-#     legend.title = element_blank()
-#   ) +
-#   labs(
-#     title = "Ankle",
-#     x = quote("Mean of Actual and Predicted pLR" ~ (N %.% s^-1)),
-#     y = quote("Actual - Predicted pLR" ~ (N %.% s^-1))
-#   )
+BA_LR_ver_ankle <- cv_ver_LR_models$ankle %>%
+  plot_bland_altman(color = BMI_cat, shape = activity) +
+  scale_color_nejm() +
+  scale_y_continuous(
+    labels = scales::label_number(),
+    limits = c(-20000, 20000),
+    expand = c(0, 0),
+    breaks = seq(-20000, 20000, 10000)
+  ) +
+  scale_x_continuous(
+    limits = c(2500, 27500),
+    expand = c(0, 0),
+    breaks = seq(5000, 25000, 5000)
+  ) +
+  theme_light() +
+  theme(
+    plot.title = element_text(size = 15, hjust = 0.5),
+    legend.title = element_text(size = 13),
+    legend.text = element_text(size = 12),
+    axis.title.y = element_text(size = 13),
+    axis.title.x = element_text(size = 13),
+    axis.text.y = element_text(size = 13),
+    axis.text.x = element_text(size = 13)
+  ) +
+  guides(
+    color = guide_legend(title = "Body mass index category:"),
+    shape = guide_legend(title = "Locomotion type:")
+  ) +
+  labs(
+    title = "Vertical vector - Ankle placement",
+    x = quote("Mean of Actual and Predicted pLR" ~ (N %.% s^-1)),
+    y = quote("Actual - Predicted pLR" ~ (N %.% s^-1))
+  )
 
 # Vertical: Lower back
 BA_LR_ver_back <- cv_ver_LR_models$lower_back %>%
