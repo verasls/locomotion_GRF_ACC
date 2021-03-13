@@ -1,0 +1,19 @@
+---
+output: html_document
+---
+
+```{r, setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE, results = "show", message = FALSE, warning = FALSE
+)
+```
+
+```{r tables}
+library(kableExtra)
+library(here)
+source(here("tables", "tab1.R"))
+source(here("tables", "tab2.R"))
+tab1_html
+tab2_html
+```
+
