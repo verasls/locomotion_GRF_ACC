@@ -58,7 +58,7 @@ tab2 <- tab2_df %>%
   kbl(
     booktabs = TRUE, escape = FALSE,
     label = "none2",
-    caption = "Accuracy indices of ours and Neugebauer’s equation to predict peak vertical ground reaction force with data from hip-worn accelerometers",
+    caption = "Accuracy indices of ours and Neugebauer’s equations to predict peak vertical ground reaction force with data from hip-worn accelerometers",
     col.names = c(
       "Prediction",
       "MAE", "MAPE", "RMSE",
