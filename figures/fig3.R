@@ -73,9 +73,9 @@ BA_LR_res_hip <- cv_res_LR_models$hip %>%
     breaks = seq(-20000, 20000, 10000)
   ) +
   scale_x_continuous(
-    limits = c(0, 50000),
+    limits = c(0, 55000),
     expand = c(0, 0),
-    breaks = seq(5000, 50000, 10000)
+    breaks = seq(0, 50000, 10000)
   ) +
   theme_light() +
   theme(

@@ -32,14 +32,14 @@ scatterplot_LR_res_ankle <- mechanical_load_data %>%
   ) +
   scale_color_nejm() +
   scale_y_continuous(
-    limits = c(0, 30000),
+    limits = c(0, 60000),
     expand = c(0, 0),
-    breaks = seq(0, 30000, 10000)
+    breaks = seq(0, 60000, 10000)
   ) +
   scale_x_continuous(
-    limits = c(0, 50),
+    limits = c(0, 180),
     expand = c(0, 0),
-    breaks = seq(5, 45, 5)
+    breaks = seq(0, 175, 25)
   ) +
   theme_light() +
   theme(
@@ -74,14 +74,14 @@ scatterplot_LR_res_back <- mechanical_load_data %>%
   ) +
   scale_color_nejm() +
   scale_y_continuous(
-    limits = c(0, 30000),
+    limits = c(0, 60000),
     expand = c(0, 0),
-    breaks = seq(0, 30000, 5000)
+    breaks = seq(0, 60000, 10000)
   ) +
   scale_x_continuous(
-    limits = c(0, 50),
+    limits = c(0, 160),
     expand = c(0, 0),
-    breaks = seq(5, 45, 5)
+    breaks = seq(0, 150, 25)
   ) +
   theme_light() +
   theme(
@@ -116,14 +116,14 @@ scatterplot_LR_res_hip <- mechanical_load_data %>%
   ) +
   scale_color_nejm() +
   scale_y_continuous(
-    limits = c(0, 30000),
+    limits = c(0, 60000),
     expand = c(0, 0),
-    breaks = seq(0, 30000, 5000)
+    breaks = seq(0, 60000, 10000)
   ) +
   scale_x_continuous(
-    limits = c(0, 50),
+    limits = c(0, 210),
     expand = c(0, 0),
-    breaks = seq(5, 45, 5)
+    breaks = seq(0, 200, 25)
   ) +
   theme_light() +
   theme(
@@ -158,14 +158,14 @@ scatterplot_LR_ver_ankle <- mechanical_load_data %>%
   ) +
   scale_color_nejm() +
   scale_y_continuous(
-    limits = c(0, 30000),
+    limits = c(0, 60000),
     expand = c(0, 0),
-    breaks = seq(0, 30000, 5000)
+    breaks = seq(0, 60000, 10000)
   ) +
   scale_x_continuous(
-    limits = c(0, 50),
+    limits = c(0, 370),
     expand = c(0, 0),
-    breaks = seq(5, 45, 5)
+    breaks = seq(0, 350, 50)
   ) +
   theme_light() +
   theme(
@@ -200,14 +200,14 @@ scatterplot_LR_ver_back <- mechanical_load_data %>%
   ) +
   scale_color_nejm() +
   scale_y_continuous(
-    limits = c(0, 30000),
+    limits = c(0, 60000),
     expand = c(0, 0),
-    breaks = seq(0, 30000, 5000)
+    breaks = seq(0, 60000, 10000)
   ) +
   scale_x_continuous(
-    limits = c(0, 45),
+    limits = c(0, 210),
     expand = c(0, 0),
-    breaks = seq(5, 40, 5)
+    breaks = seq(0, 200, 25)
   ) +
   theme_light() +
   theme(
@@ -242,14 +242,14 @@ scatterplot_LR_ver_hip <- mechanical_load_data %>%
   ) +
   scale_color_nejm() +
   scale_y_continuous(
-    limits = c(0, 30000),
+    limits = c(0, 60000),
     expand = c(0, 0),
-    breaks = seq(0, 30000, 5000)
+    breaks = seq(0, 60000, 10000)
   ) +
   scale_x_continuous(
-    limits = c(0, 50),
+    limits = c(0, 180),
     expand = c(0, 0),
-    breaks = seq(5, 45, 5)
+    breaks = seq(0, 175, 25)
   ) +
   theme_light() +
   theme(
