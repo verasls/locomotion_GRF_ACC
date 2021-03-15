@@ -33,7 +33,7 @@ tab1_df[c(2, 3, 5, 6, 8, 9, 11, 12), 1] <- ""
 tab1 <- knitr::kable(
   tab1_df, booktabs = TRUE, escape = FALSE, linesep = "",
   label = "none",
-  caption = "Regession equations, $R^2$ and accuracy indices",
+  caption = "Regression equations, $R^2$ and accuracy indices",
   col.names = c(
     "Vector",
     linebreak("Accelerometer\nplacement"),
