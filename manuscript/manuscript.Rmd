@@ -215,12 +215,14 @@ Afterwards, Bland-Altman plots were built to visualize the agreement between the
 
 \medskip
 
-Lastly, we compared the performance of our equations with a reference equation previously published. As the only comparable equation found was the one to predict pGRF vertical vector using hip-worn accelerometer data developed by Neugebauer et al [@Neugebauer2014], we applied it to our data and computed the MAE, MAPE and RMSE. Then, these indices were compared to the indices for our equation (Table 1). Apart from the overall equations performance, it was done a sub-analysis separating the walking and running trials. The results of these comparisons can be observed in the Table 2. Accuracy indices of our equations were all better compared to the reference equation, with a MAPE approximately 2 to 3 times lower. Furthermore, our equation performance was constant between walking and running, indicating that it can be used for both activities without loss of accuracy, which cannot be observed in the reference equation.
+Furthermore, we compared the performance of our equations with a reference equation previously published. As the only comparable equation found was the one to predict pGRF vertical vector using hip-worn accelerometer data developed by Neugebauer et al [@Neugebauer2014], we applied it to our data and computed the MAE, MAPE and RMSE. Then, these indices were compared to the indices for our equation (Table 1). Apart from the overall equations performance, it was done a sub-analysis separating the walking and running trials. The results of these comparisons can be observed in the Table 2. Accuracy indices of our equations were all better compared to the reference equation, with a MAPE approximately 2 to 3 times lower. Furthermore, our equation performance was constant between walking and running, indicating that it can be used for both activities without loss of accuracy, which cannot be observed in the reference equation.
 
 ```{r comparison_table, results = "show"}
 source(here("tables", "tab2.R"))
 tab2
 ```
+
+Also, to simplify the use of these equations and enhace their applicability, a software package was developed for the use in the R statistical software (REF). Included in this package are functionalities to read raw ACC data, process it and apply the equations to predict both pGRF and pLR. In the package website (ADDRESS) there are instructions on how to use it to obtain the predictions, namely in the 'Home' and 'Get started' sections.
 
 # Discussion {.unnumbered}
 
