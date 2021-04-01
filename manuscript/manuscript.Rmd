@@ -44,7 +44,7 @@ Lucas Veras$^1$, Florêncio Diniz-Sousa$^1$, Giorjines Boppre$^1$, Vítor Deveza
 
 # Introduction {.unnumbered}
 
-Exercise-related mechanical loading plays a key role in bone health, by promoting positive effects on bone mass, geometry and microarchitecture [@Turner2003; @Fonseca2014]. However, not all forms of mechanical stimulation are equally osteogenic [@Turner1998; @Turner2003] and, therefore, there is a need for the correct assessment of exercise-induced mechanical load.
+Exercise-related mechanical loading plays a key role in bone health, by promoting positive effects on bone mass, geometry and microarchitecture [@Turner2003; @Fonseca2014]. However, not all forms of mechanical stimulation are equally osteogenic, and the manipulation of variables such as loading magnitude, rate, frequency and volume can produce different bone responses [@Turner1998; @Turner2003]. Therefore, the correct assessment of mechanical loading, specially in a clinical environment, is of paramount importance to attain a significant positive bone response to exercise. Nonetheless, a limitation in this context is that the mechanical loading evaluation is usually performed only by instruments restrained to laboratory settings.
 
 \medskip
 
