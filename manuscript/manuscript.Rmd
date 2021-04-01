@@ -44,7 +44,17 @@ Lucas Veras$^1$, Florêncio Diniz-Sousa$^1$, Giorjines Boppre$^1$, Vítor Deveza
 
 # Introduction {.unnumbered}
 
+Exercise-related mechanical loading plays a key role in bone health, by promoting positive effects on bone mass, geometry and microarchitecture [@Turner2003; @Fonseca2014]. However, not all forms of mechanical stimulation are equally osteogenic [@Turner1998; @Turner2003] and, therefore, there is a need for the correct assessment of exercise-induced mechanical load.
+
+\medskip
+
+Force plates (FP) are the golden standard instrument for mechanical loading measurement [@Medved2000]. However, their cost, need of expertise to collect and analyze data, of a dedicated indoor space and ongoing calibration and maintenance hinders its application in clinical settings. Accelerometers, due to their portability, low-cost and accuracy, are widely used to objectively measure physical activity related to cardiometabolic outcomes [@Troiano2014; @Migueles2017], and, more recently, have been proposed as adequate devices to predict gravitational loading variables [@Neugebauer2012; @Fortune2014; @Neugebauer2014; @Neugebauer2018; @Veras2020]. Given the need to assess mechanical loading in clincal settings in order to control and monitor exercise prescription for bone health, accurate mechanical loading prediction models need to be developed and validated for the most common activities prescribed to induce bone adaptations, such as walking, running, and jumping. These models, apart from being accurate, need to be transparent in their data processing methods, allowing replicability of the results, and ideally offer a tool to facilitate data processing and analysis for those who are not familiar with the employed techniques, such as what is already offered for analysing cardiometabolic variables [@Migueles2019], and thus spread their applicability.
+
+\medskip
+
+<!--
 The aim of this study was to develop pGRF and pLR prediction models based on accelerometer data during walking and running.
+-->
 
 # Methods {.unnumbered}
 
@@ -70,7 +80,7 @@ Data from FP and accelerometers were collected at 1000 Hz and 100 Hz sampling fr
 
 ## Data processing {.unnumbered}
 
-FP and accelerometer data were processed using MATLAB (Version 2019a, Mathworks, Natick, USA), as described elsewhere [@Veras2020]. Briefly, both GRF and ACC signals were filtered using a Butterworth fourth-order low-pass filter, with 20 Hz cut-off frequency, and their resultant vector calculated ($r_i = \sqrt{x_i^2 + y_i^2 + z_i^2}$). After that, peak ACC (pACC) values were defined as minimum height of twice the positive ACC average, during any given speed, and separated by 0.4 seconds minimum. GRF and ACC signals were adjusted through the time set by the systems clock, with manual correction based on visual inspection for possible errors, and then synchronized by the maximum cross-correlation coefficient. Peak GRF (pGRF) was determined as the highest value between 0.4 seconds before and after each pACC. The rates of change, LR for the GRF and ACC rate (AR) for the ACC, were computed through a second-order centered derivative from the beginning of the foot contact to the pGRF. The pLR and peak AR (pAR) were defined as the maximum value in the array.
+FP and accelerometer data were processed using MATLAB (Version 2019a, Mathworks, Natick, USA), as described elsewhere [@Veras2020]. Briefly, both GRF and ACC signals were filtered using a Butterworth fourth-order low-pass filter, with 20 Hz cut-off frequency, and their resultant vector calculated ($r_i = \sqrt{x_i^2 + y_i^2 + z_i^2}$). After that, peak ACC (pACC) values were defined as minimum height of twice the positive ACC average, during any given speed, and separated by 0.4 seconds minimum. GRF and ACC signals were adjusted through the time set by the systems clock, with manual correction based on visual inspection for possible errors, and then synchronized by the maximum cross-correlation coefficient. Peak GRF (pGRF) was determined as the highest value between 0.4 seconds before and after each pACC. The rates of change, LR for the GRF and ACC rate (AR) for the ACC, were computed through a centered derivative from the beginning of the foot contact to the pGRF. The pLR and peak AR (pAR) were defined as the maximum value in the array.
 
 \[f_i^{'} = \frac{f_{i + 1} - f_{i - 1}}{t_{i + 1} - t_{i - 1}}\]
 
