@@ -52,9 +52,11 @@ Force plates (FP) are the golden standard instrument for mechanical loading meas
 
 \medskip
 
-<!--
-The aim of this study was to develop pGRF and pLR prediction models based on accelerometer data during walking and running.
--->
+The GRF is arguably the most studied mechanical loading variable, and its relationship with the bone adaptations to exercise is well established [@Turner2003; @Rantalainen2008; @Rantalainen2009]. Due to its importance, some studies have already attempted to develop peak GRF (pGRF) prediction equations based on accelerometry data in several populations, such as children [@Neugebauer2012], adults [@Fortune2014; @Neugebauer2014], patients with obesity [@Veras2020] and military [@Neugebauer2018], but with the majority of these studies including only activities with eliciting a low loading magnitude. Besides loading magnitude, LR is another variable related with bone health [@Rowlands2014] that could potentially be predicted by accelerometer data, but with apparently lower prediction accuracy compared with pGRF [@Fortune2014; @Veras2020]. Also, to the best of our knowledge, pLR prediction through accelerometer data has only been tested during walking.
+
+\medskip
+
+Therefore, given the necessity of an accurate and reliable method to assess mechanical loading in clinical settings in order to better monitor and prescribe exercise to obtain positive bone health outcomes, the aim of this study was to develop pGRF and pLR prediction models based on accelerometer data during walking and running.
 
 # Methods {.unnumbered}
 
