@@ -268,6 +268,10 @@ Despite the validity of the prediction models developed here, some limitations s
 
 In conclusion, pGRF could be accurately predicted by accelerometry-based regression models. These models are valid for the use of both the resultant vector and its vertical component, and using data from accelerometers placed at either the ankle, lower back or hip. The prediction models developed in this study have proved to be an efficient method to assess pGRF out of laboratory conditions, with potential applications of monitoring the mechanical loading in several contexts and establishing the relationship of this loading and either a positive or negative osteoarticular adaptation. This is also the first work, to the best of our knowledge, to explore the prediction of pLR based on accelerometry data during both walking and running, although the accuracy of these models were unsatisfactory.
 
+# Acknowledgments {.unnumbered}
+
+This study was funded by the Foundation for Science and Technology of Portugal (FCT) (grant PTDC/DTP-DES/0968/2014) and by the European Regional Development Fund (ERDF) through the Operational Competitiveness Programme (COMPETE) (grant POCI-01-0145-FEDER-016707). The study was developed in the Research Centre in Physical Activity, Health and Leisure (CIAFEL) funded by ERDF through the COMPETE and by the FCT (grant UIDB/00617/2020). Lucas Veras was supported by the FCT (grant UI/BD/150673/2020), Florêncio Diniz-Sousa was supported by the FCT (grant SFRH/BD/117622/2016) and Giorjines Boppre was supported by the FCT (grant SFRH/BD/146976/2019). The authors thank the participants who took part in this research and all who have collaborated in the project.
+
 \newpage
 
 # References {.unnumbered}
