@@ -104,6 +104,14 @@ Lucas Veras$^1$, Florêncio Diniz-Sousa$^1$, Giorjines Boppre$^1$, Vítor Deveza
 4 - Biomechanics Laboratory (LABIOMEP-UP), University of Porto, Porto, Portugal
 -->
 
+\leftskip=0.5in \rightskip=0.5in
+
+# Abstract {.unnumbered}
+
+**Purpose:** To develop accelerometry-based equations to predict peak ground reaction forces (pGRF) and peak loading rate (pLR) during walking and running. **Methods:** `r Words(max(sample_size$pGRF_N))` subjects (`r unname(sample_size_sex["F"])` females; `r sample_descriptives$body_mass_mean`±`r sample_descriptives$body_mass_sd` kg) walked and ran at different speeds (2–14km·h^-1^) on a force plate–equipped treadmill while wearing accelerometers at ankle, lower back and hip. Regression equations were developed to predict pGRF and pLR from accelerometry data. Leave-one-out cross-validation was used to calculate prediction accuracy and Bland–Altman plots. Our pGRF prediction equation was compared with a reference equation previously published. **Results:** Body mass and peak acceleration were included for pGRF prediction and body mass and peak acceleration rate for pLR prediction. All pGRF equation coefficients of determination were above `r myround(max(GRF_accuracy$R2_cond), 2)`, and a good agreement between actual and predicted pGRF was observed, with a mean absolute percent error (MAPE) below `r myround(max(GRF_accuracy$MAPE) * 100, 1)`\%. Accuracy indices from our equations were better than previously developed equations, with a MAPE 2 to 3 times better. All pLR prediction equations presented a lower accuracy compared to those developed to predict pGRF. **Conclusion:** Walking and running pGRF can be predicted with high accuracy by accelerometry-based equations, representing an easy way to determine mechanical loading in clinical settings. The pLR prediction equations yielded an unsatisfactory accuracy.
+
+\leftskip=0in \rightskip=0in
+
 # Introduction {.unnumbered}
 
 Exercise-related mechanical loading plays a key role in bone health, by promoting positive effects on bone mass, geometry and microarchitecture [@Turner2003; @Fonseca2014]. However, not all forms of mechanical stimulation are equally osteogenic, and the manipulation of variables such as loading magnitude, rate, frequency and volume can produce different bone responses [@Turner1998; @Turner2003]. Therefore, the correct assessment of mechanical loading, specially in a clinical environment, is of paramount importance to attain a significant positive bone response to exercise. Nonetheless, a limitation in this context is that the mechanical loading evaluation is usually performed only by instruments restrained to laboratory settings.
