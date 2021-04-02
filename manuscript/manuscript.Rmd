@@ -1,5 +1,5 @@
 ---
-# title: "The document title"
+title: "Mechanical loading prediction though accelerometry data during walking and running"
 output:
   bookdown::pdf_document2:
     toc: false
@@ -88,10 +88,9 @@ ba_regression_ankle_R2 <- c(
   as_vector()
 ```
 
-<!--
-\begin{center}
+<center>
 Lucas Veras$^1$, Florêncio Diniz-Sousa$^1$, Giorjines Boppre$^1$, Vítor Devezas$^2$, Hugo Santos-Sousa$^2$, John Preto$^2$, João Paulo Vilas-Boas$^{3,4}$, Leandro Machado$^{3,4}$, José Oliveira$^1$, Hélder Fonseca$^1$
-\end{center}
+</center>
 
 \bigskip
 
@@ -102,9 +101,10 @@ Lucas Veras$^1$, Florêncio Diniz-Sousa$^1$, Giorjines Boppre$^1$, Vítor Deveza
 3 - Center of Research, Education, Innovation and Intervention in Sport (CIFI2D), Faculty of Sport, University of Porto, Porto, Portugal
 
 4 - Biomechanics Laboratory (LABIOMEP-UP), University of Porto, Porto, Portugal
--->
 
 \leftskip=0.5in \rightskip=0.5in
+
+\bigskip
 
 # Abstract {.unnumbered}
 
