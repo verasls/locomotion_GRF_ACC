@@ -23,7 +23,69 @@ knitr::opts_chunk$set(
 library(here)
 library(broman)
 library(kableExtra)
+library(english)
 source(here("code", "02_explore.R"))
+```
+
+```{r GRF_accuracy}
+load(here("output", "prediction_models.rda"))
+res_GRF_accuracy <- purrr::map(
+  accuracy_res_GRF_models,
+  ~ dplyr::mutate(.x, MAPE = as.numeric(MAPE))
+) %>%
+  purrr::map_dfr(rbind) %>%
+  dplyr::mutate(
+    placement = c("ankle", "lower back", "hip"),
+    vector = "resultant"
+  )
+ver_GRF_accuracy <- purrr::map(
+  accuracy_ver_GRF_models,
+  ~ dplyr::mutate(.x, MAPE = as.numeric(MAPE))
+) %>%
+  purrr::map_dfr(rbind) %>%
+  dplyr::mutate(
+    placement = c("ankle", "lower back", "hip"),
+    vector = "vertical"
+  )
+GRF_accuracy <- rbind(res_GRF_accuracy, ver_GRF_accuracy)
+hip_GRF_accuracy <- GRF_accuracy %>%
+  filter(placement == "hip" & vector == "resultant")
+```
+
+```{r LR_accuracy}
+load(here("output", "prediction_models.rda"))
+res_LR_accuracy <- purrr::map(
+  accuracy_res_LR_models,
+  ~ dplyr::mutate(.x, MAPE = as.numeric(MAPE))
+) %>%
+  purrr::map_dfr(rbind) %>%
+  dplyr::mutate(
+    placement = c("ankle", "lower back", "hip"),
+    vector = "resultant"
+  )
+ver_LR_accuracy <- purrr::map(
+  accuracy_ver_LR_models,
+  ~ dplyr::mutate(.x, MAPE = as.numeric(MAPE))
+) %>%
+  purrr::map_dfr(rbind) %>%
+  dplyr::mutate(
+    placement = c("ankle", "lower back", "hip"),
+    vector = "vertical"
+  )
+LR_accuracy <- rbind(res_LR_accuracy, ver_LR_accuracy)
+back_LR_accuracy <- LR_accuracy %>%
+  filter(placement == "lower back" & vector == "resultant")
+```
+
+```{r ba_regression}
+source(here("code", "04_sub_analyses.R"))
+ba_regression_ankle_R2 <- c(
+  ba_regression_res_GRF$ankle["adj.r.squared"],
+  ba_regression_ver_GRF$ankle["adj.r.squared"],
+  ba_regression_res_LR$ankle["adj.r.squared"],
+  ba_regression_ver_LR$ankle["adj.r.squared"]
+) %>%
+  as_vector()
 ```
 
 <!--
@@ -140,59 +202,9 @@ As the main variables collected in this experiment are the peak magnitudes and r
 
 \medskip
 
-```{r GRF_accuracy}
-load(here("output", "prediction_models.rda"))
-res_GRF_accuracy <- purrr::map(
-  accuracy_res_GRF_models,
-  ~ dplyr::mutate(.x, MAPE = as.numeric(MAPE))
-) %>%
-  purrr::map_dfr(rbind) %>%
-  dplyr::mutate(
-    placement = c("ankle", "lower back", "hip"),
-    vector = "resultant"
-  )
-ver_GRF_accuracy <- purrr::map(
-  accuracy_ver_GRF_models,
-  ~ dplyr::mutate(.x, MAPE = as.numeric(MAPE))
-) %>%
-  purrr::map_dfr(rbind) %>%
-  dplyr::mutate(
-    placement = c("ankle", "lower back", "hip"),
-    vector = "vertical"
-  )
-GRF_accuracy <- rbind(res_GRF_accuracy, ver_GRF_accuracy)
-hip_GRF_accuracy <- GRF_accuracy %>%
-  filter(placement == "hip" & vector == "resultant")
-```
-
 Regression equations were developed to predict the mechanical loading variables based on accelerometry data. In the pGRF prediction equations, body mass and pACC were significant predictors and included in the models. Table 1 shows the regression coefficients, R^2^ and accuracy indices from models derived from accelerometers placed at ankle, lower back and hip, and from the resultant vector and its vertical component. In all pGRF prediction models, R^2^ values were `r max(GRF_accuracy$R2_cond)`, which shows that the predictor variables are able to explain the variability in the outcome variable to a great extent. Also, MAE ranged between `r myround(min(GRF_accuracy$MAE), 1)` N and `r myround(max(GRF_accuracy$MAE), 1)` N, and the MAPE from `r myround(min(GRF_accuracy$MAPE) * 100, 1)`\% to `r myround(max(GRF_accuracy$MAPE) * 100, 1)`\%, which is a smaller error than previously published equations [@Neugebauer2014; @Fortune2014], and similar to the error from equations previously published by our group, but which included walking only [@Veras2020]. RMSE were also computed and shown to range between `r myround(min(GRF_accuracy$RMSE), 1)` N and `r myround(max(GRF_accuracy$RMSE), 1)` N. Of all the pGRF predictions equations developed, the one based on hip-worn accelerometers and the resultant vector has shown the best performance, with an R^2^ of `r hip_GRF_accuracy$R2_cond`, and the lowest MAE (`r myround(hip_GRF_accuracy$MAE, 1)` N), MAPE (`r myround(hip_GRF_accuracy$MAPE * 100, 1)`\%) and RMSE (`r myround(hip_GRF_accuracy$RMSE, 1)` N).
 
 \medskip
-
-```{r LR_accuracy}
-load(here("output", "prediction_models.rda"))
-res_LR_accuracy <- purrr::map(
-  accuracy_res_LR_models,
-  ~ dplyr::mutate(.x, MAPE = as.numeric(MAPE))
-) %>%
-  purrr::map_dfr(rbind) %>%
-  dplyr::mutate(
-    placement = c("ankle", "lower back", "hip"),
-    vector = "resultant"
-  )
-ver_LR_accuracy <- purrr::map(
-  accuracy_ver_LR_models,
-  ~ dplyr::mutate(.x, MAPE = as.numeric(MAPE))
-) %>%
-  purrr::map_dfr(rbind) %>%
-  dplyr::mutate(
-    placement = c("ankle", "lower back", "hip"),
-    vector = "vertical"
-  )
-LR_accuracy <- rbind(res_LR_accuracy, ver_LR_accuracy)
-back_LR_accuracy <- LR_accuracy %>%
-  filter(placement == "lower back" & vector == "resultant")
-```
 
 Moreover, pLR prediction equations were developed, and these included as predictors the pAR and again body mass. Regression coefficients, R^2^ and accuracy indices for these equations are also shown in Table 1. For these equations, the lowest R^2^ found was `r myround(min(LR_accuracy$R2_cond), 2)` and the highest was `r myround(max(LR_accuracy$R2_cond), 2)`, reflecting a moderate to high prediction ability. MAE, MAPE and RMSE values ranged from `r myround(min(LR_accuracy$MAE), 1)` N to `r myround(max(LR_accuracy$MAE), 1)` N, from `r myround(min(LR_accuracy$MAPE) * 100, 1)`\% to `r myround(max(LR_accuracy$MAPE) * 100, 1)`\%, and from `r myround(min(LR_accuracy$RMSE), 1)` N to `r myround(max(LR_accuracy$RMSE), 1)` N, respectively. The results found for the pLR prediction equations were all considerably poorer than those for the pGRF equations. The accuracy indices values were also somewhat worse than previously published pLR prediction equations [@Veras2020; @Fortune2014], although equations from both studies were only validate for walking. The pLR equation with the lower prediction error was the one for accelerometers worn at lower back and the resultant vector, with an R^2^ of `r back_LR_accuracy$R2_cond` and a MAE, MAPE and RMSE of `r myround(back_LR_accuracy$MAE, 1)` N, `r myround(back_LR_accuracy$MAPE * 100, 1)`\% and `r myround(back_LR_accuracy$RMSE, 1)` N, respectively.
 
@@ -201,17 +213,6 @@ Moreover, pLR prediction equations were developed, and these included as predict
 ```{r accuracy_table, results = "show"}
 source(here("tables", "tab1.R"))
 tab1
-```
-
-```{r ba_regression}
-source(here("code", "04_sub_analyses.R"))
-ba_regression_ankle_R2 <- c(
-  ba_regression_res_GRF$ankle["adj.r.squared"],
-  ba_regression_ver_GRF$ankle["adj.r.squared"],
-  ba_regression_res_LR$ankle["adj.r.squared"],
-  ba_regression_ver_LR$ankle["adj.r.squared"]
-) %>%
-  as_vector()
 ```
 
 Afterwards, Bland-Altman plots were built to visualize the agreement between the actual and predicted pGRF and pLR, for both the resultant vector and its vertical component from all accelerometer placements. Bland-Altman plots for the pGRF and pLR resultant vector from hip-worn accelerometers can be seen in Figure 3, and for all accelerometer placements and both resultant and vertical vectors in the Supplemental Figures S3 and S4. Values for all pGRF and pLR prediction equations developed tended to assemble around zero and between the limits of agreement. For the pGRF equations, a tendency to higher dispersion can be observed in the higher magnitudes, which correspond to the running trials, and especially in values derived from ankle-worn accelerometers (Supplemental Figure S3, Panels A and D). Prediction equations for pLR showed a more accentuated dispersion, and again mainly in the higher magnitudes (Supplemental Figure S4). The pLR prediction model based on data from accelerometers placed at the ankle and the resultant vector displayed a bias different than zero (*p* = `r myround(ba_bias_test_res_LR$ankle["p.value"], 2)`). None of the other models presented a bias different than zero (*p* > 0.05), demonstrating that they do not consistently over or underestimate the pGRF and pLR values. All equations based on ankle-worn accelerometer data, for both outcomes (pGRF and pLR) and vectors (resultant and vertical) showed a significant proportional bias (*p* < 0.05). Despite the statistical significance, linear regressions presented a low R^2^ (highest R^2^ = `r myround(max(ba_regression_ankle_R2), 2)`).
