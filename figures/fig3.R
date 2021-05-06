@@ -68,9 +68,9 @@ BA_LR_res_hip <- cv_res_LR_models$hip %>%
   scale_color_nejm() +
   scale_y_continuous(
     labels = scales::label_number(),
-    limits = c(-20000, 20000),
+    limits = c(-30000, 30000),
     expand = c(0, 0),
-    breaks = seq(-20000, 20000, 10000)
+    breaks = seq(-30000, 30000, 10000)
   ) +
   scale_x_continuous(
     limits = c(0, 55000),

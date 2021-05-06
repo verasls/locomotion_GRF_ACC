@@ -36,7 +36,7 @@ scatterplot_GRF_res_hip <- mechanical_load_data %>%
     breaks = seq(0, 3500, 500)
   ) +
   scale_x_continuous(
-    limits = c(0.5, 6.5),
+    limits = c(0, 7),
     expand = c(0, 0),
     breaks = seq(1, 6, 1)
   ) +
@@ -79,9 +79,9 @@ scatterplot_LR_res_hip <- mechanical_load_data %>%
     breaks = seq(0, 60000, 10000)
   ) +
   scale_x_continuous(
-    limits = c(0, 180),
+    limits = c(0, 250),
     expand = c(0, 0),
-    breaks = seq(0, 175, 25)
+    breaks = seq(50, 200, 50)
   ) +
   theme_light() +
   theme(

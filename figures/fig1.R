@@ -11,7 +11,7 @@ library(ragg)
 
 load(here("data", "mechanical_load_data.rda"))
 sample_size <- mechanical_load_data %>%
-  filter(acc_placement == "hip" & vector == "resultant") %>%
+  filter(acc_placement == "ankle" & vector == "resultant") %>%
   group_by(speed) %>%
   select(pGRF_N) %>%
   summarise_all(~ sum(!is.na(.)))
@@ -30,19 +30,19 @@ fig1 <- mechanical_load_data %>%
   ) +
   scale_x_discrete(
     labels = c(
-      "2" = quote(atop(2 ~ km %.% h^-1, paste("n = 64"))),
-      "3" = quote(atop(3 ~ km %.% h^-1, paste("n = 64"))),
-      "4" = quote(atop(4 ~ km %.% h^-1, paste("n = 64"))),
-      "5" = quote(atop(5 ~ km %.% h^-1, paste("n = 61"))),
-      "6" = quote(atop(6 ~ km %.% h^-1, paste("n = 46"))),
-      "7" = quote(atop(7 ~ km %.% h^-1, paste("n = 20"))),
-      "8" = quote(atop(8 ~ km %.% h^-1, paste("n = 20"))),
-      "9" = quote(atop(9 ~ km %.% h^-1, paste("n = 20"))),
-      "10" = quote(atop(10 ~ km %.% h^-1, paste("n = 19"))),
-      "11" = quote(atop(11 ~ km %.% h^-1, paste("n = 19"))),
-      "12" = quote(atop(12 ~ km %.% h^-1, paste("n = 19"))),
-      "13" = quote(atop(13 ~ km %.% h^-1, paste("n = 19"))),
-      "14" = quote(atop(14 ~ km %.% h^-1, paste("n = 17")))
+      "2" = quote(atop(2 ~ km %.% h^-1, paste("n = 127"))),
+      "3" = quote(atop(3 ~ km %.% h^-1, paste("n = 129"))),
+      "4" = quote(atop(4 ~ km %.% h^-1, paste("n = 131"))),
+      "5" = quote(atop(5 ~ km %.% h^-1, paste("n = 129"))),
+      "6" = quote(atop(6 ~ km %.% h^-1, paste("n = 113"))),
+      "7" = quote(atop(7 ~ km %.% h^-1, paste("n = 87"))),
+      "8" = quote(atop(8 ~ km %.% h^-1, paste("n = 87"))),
+      "9" = quote(atop(9 ~ km %.% h^-1, paste("n = 87"))),
+      "10" = quote(atop(10 ~ km %.% h^-1, paste("n = 85"))),
+      "11" = quote(atop(11 ~ km %.% h^-1, paste("n = 84"))),
+      "12" = quote(atop(12 ~ km %.% h^-1, paste("n = 83"))),
+      "13" = quote(atop(13 ~ km %.% h^-1, paste("n = 82"))),
+      "14" = quote(atop(14 ~ km %.% h^-1, paste("n = 78")))
     )
   ) +
   theme_light() +
