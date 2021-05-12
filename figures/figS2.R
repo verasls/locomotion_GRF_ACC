@@ -39,7 +39,7 @@ scatterplot_LR_res_ankle <- mechanical_load_data %>%
   scale_x_continuous(
     limits = c(0, 400),
     expand = c(0, 0),
-    breaks = seq(50, 400, 50)
+    breaks = seq(50, 350, 50)
   ) +
   theme_light() +
   theme(
@@ -81,7 +81,7 @@ scatterplot_LR_res_back <- mechanical_load_data %>%
   scale_x_continuous(
     limits = c(0, 250),
     expand = c(0, 0),
-    breaks = seq(50, 250, 50)
+    breaks = seq(50, 200, 50)
   ) +
   theme_light() +
   theme(
@@ -123,7 +123,7 @@ scatterplot_LR_res_hip <- mechanical_load_data %>%
   scale_x_continuous(
     limits = c(0, 250),
     expand = c(0, 0),
-    breaks = seq(50, 250, 50)
+    breaks = seq(50, 200, 50)
   ) +
   theme_light() +
   theme(
@@ -165,7 +165,7 @@ scatterplot_LR_ver_ankle <- mechanical_load_data %>%
   scale_x_continuous(
     limits = c(0, 350),
     expand = c(0, 0),
-    breaks = seq(50, 350, 50)
+    breaks = seq(50, 300, 50)
   ) +
   theme_light() +
   theme(
@@ -205,9 +205,9 @@ scatterplot_LR_ver_back <- mechanical_load_data %>%
     breaks = seq(0, 60000, 10000)
   ) +
   scale_x_continuous(
-    limits = c(0, 210),
+    limits = c(0, 350),
     expand = c(0, 0),
-    breaks = seq(0, 200, 25)
+    breaks = seq(50, 300, 50)
   ) +
   theme_light() +
   theme(
@@ -247,9 +247,9 @@ scatterplot_LR_ver_hip <- mechanical_load_data %>%
     breaks = seq(0, 60000, 10000)
   ) +
   scale_x_continuous(
-    limits = c(0, 180),
+    limits = c(0, 300),
     expand = c(0, 0),
-    breaks = seq(0, 175, 25)
+    breaks = seq(50, 250, 50)
   ) +
   theme_light() +
   theme(
