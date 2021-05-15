@@ -24,7 +24,7 @@ scatterplot_GRF_res_ankle <- mechanical_load_data %>%
   filter(vector == "resultant" & acc_placement == "ankle") %>%
   ggplot() +
   geom_point(
-    aes(x = pACC_g, y = pGRF_N, color = BMI_cat, shape = activity)
+    aes(x = pACC_g, y = pGRF_N, color = BMI_cat, shape = activity), alpha = 0.5
   ) +
   geom_smooth(
     aes(x = pACC_g, y = pGRF_N, color = BMI_cat),
@@ -66,7 +66,7 @@ scatterplot_GRF_res_back <- mechanical_load_data %>%
   filter(vector == "resultant" & acc_placement == "lower_back") %>%
   ggplot() +
   geom_point(
-    aes(x = pACC_g, y = pGRF_N, color = BMI_cat, shape = activity)
+    aes(x = pACC_g, y = pGRF_N, color = BMI_cat, shape = activity), alpha = 0.5
   ) +
   geom_smooth(
     aes(x = pACC_g, y = pGRF_N, color = BMI_cat),
@@ -108,7 +108,7 @@ scatterplot_GRF_res_hip <- mechanical_load_data %>%
   filter(vector == "resultant" & acc_placement == "hip") %>%
   ggplot() +
   geom_point(
-    aes(x = pACC_g, y = pGRF_N, color = BMI_cat, shape = activity)
+    aes(x = pACC_g, y = pGRF_N, color = BMI_cat, shape = activity), alpha = 0.5
   ) +
   geom_smooth(
     aes(x = pACC_g, y = pGRF_N, color = BMI_cat),
@@ -150,7 +150,7 @@ scatterplot_GRF_ver_ankle <- mechanical_load_data %>%
   filter(vector == "vertical" & acc_placement == "ankle") %>%
   ggplot() +
   geom_point(
-    aes(x = pACC_g, y = pGRF_N, color = BMI_cat, shape = activity)
+    aes(x = pACC_g, y = pGRF_N, color = BMI_cat, shape = activity), alpha = 0.5
   ) +
   geom_smooth(
     aes(x = pACC_g, y = pGRF_N, color = BMI_cat),
@@ -192,7 +192,7 @@ scatterplot_GRF_ver_back <- mechanical_load_data %>%
   filter(vector == "vertical" & acc_placement == "lower_back") %>%
   ggplot() +
   geom_point(
-    aes(x = pACC_g, y = pGRF_N, color = BMI_cat, shape = activity)
+    aes(x = pACC_g, y = pGRF_N, color = BMI_cat, shape = activity), alpha = 0.5
   ) +
   geom_smooth(
     aes(x = pACC_g, y = pGRF_N, color = BMI_cat),
@@ -234,7 +234,7 @@ scatterplot_GRF_ver_hip <- mechanical_load_data %>%
   filter(vector == "vertical" & acc_placement == "hip") %>%
   ggplot() +
   geom_point(
-    aes(x = pACC_g, y = pGRF_N, color = BMI_cat, shape = activity)
+    aes(x = pACC_g, y = pGRF_N, color = BMI_cat, shape = activity), alpha = 0.5
   ) +
   geom_smooth(
     aes(x = pACC_g, y = pGRF_N, color = BMI_cat),

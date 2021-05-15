@@ -34,7 +34,7 @@ cv_res_LR_models <- map(
 # Hip pGRF Bland-Altman plot ---------------------------------------------
 
 BA_GRF_res_hip <- cv_res_GRF_models$hip %>%
-  plot_bland_altman(color = BMI_cat, shape = activity) +
+  plot_bland_altman(color = BMI_cat, shape = activity, alpha = 0.5) +
   scale_color_nejm() +
   scale_y_continuous(
     limits = c(-600, 600),
@@ -69,7 +69,7 @@ BA_GRF_res_hip <- cv_res_GRF_models$hip %>%
 # Hip pLR Bland-Altman plot ----------------------------------------------
 
 BA_LR_res_hip <- cv_res_LR_models$hip %>%
-  plot_bland_altman(color = BMI_cat, shape = activity) +
+  plot_bland_altman(color = BMI_cat, shape = activity, alpha = 0.5) +
   scale_color_nejm() +
   scale_y_continuous(
     labels = scales::label_number(),

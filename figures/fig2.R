@@ -23,7 +23,7 @@ scatterplot_GRF_res_hip <- mechanical_load_data %>%
   filter(vector == "resultant" & acc_placement == "hip") %>%
   ggplot() +
   geom_point(
-    aes(x = pACC_g, y = pGRF_N, color = BMI_cat, shape = activity)
+    aes(x = pACC_g, y = pGRF_N, color = BMI_cat, shape = activity), alpha = 0.5
   ) +
   geom_smooth(
     aes(x = pACC_g, y = pGRF_N, color = BMI_cat),
@@ -66,7 +66,7 @@ scatterplot_LR_res_hip <- mechanical_load_data %>%
   filter(vector == "resultant" & acc_placement == "hip") %>%
   ggplot() +
   geom_point(
-    aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat, shape = activity)
+    aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat, shape = activity), alpha = 0.5
   ) +
   geom_smooth(
     aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat),

@@ -35,7 +35,7 @@ cv_ver_LR_models <- map(
 
 # Resultant: Ankle
 BA_LR_res_ankle <- cv_res_LR_models$ankle %>%
-  plot_bland_altman(color = BMI_cat, shape = activity) +
+  plot_bland_altman(color = BMI_cat, shape = activity, alpha = 0.5) +
   scale_color_nejm() +
   scale_y_continuous(
     labels = scales::label_number(),
@@ -70,7 +70,7 @@ BA_LR_res_ankle <- cv_res_LR_models$ankle %>%
 
 # Resultant: Lower back
 BA_LR_res_back <- cv_res_LR_models$lower_back %>%
-  plot_bland_altman(color = BMI_cat, shape = activity) +
+  plot_bland_altman(color = BMI_cat, shape = activity, alpha = 0.5) +
   scale_color_nejm() +
   scale_y_continuous(
     labels = scales::label_number(),
@@ -105,7 +105,7 @@ BA_LR_res_back <- cv_res_LR_models$lower_back %>%
 
 # Resultant: Hip
 BA_LR_res_hip <- cv_res_LR_models$hip %>%
-  plot_bland_altman(color = BMI_cat, shape = activity) +
+  plot_bland_altman(color = BMI_cat, shape = activity, alpha = 0.5) +
   scale_color_nejm() +
   scale_y_continuous(
     labels = scales::label_number(),
@@ -140,7 +140,7 @@ BA_LR_res_hip <- cv_res_LR_models$hip %>%
 
 # Vertical: Ankle
 BA_LR_ver_ankle <- cv_ver_LR_models$ankle %>%
-  plot_bland_altman(color = BMI_cat, shape = activity) +
+  plot_bland_altman(color = BMI_cat, shape = activity, alpha = 0.5) +
   scale_color_nejm() +
   scale_y_continuous(
     labels = scales::label_number(),
@@ -175,7 +175,7 @@ BA_LR_ver_ankle <- cv_ver_LR_models$ankle %>%
 
 # Vertical: Lower back
 BA_LR_ver_back <- cv_ver_LR_models$lower_back %>%
-  plot_bland_altman(color = BMI_cat, shape = activity) +
+  plot_bland_altman(color = BMI_cat, shape = activity, alpha = 0.5) +
   scale_color_nejm() +
   scale_y_continuous(
     labels = scales::label_number(),
@@ -210,7 +210,7 @@ BA_LR_ver_back <- cv_ver_LR_models$lower_back %>%
 
 # Vertical: Hip
 BA_LR_ver_hip <- cv_ver_LR_models$hip %>%
-  plot_bland_altman(color = BMI_cat, shape = activity) +
+  plot_bland_altman(color = BMI_cat, shape = activity, alpha = 0.5) +
   scale_color_nejm() +
   scale_y_continuous(
     labels = scales::label_number(),
