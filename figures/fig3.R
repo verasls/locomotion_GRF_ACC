@@ -41,6 +41,11 @@ BA_GRF_res_hip <- cv_res_GRF_models$hip %>%
     expand = c(0, 0),
     breaks = seq(-600, 600, 200)
   ) +
+  scale_x_continuous(
+    limits = c(400, 3100),
+    expand = c(0, 0),
+    breaks = seq(500, 3000, 500)
+  ) +
   theme_light() +
   theme(
     plot.title = element_text(size = 15, hjust = 0.5),
@@ -75,7 +80,7 @@ BA_LR_res_hip <- cv_res_LR_models$hip %>%
   scale_x_continuous(
     limits = c(0, 55000),
     expand = c(0, 0),
-    breaks = seq(0, 50000, 10000)
+    breaks = seq(10000, 50000, 10000)
   ) +
   theme_light() +
   theme(

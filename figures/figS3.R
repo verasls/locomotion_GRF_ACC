@@ -42,6 +42,11 @@ BA_GRF_res_ankle <- cv_res_GRF_models$ankle %>%
     expand = c(0, 0),
     breaks = seq(-600, 600, 300)
   ) +
+  scale_x_continuous(
+    limits = c(400, 3100),
+    expand = c(0, 0),
+    breaks = seq(500, 3000, 500)
+  ) +
   theme_light() +
   theme(
     plot.title = element_text(size = 15, hjust = 0.5),
@@ -70,6 +75,11 @@ BA_GRF_res_back <- cv_res_GRF_models$lower_back %>%
     limits = c(-600, 600),
     expand = c(0, 0),
     breaks = seq(-600, 600, 200)
+  ) +
+  scale_x_continuous(
+    limits = c(400, 3100),
+    expand = c(0, 0),
+    breaks = seq(500, 3000, 500)
   ) +
   theme_light() +
   theme(
@@ -100,6 +110,11 @@ BA_GRF_res_hip <- cv_res_GRF_models$hip %>%
     expand = c(0, 0),
     breaks = seq(-600, 600, 200)
   ) +
+  scale_x_continuous(
+    limits = c(400, 3100),
+    expand = c(0, 0),
+    breaks = seq(500, 3000, 500)
+  ) +
   theme_light() +
   theme(
     plot.title = element_text(size = 15, hjust = 0.5),
@@ -128,6 +143,11 @@ BA_GRF_ver_ankle <- cv_ver_GRF_models$ankle %>%
     limits = c(-600, 600),
     expand = c(0, 0),
     breaks = seq(-600, 600, 300)
+  ) +
+  scale_x_continuous(
+    limits = c(400, 3100),
+    expand = c(0, 0),
+    breaks = seq(500, 3000, 500)
   ) +
   theme_light() +
   theme(
@@ -158,6 +178,11 @@ BA_GRF_ver_back <- cv_ver_GRF_models$lower_back %>%
     expand = c(0, 0),
     breaks = seq(-600, 600, 200)
   ) +
+  scale_x_continuous(
+    limits = c(400, 3100),
+    expand = c(0, 0),
+    breaks = seq(500, 3000, 500)
+  ) +
   theme_light() +
   theme(
     plot.title = element_text(size = 15, hjust = 0.5),
@@ -186,6 +211,11 @@ BA_GRF_ver_hip <- cv_ver_GRF_models$hip %>%
     limits = c(-600, 600),
     expand = c(0, 0),
     breaks = seq(-600, 600, 200)
+  ) +
+  scale_x_continuous(
+    limits = c(400, 3100),
+    expand = c(0, 0),
+    breaks = seq(500, 3000, 500)
   ) +
   theme_light() +
   theme(

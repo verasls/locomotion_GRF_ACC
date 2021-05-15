@@ -46,7 +46,7 @@ BA_LR_res_ankle <- cv_res_LR_models$ankle %>%
   scale_x_continuous(
     limits = c(0, 55000),
     expand = c(0, 0),
-    breaks = seq(0, 50000, 10000)
+    breaks = seq(10000, 50000, 10000)
   ) +
   theme_light() +
   theme(
@@ -81,7 +81,7 @@ BA_LR_res_back <- cv_res_LR_models$lower_back %>%
   scale_x_continuous(
     limits = c(0, 55000),
     expand = c(0, 0),
-    breaks = seq(0, 50000, 10000)
+    breaks = seq(10000, 50000, 10000)
   ) +
   theme_light() +
   theme(
@@ -116,7 +116,7 @@ BA_LR_res_hip <- cv_res_LR_models$hip %>%
   scale_x_continuous(
     limits = c(0, 55000),
     expand = c(0, 0),
-    breaks = seq(0, 50000, 10000)
+    breaks = seq(10000, 50000, 10000)
   ) +
   theme_light() +
   theme(
@@ -151,7 +151,7 @@ BA_LR_ver_ankle <- cv_ver_LR_models$ankle %>%
   scale_x_continuous(
     limits = c(0, 55000),
     expand = c(0, 0),
-    breaks = seq(0, 50000, 10000)
+    breaks = seq(10000, 50000, 10000)
   ) +
   theme_light() +
   theme(
@@ -186,7 +186,7 @@ BA_LR_ver_back <- cv_ver_LR_models$lower_back %>%
   scale_x_continuous(
     limits = c(0, 65000),
     expand = c(0, 0),
-    breaks = seq(0, 60000, 10000)
+    breaks = seq(10000, 60000, 10000)
   ) +
   theme_light() +
   theme(
@@ -221,7 +221,7 @@ BA_LR_ver_hip <- cv_ver_LR_models$hip %>%
   scale_x_continuous(
     limits = c(0, 55000),
     expand = c(0, 0),
-    breaks = seq(0, 50000, 10000)
+    breaks = seq(10000, 50000, 10000)
   ) +
   theme_light() +
   theme(

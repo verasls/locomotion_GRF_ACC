@@ -37,9 +37,9 @@ scatterplot_GRF_res_ankle <- mechanical_load_data %>%
     breaks = seq(0, 3500, 500)
   ) +
   scale_x_continuous(
-    limits = c(0, 14),
+    limits = c(1, 14),
     expand = c(0, 0),
-    breaks = seq(1, 14, 2)
+    breaks = seq(0, 12, 2)
   ) +
   theme_light() +
   theme(
@@ -79,9 +79,9 @@ scatterplot_GRF_res_back <- mechanical_load_data %>%
     breaks = seq(0, 3500, 500)
   ) +
   scale_x_continuous(
-    limits = c(0, 6),
+    limits = c(1, 9),
     expand = c(0, 0),
-    breaks = seq(1, 6, 1)
+    breaks = seq(2, 8, 1)
   ) +
   theme_light() +
   theme(
@@ -121,9 +121,9 @@ scatterplot_GRF_res_hip <- mechanical_load_data %>%
     breaks = seq(0, 3500, 500)
   ) +
   scale_x_continuous(
-    limits = c(0, 7),
+    limits = c(1, 9),
     expand = c(0, 0),
-    breaks = seq(1, 6, 1)
+    breaks = seq(2, 8, 1)
   ) +
   theme_light() +
   theme(
@@ -163,9 +163,9 @@ scatterplot_GRF_ver_ankle <- mechanical_load_data %>%
     breaks = seq(0, 3500, 500)
   ) +
   scale_x_continuous(
-    limits = c(0, 10),
+    limits = c(1, 10),
     expand = c(0, 0),
-    breaks = seq(1, 10, 2)
+    breaks = seq(2, 9, 1)
   ) +
   theme_light() +
   theme(
@@ -205,9 +205,9 @@ scatterplot_GRF_ver_back <- mechanical_load_data %>%
     breaks = seq(0, 3500, 500)
   ) +
   scale_x_continuous(
-    limits = c(0, 7),
+    limits = c(1, 8),
     expand = c(0, 0),
-    breaks = seq(1, 6, 1)
+    breaks = seq(2, 7, 1)
   ) +
   theme_light() +
   theme(
@@ -247,9 +247,9 @@ scatterplot_GRF_ver_hip <- mechanical_load_data %>%
     breaks = seq(0, 3500, 500)
   ) +
   scale_x_continuous(
-    limits = c(0, 7),
+    limits = c(1, 8),
     expand = c(0, 0),
-    breaks = seq(1, 6, 1)
+    breaks = seq(2, 7, 1)
   ) +
   theme_light() +
   theme(
