@@ -21,10 +21,12 @@ ver_GRF_tb <- build_formula_table(
 )
 res_LR_tb <- build_formula_table(
   res_LR_models, cv_res_LR_models, "pLR", "resultant"
-)
+) %>%
+  mutate(MAE = round(as.numeric(MAE), 0), RMSE = round(as.numeric(RMSE), 0))
 ver_LR_tb <- build_formula_table(
   ver_LR_models, cv_ver_LR_models, "pLR", "vertical"
-)
+) %>%
+  mutate(MAE = round(as.numeric(MAE), 0), RMSE = round(as.numeric(RMSE), 0))
 
 tab1_df <- rbind(res_GRF_tb, ver_GRF_tb, res_LR_tb, ver_LR_tb)
 # Remove vector name duplicates
