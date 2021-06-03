@@ -88,6 +88,34 @@ ba_regression_ankle_R2 <- c(
   as_vector()
 ```
 
+```{r ba_agreement}
+load(here("output", "loocv_data.rda"))
+percent_inside_loa <- function(data) {
+  lower <- lvmisc::loa(
+    data[[".actual"]], data[[".predicted"]], na.rm = TRUE
+  )$lower
+  upper <- lvmisc::loa(
+    data[[".actual"]], data[[".predicted"]], na.rm = TRUE
+  )$upper
+  diff <- dplyr::transmute(
+    data, diff = .data[[".actual"]] - .data[[".predicted"]]
+  )
+  diff <- dplyr::mutate(
+    diff,
+    inside = as.factor(ifelse(diff > lower & diff < upper, "yes", "no"))
+  )
+  round(prop.table(table(diff$inside))[[2]] * 100, 0)
+}
+
+ba_agreement <- min(
+  map_dbl(cv_res_GRF_models, percent_inside_loa) %>% min(),
+  map_dbl(cv_ver_GRF_models, percent_inside_loa) %>% min(),
+  map_dbl(cv_res_LR_models, percent_inside_loa) %>% min(),
+  map_dbl(cv_ver_LR_models, percent_inside_loa) %>% min()
+)
+```
+
+
 <center>
 Lucas Veras$^1$, Florêncio Diniz-Sousa$^1$, Giorjines Boppre$^1$, Vítor Devezas$^2$, Hugo Santos-Sousa$^2$, John Preto$^2$, João Paulo Vilas-Boas$^{3,4}$, Leandro Machado$^{3,4}$, José Oliveira$^1$, Hélder Fonseca$^1$
 </center>
@@ -223,7 +251,7 @@ source(here("tables", "tab1.R"))
 tab1
 ```
 
-Afterwards, Bland-Altman plots were built to visualize the agreement between the actual and predicted pGRF and pLR, for both the resultant vector and its vertical component from all accelerometer placements. Bland-Altman plots for the pGRF and pLR resultant vector from hip-worn accelerometers can be seen in Figure 3, and for all accelerometer placements and both resultant and vertical vectors in the Supplemental Figures S3 and S4. Values for all pGRF and pLR prediction equations developed tended to assemble around zero and between the limits of agreement. For the pGRF equations, a tendency to higher dispersion can be observed for higher magnitudes, which correspond to the running trials, and especially in values derived from ankle-worn accelerometers (Supplemental Figure S3, Panels A and D). Prediction equations for pLR showed a more accentuated dispersion, and again mainly for higher magnitudes (Supplemental Figure S4). None of the models presented a bias different from zero (*p* > 0.05), demonstrating that they do not consistently over or underestimate the pGRF and pLR values. Although all equations showed a significant proportional bias (*p* < 0.05), the linear regressions presented a low R^2^, with the highest value being `r myround(max(ba_regression_ankle_R2), 2)`.
+Afterwards, Bland-Altman plots were built to visualize the agreement between the actual and predicted pGRF and pLR, for both the resultant vector and its vertical component from all accelerometer placements. Bland-Altman plots for the pGRF and pLR resultant vector from hip-worn accelerometers can be seen in Figure 3, and for all accelerometer placements and both resultant and vertical vectors in the Supplemental Figures S3 and S4. Values for all pGRF and pLR prediction equations developed tended to assemble around zero and between the limits of agreement, as shown by the fact that, for all models, at least `r ba_agreement`\% of the data points lie within the limits of agreement. For the pGRF equations, a tendency to higher dispersion can be observed for higher magnitudes, which correspond to the running trials, and especially in values derived from ankle-worn accelerometers (Supplemental Figure S3, Panels A and D). Prediction equations for pLR showed a more accentuated dispersion, and again mainly for higher magnitudes (Supplemental Figure S4). None of the models presented a bias different from zero (*p* > 0.05), demonstrating that they do not consistently over or underestimate the pGRF and pLR values. Although all equations showed a significant proportional bias (*p* < 0.05), the linear regressions presented a low R^2^, with the highest value being `r myround(max(ba_regression_ankle_R2), 2)`.
 
 \begin{figure}[ht]
 	\captionsetup{singlelinecheck = false, format = hang, justification = raggedright, font = footnotesize, labelsep = space}
@@ -251,7 +279,7 @@ The purpose of this study was to develop pGRF and pLR prediction equations based
 
 \medskip
 
-Comparing our results with previous studies that used a similar approach to predict pGRF, it can be seen that prediction errors from our models are comparable with some studies whose best results presented a MAPE of approximately 6.0\% but which included only walking in their protocol [@Fortune2014; @Neugebauer2018; @Veras2020]. Additionally, previous studies that developed pGRF prediction models during both walking and running showed a MAPE of 8.3\% [@Neugebauer2014], which is higher than our results, and 5.2\% [@Neugebauer2012] with no cross-validation, which is similar to our results when no cross-validation method is applied (data not shown). Nevertheless, models from both studies present a caveat, that is the inclusion of a term in their equations that distinguishes whether the activity is walking or running, which is not easy to be identify from free-living accelerometer data, hindering the real-world application of these previous equations. Also, one of these studies included in their sample only children and adolescents [@Neugebauer2012]. It is also important to mention that the prediction error found in our pGRF models is lower than the error typically found in models developed to estimate energy expenditure [@Diniz-Sousa2020], which is one of the main uses of accelerometer data [@Migueles2017].
+Comparing our results with previous studies that used a similar approach to predict pGRF, it can be seen that prediction errors from our models are comparable with some studies whose best results presented a MAPE of approximately 6.0\% but which included only walking in their protocol [@Fortune2014; @Neugebauer2018; @Veras2020]. Additionally, previous studies that developed pGRF prediction models during both walking and running showed a MAPE of 8.3\% [@Neugebauer2014], which is higher than our results, and 5.2\% [@Neugebauer2012] with no cross-validation, which is similar to our results when no cross-validation method is applied (data not shown). Nevertheless, models from both studies present a caveat, that is the inclusion of a term in their equations that distinguishes whether the activity is walking or running, which is not easy to be identify from free-living accelerometer data, hindering the real-world application of these previous equations. Also, one of these studies included in their sample only children and adolescents [@Neugebauer2012], that present a higher variability in their gait pattern compared to the adults [@Gouelle2016], making this equation unsuitable to use in an adult population. It is also important to mention that the prediction error found in our pGRF models is lower than the error typically found in models developed to estimate energy expenditure [@Diniz-Sousa2020], which is one of the main uses of accelerometer data [@Migueles2017].
 
 \medskip
 
@@ -271,11 +299,11 @@ Besides these advantages, our models present some important potential clinical a
 
 \medskip
 
-Despite the validity of the prediction models developed here, some limitations should be mentioned. First, although the activities included in our protocol (walking and running) are among the most frequently performed motor activities during daily living, our prediction models are not applicable to other activities known to influence bone adaptation to mechanical stimuli, such as jumping and direction changing. Second, in the absence of another sample for model validation, the leave-one-out cross-validation method was used, which is the method of choice in these situations [@Staudenmayer2012]. Nevertheless, future studies should test the out-of-sample validity of these models. Lastly, the protocol was performed on an instrumented treadmill. The use of a treadmill, although enhancing the study internal validity by the continuously measuring the GRF [@Ngoh2018] also reduces the external validity due to possible biomechanical changes in the walking and running patterns induced by the treadmill [@Kluitenberg2012].
+Despite the validity of the prediction models developed here, some limitations should be mentioned. First, although the activities included in our protocol (walking and running) are among the most frequently performed motor activities during daily living, our prediction models are not applicable to other activities known to influence bone adaptation to mechanical stimuli, such as jumping and direction changing. Second, in the absence of another sample for model validation, the leave-one-out cross-validation method was used, which is the method of choice in these situations [@Staudenmayer2012]. Nevertheless, future studies should test the out-of-sample validity of these models. Also, the protocol was performed on an instrumented treadmill. The use of a treadmill, although enhancing the study internal validity by the continuously measuring the GRF [@Ngoh2018] also reduces the external validity due to possible biomechanical changes in the walking and running patterns induced by the treadmill [@Kluitenberg2012]. Lastly, bone adaptation to mechanical stimulation depends not only on external loads, such as GRF, but also on internal loads generated by muscle forces [@Robling2009]. As accelerometers cannot reliably assess muscle force generation, they may have a limited capacity in estimating the bone response to loading.
 
 \medskip
 
-In conclusion, pGRF could be accurately predicted by accelerometry-based regression models. These models are valid for the use of both the resultant vector and its vertical component, and using data from accelerometers placed at either the ankle, lower back or hip. The prediction models developed in this study have proved to be an efficient method to assess pGRF out of laboratory conditions, with potential applications for monitoring the mechanical loading in several contexts and establishing a relationship between mechanican loading and either beneficial or pathological osteoarticular adaptations. This is also the first work, to the best of our knowledge, to explore the prediction of pLR based on accelerometry data during both walking and running, although the accuracy of these models were unsatisfactory.
+In conclusion, pGRF could be accurately predicted by accelerometry-based regression models. These models are valid for the use of both the resultant vector and its vertical component, and using data from accelerometers placed at either the ankle, lower back or hip. The prediction models developed in this study have proved to be an efficient method to assess pGRF out of laboratory conditions, with potential applications for monitoring the mechanical loading in several contexts and establishing a relationship between mechanican loading and either beneficial or pathological osteoarticular adaptations. This is also the first work, to the best of our knowledge, to explore the prediction of pLR based on accelerometry data during both walking and running, although the accuracy of these models was unsatisfactory.
 
 # Acknowledgments {.unnumbered}
 
