@@ -43,7 +43,7 @@ n_peaks_desc <- mechanical_load_data %>%
   ) %>%
   group_by(locomotion_type) %>%
   summarise(
-    n_peaks_median = median(n_peaks), n_peaks_iqr = IQR(n_peaks)
+    n_peaks_mean = mean(n_peaks), n_peaks_sd = sd(n_peaks)
   )
 
 # GRF and ACC magnitude and rate per running speeed -----------------------
