@@ -125,18 +125,20 @@ accuracy_no_cv <- myround(max(accuracy_no_cv) * 100, 1)
 
 
 <center>
-Lucas Veras$^1$, Florêncio Diniz-Sousa$^1$, Giorjines Boppre$^1$, Vítor Devezas$^2$, Hugo Santos-Sousa$^2$, John Preto$^2$, João Paulo Vilas-Boas$^{3,4}$, Leandro Machado$^{3,4}$, José Oliveira$^1$, Hélder Fonseca$^1$
+Lucas Veras$^{1,2}$, Florêncio Diniz-Sousa$^{1,2}$, Giorjines Boppre$^{1,2}$, Edgar Moutinho-Ribeiro$^{1,2}$, Ana Resende-Coelho$^{1,2}$, Vítor Devezas$^3$, Hugo Santos-Sousa$^3$, John Preto$^3$, João Paulo Vilas-Boas$^{4,5}$, Leandro Machado$^{4,5}$, José Oliveira$^{1,2}$, Hélder Fonseca$^{1,2}$
 </center>
 
 \bigskip
 
 1 - Research Center in Physical Activity, Health and Leisure (CIAFEL), Faculty of Sport, University of Porto, Porto, Portugal
 
-2 - General Surgery Department, São João Medical Center, Porto, Portugal
+2 - Laboratory for Integrative and Translational Research in Population Health (ITR), University of Porto, Porto, Portugal
 
-3 - Center of Research, Education, Innovation and Intervention in Sport (CIFI2D), Faculty of Sport, University of Porto, Porto, Portugal
+3 - General Surgery Department, São João Medical Center, Porto, Portugal
 
-4 - Biomechanics Laboratory (LABIOMEP-UP), University of Porto, Porto, Portugal
+4 - Center of Research, Education, Innovation and Intervention in Sport (CIFI2D), Faculty of Sport, University of Porto, Porto, Portugal
+
+5 - Biomechanics Laboratory (LABIOMEP-UP), University of Porto, Porto, Portugal
 
 \leftskip=0.5in \rightskip=0.5in
 
@@ -314,7 +316,7 @@ In conclusion, pGRF could be accurately predicted by accelerometry-based regress
 
 # Acknowledgments {.unnumbered}
 
-This study was funded by the Fundação para a Ciência e a Tecnologia (FCT) (grant PTDC/DTP-DES/0968/2014) and by the European Regional Development Fund (ERDF) through the Operational Competitiveness Programme (COMPETE) (grant POCI-01-0145-FEDER-016707). The study was developed in the Research Centre in Physical Activity, Health and Leisure (CIAFEL) funded by ERDF through the COMPETE and by the FCT (grant UIDB/00617/2020). Lucas Veras, Florêncio Diniz-Sousa and Giorjines Bopper were supported by the FCT grants UI/BD/150673/2020, SFRH/BD/117622/2016, SFRH/BD/146976/2019, respectively. The authors thank the participants who took part in this research and all who have collaborated in the project.
+This study was funded by the Fundação para a Ciência e a Tecnologia (FCT) (grant PTDC/DTP-DES/0968/2014) and by the European Regional Development Fund (ERDF) through the Operational Competitiveness Programme (COMPETE) (grant POCI-01-0145-FEDER-016707). The study was developed in the Research Centre in Physical Activity, Health and Leisure (CIAFEL) funded by ERDF through the COMPETE and by the FCT (grant UIDB/00617/2020), and Laboratory for Integrative and Translational Research in Population Health (ITR). Lucas Veras, Florêncio Diniz-Sousa and Giorjines Boppre were supported by the FCT grants UI/BD/150673/2020, SFRH/BD/117622/2016, SFRH/BD/146976/2019, respectively. The authors thank the participants who took part in this research and all who have collaborated in the project.
 
 \newpage
 
