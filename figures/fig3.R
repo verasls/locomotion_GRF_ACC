@@ -58,7 +58,8 @@ BA_GRF_res_hip <- cv_res_GRF_models$hip %>%
   ) +
   guides(
     color = guide_legend(title = "Body mass index category:"),
-    shape = guide_legend(title = "Locomotion type:")
+    shape = guide_legend(title = "Locomotion type:"),
+    alpha = FALSE
   ) +
   labs(
     title = "Resultant vector - Hip placement",
@@ -94,7 +95,8 @@ BA_LR_res_hip <- cv_res_LR_models$hip %>%
   ) +
   guides(
     color = guide_legend(title = "Body mass index category:"),
-    shape = guide_legend(title = "Locomotion type:")
+    shape = guide_legend(title = "Locomotion type:"),
+    alpha = FALSE
   ) +
   labs(
     title = "Resultant vector - Hip placement",

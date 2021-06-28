@@ -59,7 +59,8 @@ BA_GRF_res_ankle <- cv_res_GRF_models$ankle %>%
   ) +
   guides(
     color = guide_legend(title = "Body mass index category:"),
-    shape = guide_legend(title = "Locomotion type:")
+    shape = guide_legend(title = "Locomotion type:"),
+    alpha = FALSE
   ) +
   labs(
     title = "Resultant vector - Ankle placement",
@@ -93,7 +94,8 @@ BA_GRF_res_back <- cv_res_GRF_models$lower_back %>%
   ) +
   guides(
     color = guide_legend(title = "Body mass index category:"),
-    shape = guide_legend(title = "Locomotion type:")
+    shape = guide_legend(title = "Locomotion type:"),
+    alpha = FALSE
   ) +
   labs(
     title = "Resultant vector - Lower back placement",
@@ -127,7 +129,8 @@ BA_GRF_res_hip <- cv_res_GRF_models$hip %>%
   ) +
   guides(
     color = guide_legend(title = "Body mass index category:"),
-    shape = guide_legend(title = "Locomotion type:")
+    shape = guide_legend(title = "Locomotion type:"),
+    alpha = FALSE
   ) +
   labs(
     title = "Resultant vector - Hip placement",
@@ -161,7 +164,8 @@ BA_GRF_ver_ankle <- cv_ver_GRF_models$ankle %>%
   ) +
   guides(
     color = guide_legend(title = "Body mass index category:"),
-    shape = guide_legend(title = "Locomotion type:")
+    shape = guide_legend(title = "Locomotion type:"),
+    alpha = FALSE
   ) +
   labs(
     title = "Vertical vector - Ankle placement",
@@ -195,7 +199,8 @@ BA_GRF_ver_back <- cv_ver_GRF_models$lower_back %>%
   ) +
   guides(
     color = guide_legend(title = "Body mass index category:"),
-    shape = guide_legend(title = "Locomotion type:")
+    shape = guide_legend(title = "Locomotion type:"),
+    alpha = FALSE
   ) +
   labs(
     title = "Vertical vector - Lower back placement",
@@ -229,7 +234,8 @@ BA_GRF_ver_hip <- cv_ver_GRF_models$hip %>%
   ) +
   guides(
     color = guide_legend(title = "Body mass index category:"),
-    shape = guide_legend(title = "Locomotion type:")
+    shape = guide_legend(title = "Locomotion type:"),
+    alpha = FALSE
   ) +
   labs(
     title = "Vertical vector - Hip placement",

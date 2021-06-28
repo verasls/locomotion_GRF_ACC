@@ -60,7 +60,8 @@ BA_LR_res_ankle <- cv_res_LR_models$ankle %>%
   ) +
   guides(
     color = guide_legend(title = "Body mass index category:"),
-    shape = guide_legend(title = "Locomotion type:")
+    shape = guide_legend(title = "Locomotion type:"),
+    alpha = FALSE
   ) +
   labs(
     title = "Resultant vector - Ankle placement",
@@ -95,7 +96,8 @@ BA_LR_res_back <- cv_res_LR_models$lower_back %>%
   ) +
   guides(
     color = guide_legend(title = "Body mass index category:"),
-    shape = guide_legend(title = "Locomotion type:")
+    shape = guide_legend(title = "Locomotion type:"),
+    alpha = FALSE
   ) +
   labs(
     title = "Resultant vector - Lower back placement",
@@ -130,7 +132,8 @@ BA_LR_res_hip <- cv_res_LR_models$hip %>%
   ) +
   guides(
     color = guide_legend(title = "Body mass index category:"),
-    shape = guide_legend(title = "Locomotion type:")
+    shape = guide_legend(title = "Locomotion type:"),
+    alpha = FALSE
   ) +
   labs(
     title = "Resultant vector - Hip placement",
@@ -165,7 +168,8 @@ BA_LR_ver_ankle <- cv_ver_LR_models$ankle %>%
   ) +
   guides(
     color = guide_legend(title = "Body mass index category:"),
-    shape = guide_legend(title = "Locomotion type:")
+    shape = guide_legend(title = "Locomotion type:"),
+    alpha = FALSE
   ) +
   labs(
     title = "Vertical vector - Ankle placement",
@@ -200,7 +204,8 @@ BA_LR_ver_back <- cv_ver_LR_models$lower_back %>%
   ) +
   guides(
     color = guide_legend(title = "Body mass index category:"),
-    shape = guide_legend(title = "Locomotion type:")
+    shape = guide_legend(title = "Locomotion type:"),
+    alpha = FALSE
   ) +
   labs(
     title = "Vertical vector - Lower back placement",
@@ -235,7 +240,8 @@ BA_LR_ver_hip <- cv_ver_LR_models$hip %>%
   ) +
   guides(
     color = guide_legend(title = "Body mass index category:"),
-    shape = guide_legend(title = "Locomotion type:")
+    shape = guide_legend(title = "Locomotion type:"),
+    alpha = FALSE
   ) +
   labs(
     title = "Vertical vector - Hip placement",
