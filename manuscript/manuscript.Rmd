@@ -200,7 +200,7 @@ Regions of interest for data analysis were manually selected where locomotion pa
 
 ## Statistical analyses {.unnumbered}
 
-Statistical analyses were conducted using R statistical software (version `r paste(R.Version()$major, R.Version()$minor, sep = ".")`, R Foundation for Statistical Computing, Vienna, Austria). All statistical analyses were registered in an open platform, where R code utilized and detailed information can be assessed (LINK). The statistically significant value was set as $\alpha$ = 0.05.
+Statistical analyses were conducted using R statistical software (version `r paste(R.Version()$major, R.Version()$minor, sep = ".")`, R Foundation for Statistical Computing, Vienna, Austria). All statistical analyses were registered in an open platform, where R code utilized can be assessed (https://bit.ly/3A6P3Tx). The statistically significant value was set as $\alpha$ = 0.05.
 
 \medskip
 
@@ -281,7 +281,7 @@ source(here("tables", "tab2.R"))
 tab2
 ```
 
-Also, to simplify the use of these equations and enhance their applicability, a software package was developed for use in the R statistical software (REF). Included in this package are functionalities to read raw ACC data, process it and apply the equations to predict both pGRF and pLR. In the package website (LINK) there are also instructions on how to use it to obtain the predictions, namely in the 'Home' and 'Get started' sections.
+Also, to simplify the use of these equations and enhance their applicability, a software package was developed for use in the R statistical software [@Veras2021a]. Included in this package are functionalities to read raw ACC data, process it and apply the equations to predict both pGRF and pLR. In the package website (https://verasls.github.io/impactr) there are also instructions on how to use it to obtain the predictions, namely in the 'Home' and 'Get started' sections.
 
 # Discussion {.unnumbered}
 
