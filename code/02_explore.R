@@ -35,7 +35,7 @@ sample_size_sex <- mechanical_load_data %>%
   unname() %>%
   table()
 
-# Number of peaks median and IQR ------------------------------------------
+# Number of peaks descriptives --------------------------------------------
 
 n_peaks_desc <- mechanical_load_data %>%
   mutate(
@@ -46,7 +46,7 @@ n_peaks_desc <- mechanical_load_data %>%
     n_peaks_mean = mean(n_peaks), n_peaks_sd = sd(n_peaks)
   )
 
-# GRF and ACC magnitude and rate per running speeed -----------------------
+# GRF and ACC magnitude and rate per running speed -----------------------
 
 # Ground reaction force
 GRF_speed_plots <- mechanical_load_data %>%
