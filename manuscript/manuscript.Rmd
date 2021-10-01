@@ -10,7 +10,7 @@ output:
     reference_docx: style_reference.docx
 always_allow_html: true
 bibliography: bibliography.bib
-csl: nlm.csl
+csl: ama.csl
 ---
 
 ```{r, setup, include=FALSE}
@@ -150,7 +150,7 @@ Lucas Veras$^{1,2}$, Florêncio Diniz-Sousa$^{1,2}$, Giorjines Boppre$^{1,2}$, E
 
 \leftskip=0in \rightskip=0in
 
-# Introduction {.unnumbered}
+# Introduction
 
 Physical activity-related mechanical loading plays a key role in bone health, by promoting favorable adaptations on bone mass, geometry and microarchitecture [@Turner2003; @Fonseca2014]. However, not all forms of mechanical stimulation are equally osteogenic, and the manipulation of variables such as loading magnitude, rate, frequency and volume can produce different bone responses [@Turner1998; @Turner2003]. Therefore, the accurate assessment of mechanical loading is of paramount importance to better understand the bone response to physical stimulus. Nonetheless, a limitation in this context is that mechanical loading evaluation is usually performed only by instruments restrained to laboratory settings.
 
@@ -166,13 +166,13 @@ The ground reaction force (GRF) is arguably the most studied mechanical loading 
 
 Therefore, given the necessity of an accurate and reliable method to assess mechanical loading in free-living conditions to better monitor and prescribe exercise to achieve positive bone health outcomes, this study aimed to develop pGRF and pLR prediction models based on accelerometer data during walking and running.
 
-# Methods {.unnumbered}
+# Methods
 
-## Participants {.unnumbered}
+## Participants
 
 A convenience sample of `r max(sample_size$pGRF_N)` adults (`r unname(sample_size_sex["F"])` males; `r sample_descriptives$age_mean`±`r sample_descriptives$age_sd` years; `r sample_descriptives$height_mean`±`r sample_descriptives$height_sd` cm; `r sample_descriptives$body_mass_mean`±`r sample_descriptives$body_mass_sd` kg; `r sample_descriptives$BMI_mean`±`r sample_descriptives$BMI_sd` kg·m^-2^, X̄±SD) with no self-reported neurological or musculoskeletal limitations was recruited. Height and body mass were assessed following standard procedures with a stadiometer (model 213; Seca, Hamburg, Germany) and a digital scale (model 899; Seca, Hamburg, Germany), respectively. All participants were informed about the experiments purpose and protocol before giving written informed consent. The study protocol was approved by the local Ethics Committee (CES 192-14).
 
-## Data collection protocol {.unnumbered}
+## Data collection protocol
 
 Data collection took place at Porto Biomechanics Laboratory (LABIOMEP-UP) on an instrumented front-back split-belt treadmill with built-in FP (AMTI Corporation, Watertown, USA). Before starting the data collection, participants were given time to familiarize with the treadmill. The protocol consisted of walking and running, from 2 to 14 km·h^-1^ with 1 km·h^-1^ increment and 0º slope. Walking and running speeds ranged from 2 to 6 km·h^-1^ and from 7 to 14 km·h^-1^, respectively. Each walking speed lasted 1 minute and each running speed 30 seconds. To ensure single foot contact on each FP during the trial, feedback regarding the location on the treadmill was provided by a researcher. Participants wore their own sports shoes throughout the trials.
 
@@ -188,7 +188,7 @@ Motion sensors used were the GT9X Link model (±16*g* range; ActiGraph, Pensacol
 
 Data from FP were collected at 1000 Hz and from accelerometers at 100 Hz, which is the GT9X Link maximum sampling frequency, and operated through the manufacturer supplied software (for the FP: Netforce, Version 3.5.1; AMTI Corporation, Watertown, USA; for the accelerometers: ActiLife version 6.13.3; Actigraph, Pensacola, USA). Raw GRF (expressed in N) and acceleration (ACC; expressed in gravitational ACC units; 1*g* = 9.807 m·s^-2^) from the x, y and z vectors were exported to plain text files.
 
-## Data processing {.unnumbered}
+## Data processing
 
 FP and accelerometer data were processed using MATLAB (Version 2019a, Mathworks, Natick, USA), as described elsewhere [@Veras2020]. Briefly, both GRF and acceleration signals were filtered using a Butterworth fourth-order low-pass filter, with 20 Hz cut-off frequency, and their resultant vector calculated ($r_i = \sqrt{x_i^2 + y_i^2 + z_i^2}$). After that, peak ACC (pACC) values were defined as minimum height of twice the positive ACC average, during any given speed, and separated by 0.4 seconds minimum. GRF and ACC signals were adjusted through the time set by the systems clock, with manual correction based on visual inspection for possible errors, and then synchronized by the maximum cross-correlation coefficient. Peak GRF (pGRF) was determined as the highest value between 0.4 seconds before and after each pACC. The rates of change were computed through a centered derivative from the beginning of the foot contact to the peak (Equation 1). The peak loading rate (pLR) and peak acceleration rate (pAR) were defined as the maximum value in the array (Equation 2).
 
@@ -198,7 +198,7 @@ FP and accelerometer data were processed using MATLAB (Version 2019a, Mathworks,
 
 Regions of interest for data analysis were manually selected where locomotion patterns were constant, representing 20-45 seconds periods, on average. Then, pGRF, pACC, pLR and pAR means of the resultant and its vertical component for each participant at each speed and for each accelerometer placement were extracted and used in all remaining analyses. In walking and running trials, `r round(n_peaks_desc[which(n_peaks_desc$locomotion_type == "walking"), "n_peaks_mean"], 0)`±`r round(n_peaks_desc[which(n_peaks_desc$locomotion_type == "walking"), "n_peaks_sd"], 0)` and `r round(n_peaks_desc[which(n_peaks_desc$locomotion_type == "running"), "n_peaks_mean"], 0)`±`r round(n_peaks_desc[which(n_peaks_desc$locomotion_type == "running"), "n_peaks_sd"], 0)` peaks were used to calculate these means, respectively.
 
-## Statistical analyses {.unnumbered}
+## Statistical analyses
 
 Statistical analyses were conducted using R statistical software (version `r paste(R.Version()$major, R.Version()$minor, sep = ".")`, R Foundation for Statistical Computing, Vienna, Austria). All statistical analyses were registered in an open platform, where R code utilized can be assessed (https://bit.ly/3A6P3Tx). The statistically significant value was set as $\alpha$ = 0.05.
 
@@ -220,7 +220,7 @@ Finally, our pGRF prediction equation was compared with a previously published r
 
 \medskip
 
-# Results {.unnumbered}
+# Results
 
 The sample presented a broad range of body masses (`r myround(min(mechanical_load_data$body_mass))`-`r myround(max(mechanical_load_data$body_mass))`kg; `r myround(min(mechanical_load_data$BMI))`-`r myround(max(mechanical_load_data$BMI))`kg·m^-2^), from normal weight to severe obesity. It was expected that participants with higher body mass index (BMI) , due to their probable lower motor ability and physical capacity, would be able to perform the trials only at the lowest speeds. This was precisely what happened and, as can be observed in Figure 1, the number of data points corresponding to subjects with BMI > 30 kg·m^-2^ greatly decreases in speeds above 6 km·h^-1^.
 
@@ -283,7 +283,7 @@ tab2
 
 Also, to simplify the use of these equations and enhance their applicability, a software package was developed for use in the R statistical software [@Veras2021a]. Included in this package are functionalities to read raw ACC data, process it and apply the equations to predict both pGRF and pLR. In the package website (https://verasls.github.io/impactr) there are also instructions on how to use it to obtain the predictions, namely in the 'Home' and 'Get started' sections.
 
-# Discussion {.unnumbered}
+# Discussion
 
 The purpose of this study was to develop pGRF and pLR prediction equations based on accelerometer data able to accurately estimate mechanical loading during walking and running. Predictions were tested with accelerometers placed at different body locations, using both the resultant vector and its vertical component in a set of incremental speeds, ranging from slow walking to running. Our findings demonstrated that accelerometer-based regression models were a valid and accurate method to estimate pGRF during human locomotion, as all pGRF prediction models developed presented a MAPE below the 8\% threshold. However, accelerometry-based equations developed to predict pLR did not yield trustworthy results.
 
@@ -311,7 +311,7 @@ In addition to these technical advantages, our models present some important pot
 
 Despite the validity of the prediction models developed here, some limitations should be mentioned. First, although the activities included in our protocol (walking and running) are among the most frequently performed motor activities during daily living, our prediction models do not apply to other activities known to influence bone adaptation to mechanical stimuli, such as jumping and direction changing. Second, in the absence of another sample for model validation, the leave-one-out cross-validation method was used, which is the method of choice in these situations [@Staudenmayer2012]. Nevertheless, future studies should test the out-of-sample validity of these models. Moreover, the protocol was performed on an instrumented treadmill. The use of a treadmill, although enhancing the study internal validity by the continuously measuring the GRF [@Ngoh2018] also reduces the external validity due to possible biomechanical changes in the walking and running patterns induced by the treadmill [@Kluitenberg2012]. Lastly, bone adaptation to mechanical stimulation depends not only on external loads, such as GRF, but also on internal loads generated by muscle forces [@Robling2009]. As accelerometers cannot reliably assess muscle force generation, they may have a limited capacity in estimating the bone response to loading in situations where there are no major gravitational loadings involved, such as during resistance training.
 
-\medskip
+# Conclusion
 
 In conclusion, pGRF could be accurately predicted by accelerometry-based regression models. These models are valid for the use of both the resultant vector and its vertical component, and for using data derived from accelerometers placed at either the ankle, lower back or hip. The prediction models developed in this study have proved to be an efficient method to assess pGRF out of laboratory conditions, with potential applications for monitoring mechanical loading in several contexts and for establishing a relationship between mechanical loading and either beneficial or pathological skeletal and osteoarticular adaptations. This is also the first work, to the best of our knowledge, to explore the prediction of pLR based on accelerometry data during both walking and running, although the accuracy of these models was found to be unsatisfactory.
 
