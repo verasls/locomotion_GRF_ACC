@@ -7,7 +7,7 @@ word: manuscript/manuscript.docx
 manuscript/manuscript.pdf: manuscript/manuscript.Rmd manuscript/bibliography.bib manuscript/ama.csl manuscript/preamble.tex code/02_explore.R data/mechanical_load_data.rda figures/fig1.png figures/fig2.png figures/figS1.png figures/figS2.png tables/tab1.R tables/tab2.R code/funs.R output/prediction_models.rda
 	Rscript -e 'rmarkdown::render("$<")'
 
-manuscript/manuscript.docx: manuscript/manuscript.Rmd manuscript/bibliography.bib manuscript/nlm.csl manuscript/preamble.tex manuscript/style_reference.docx code/02_explore.R data/mechanical_load_data.rda figures/fig1.png figures/fig2.png figures/figS1.png figures/figS2.png tables/tab1.R tables/tab2.R code/funs.R output/prediction_models.rda
+manuscript/manuscript.docx: manuscript/manuscript.Rmd manuscript/bibliography.bib manuscript/ama.csl manuscript/preamble.tex manuscript/style_reference.docx code/02_explore.R data/mechanical_load_data.rda figures/fig1.png figures/fig2.png figures/figS1.png figures/figS2.png tables/tab1.R tables/tab2.R code/funs.R output/prediction_models.rda
 	Rscript -e 'rmarkdown::render("$<", output_format = "word_document")'
 
 ## figures    : Generates all figures
