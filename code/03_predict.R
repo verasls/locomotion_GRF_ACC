@@ -70,7 +70,7 @@ plot_ver_GRF_models <- map(
 # Build LR models ---------------------------------------------------------
 
 LR_formula <- as.formula(
-  "pLR_Ns ~ pAR_gs + body_mass + pAR_gs:body_mass + (1 | subj)"
+  "pLR_Ns ~ pAR_gs + body_mass + pAR_gs:body_mass + (1 | subj) + (1 | speed)"
 )
 
 # Resultant vector
