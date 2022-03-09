@@ -28,7 +28,7 @@ scatterplot_GRF_res_ankle <- mechanical_load_data %>%
   ) +
   geom_smooth(
     aes(x = pACC_g, y = pGRF_N, color = BMI_cat),
-    method = "lm", se = FALSE
+    method = "lm", se = FALSE, show.legend = FALSE
   ) +
   scale_color_nejm() +
   scale_y_continuous(
@@ -37,23 +37,25 @@ scatterplot_GRF_res_ankle <- mechanical_load_data %>%
     breaks = seq(0, 3500, 500)
   ) +
   scale_x_continuous(
-    limits = c(1, 14),
+    limits = c(0, 14),
     expand = c(0, 0),
-    breaks = seq(0, 12, 2)
+    breaks = seq(0, 14, 2)
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(size = 15, hjust = 0.5),
-    legend.title = element_text(size = 13),
-    legend.text = element_text(size = 12),
-    axis.title.y = element_text(size = 13),
-    axis.title.x = element_text(size = 13),
-    axis.text.y = element_text(size = 13),
-    axis.text.x = element_text(size = 13)
+    plot.title = element_text(size = 17, hjust = 0.5),
+    legend.title = element_text(size = 15),
+    legend.text = element_text(size = 15),
+    axis.title.y = element_text(size = 15),
+    axis.title.x = element_text(size = 15),
+    axis.text.y = element_text(size = 15),
+    axis.text.x = element_text(size = 15, vjust = 0.2),
+    plot.margin = margin(r = 1, unit = "cm")
   ) +
   guides(
     color = guide_legend(title = "Body mass index category:"),
-    shape = guide_legend(title = "Locomotion type:")
+    shape = guide_legend(title = "Locomotion type:"),
+    alpha = FALSE
   ) +
   labs(
     title = "Resultant vector - Ankle placement",
@@ -70,7 +72,7 @@ scatterplot_GRF_res_back <- mechanical_load_data %>%
   ) +
   geom_smooth(
     aes(x = pACC_g, y = pGRF_N, color = BMI_cat),
-    method = "lm", se = FALSE
+    method = "lm", se = FALSE, show.legend = FALSE
   ) +
   scale_color_nejm() +
   scale_y_continuous(
@@ -81,21 +83,23 @@ scatterplot_GRF_res_back <- mechanical_load_data %>%
   scale_x_continuous(
     limits = c(1, 9),
     expand = c(0, 0),
-    breaks = seq(2, 8, 1)
+    breaks = seq(1, 9, 1)
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(size = 15, hjust = 0.5),
-    legend.title = element_text(size = 13),
-    legend.text = element_text(size = 12),
-    axis.title.y = element_text(size = 13),
-    axis.title.x = element_text(size = 13),
-    axis.text.y = element_text(size = 13),
-    axis.text.x = element_text(size = 13)
+    plot.title = element_text(size = 17, hjust = 0.5),
+    legend.title = element_text(size = 15),
+    legend.text = element_text(size = 15),
+    axis.title.y = element_text(size = 15),
+    axis.title.x = element_text(size = 15),
+    axis.text.y = element_text(size = 15),
+    axis.text.x = element_text(size = 15, vjust = 0.2),
+    plot.margin = margin(r = 1, unit = "cm")
   ) +
   guides(
     color = guide_legend(title = "Body mass index category:"),
-    shape = guide_legend(title = "Locomotion type:")
+    shape = guide_legend(title = "Locomotion type:"),
+    alpha = FALSE
   ) +
   labs(
     title = "Resultant vector - Lower back placement",
@@ -112,7 +116,7 @@ scatterplot_GRF_res_hip <- mechanical_load_data %>%
   ) +
   geom_smooth(
     aes(x = pACC_g, y = pGRF_N, color = BMI_cat),
-    method = "lm", se = FALSE
+    method = "lm", se = FALSE, show.legend = FALSE
   ) +
   scale_color_nejm() +
   scale_y_continuous(
@@ -123,21 +127,23 @@ scatterplot_GRF_res_hip <- mechanical_load_data %>%
   scale_x_continuous(
     limits = c(1, 9),
     expand = c(0, 0),
-    breaks = seq(2, 8, 1)
+    breaks = seq(1, 9, 1)
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(size = 15, hjust = 0.5),
-    legend.title = element_text(size = 13),
-    legend.text = element_text(size = 12),
-    axis.title.y = element_text(size = 13),
-    axis.title.x = element_text(size = 13),
-    axis.text.y = element_text(size = 13),
-    axis.text.x = element_text(size = 13)
+    plot.title = element_text(size = 17, hjust = 0.5),
+    legend.title = element_text(size = 15),
+    legend.text = element_text(size = 15),
+    axis.title.y = element_text(size = 15),
+    axis.title.x = element_text(size = 15),
+    axis.text.y = element_text(size = 15),
+    axis.text.x = element_text(size = 15, vjust = 0.2),
+    plot.margin = margin(r = 1, unit = "cm")
   ) +
   guides(
     color = guide_legend(title = "Body mass index category:"),
-    shape = guide_legend(title = "Locomotion type:")
+    shape = guide_legend(title = "Locomotion type:"),
+    alpha = FALSE
   ) +
   labs(
     title = "Resultant vector - Hip placement",
@@ -154,7 +160,7 @@ scatterplot_GRF_ver_ankle <- mechanical_load_data %>%
   ) +
   geom_smooth(
     aes(x = pACC_g, y = pGRF_N, color = BMI_cat),
-    method = "lm", se = FALSE
+    method = "lm", se = FALSE, show.legend = FALSE
   ) +
   scale_color_nejm() +
   scale_y_continuous(
@@ -163,23 +169,25 @@ scatterplot_GRF_ver_ankle <- mechanical_load_data %>%
     breaks = seq(0, 3500, 500)
   ) +
   scale_x_continuous(
-    limits = c(1, 10),
+    limits = c(0, 10),
     expand = c(0, 0),
-    breaks = seq(2, 9, 1)
+    breaks = seq(0, 10, 1)
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(size = 15, hjust = 0.5),
-    legend.title = element_text(size = 13),
-    legend.text = element_text(size = 12),
-    axis.title.y = element_text(size = 13),
-    axis.title.x = element_text(size = 13),
-    axis.text.y = element_text(size = 13),
-    axis.text.x = element_text(size = 13)
+    plot.title = element_text(size = 17, hjust = 0.5),
+    legend.title = element_text(size = 15),
+    legend.text = element_text(size = 15),
+    axis.title.y = element_text(size = 15),
+    axis.title.x = element_text(size = 15),
+    axis.text.y = element_text(size = 15),
+    axis.text.x = element_text(size = 15, vjust = 0.2),
+    plot.margin = margin(r = 1, unit = "cm")
   ) +
   guides(
     color = guide_legend(title = "Body mass index category:"),
-    shape = guide_legend(title = "Locomotion type:")
+    shape = guide_legend(title = "Locomotion type:"),
+    alpha = FALSE
   ) +
   labs(
     title = "Vertical vector - Ankle placement",
@@ -196,7 +204,7 @@ scatterplot_GRF_ver_back <- mechanical_load_data %>%
   ) +
   geom_smooth(
     aes(x = pACC_g, y = pGRF_N, color = BMI_cat),
-    method = "lm", se = FALSE
+    method = "lm", se = FALSE, show.legend = FALSE
   ) +
   scale_color_nejm() +
   scale_y_continuous(
@@ -207,21 +215,23 @@ scatterplot_GRF_ver_back <- mechanical_load_data %>%
   scale_x_continuous(
     limits = c(1, 8),
     expand = c(0, 0),
-    breaks = seq(2, 7, 1)
+    breaks = seq(1, 8, 1)
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(size = 15, hjust = 0.5),
-    legend.title = element_text(size = 13),
-    legend.text = element_text(size = 12),
-    axis.title.y = element_text(size = 13),
-    axis.title.x = element_text(size = 13),
-    axis.text.y = element_text(size = 13),
-    axis.text.x = element_text(size = 13)
+    plot.title = element_text(size = 17, hjust = 0.5),
+    legend.title = element_text(size = 15),
+    legend.text = element_text(size = 15),
+    axis.title.y = element_text(size = 15),
+    axis.title.x = element_text(size = 15),
+    axis.text.y = element_text(size = 15),
+    axis.text.x = element_text(size = 15, vjust = 0.2),
+    plot.margin = margin(r = 1, unit = "cm")
   ) +
   guides(
     color = guide_legend(title = "Body mass index category:"),
-    shape = guide_legend(title = "Locomotion type:")
+    shape = guide_legend(title = "Locomotion type:"),
+    alpha = FALSE
   ) +
   labs(
     title = "Vertical vector - Lower back placement",
@@ -238,7 +248,7 @@ scatterplot_GRF_ver_hip <- mechanical_load_data %>%
   ) +
   geom_smooth(
     aes(x = pACC_g, y = pGRF_N, color = BMI_cat),
-    method = "lm", se = FALSE
+    method = "lm", se = FALSE, show.legend = FALSE
   ) +
   scale_color_nejm() +
   scale_y_continuous(
@@ -249,21 +259,23 @@ scatterplot_GRF_ver_hip <- mechanical_load_data %>%
   scale_x_continuous(
     limits = c(1, 8),
     expand = c(0, 0),
-    breaks = seq(2, 7, 1)
+    breaks = seq(1, 8, 1)
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(size = 15, hjust = 0.5),
-    legend.title = element_text(size = 13),
-    legend.text = element_text(size = 12),
-    axis.title.y = element_text(size = 13),
-    axis.title.x = element_text(size = 13),
-    axis.text.y = element_text(size = 13),
-    axis.text.x = element_text(size = 13)
+    plot.title = element_text(size = 17, hjust = 0.5),
+    legend.title = element_text(size = 15),
+    legend.text = element_text(size = 15),
+    axis.title.y = element_text(size = 15),
+    axis.title.x = element_text(size = 15),
+    axis.text.y = element_text(size = 15),
+    axis.text.x = element_text(size = 15, vjust = 0.2),
+    plot.margin = margin(r = 1, unit = "cm")
   ) +
   guides(
     color = guide_legend(title = "Body mass index category:"),
-    shape = guide_legend(title = "Locomotion type:")
+    shape = guide_legend(title = "Locomotion type:"),
+    alpha = FALSE
   ) +
   labs(
     title = "Vertical vector - Hip placement",
@@ -285,17 +297,6 @@ figS1 <- scatterplot_GRF_res_ankle +
     legend.position = "bottom",
     plot.tag = element_text(size = 16)
   )
-
-agg_png(
-  here("figures", "figS1.png"),
-  width = 120,
-  height = 50,
-  units = "cm",
-  res = 100,
-  scaling = 2
-)
-plot(figS1)
-dev.off()
 
 agg_tiff(
   here("figures", "figS1.tiff"),

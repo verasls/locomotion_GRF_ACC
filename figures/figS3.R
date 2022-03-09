@@ -43,19 +43,20 @@ BA_GRF_res_ankle <- cv_res_GRF_models$ankle %>%
     breaks = seq(-600, 600, 300)
   ) +
   scale_x_continuous(
-    limits = c(400, 3100),
+    limits = c(500, 3000),
     expand = c(0, 0),
     breaks = seq(500, 3000, 500)
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(size = 15, hjust = 0.5),
-    legend.title = element_text(size = 13),
-    legend.text = element_text(size = 12),
-    axis.title.y = element_text(size = 13),
-    axis.title.x = element_text(size = 13),
-    axis.text.y = element_text(size = 13),
-    axis.text.x = element_text(size = 13)
+    plot.title = element_text(size = 17, hjust = 0.5),
+    legend.title = element_text(size = 15),
+    legend.text = element_text(size = 15),
+    axis.title.y = element_text(size = 15),
+    axis.title.x = element_text(size = 15),
+    axis.text.y = element_text(size = 15),
+    axis.text.x = element_text(size = 15, vjust = 0.2),
+    plot.margin = margin(r = 1, unit = "cm")
   ) +
   guides(
     color = guide_legend(title = "Body mass index category:"),
@@ -78,19 +79,20 @@ BA_GRF_res_back <- cv_res_GRF_models$lower_back %>%
     breaks = seq(-600, 600, 200)
   ) +
   scale_x_continuous(
-    limits = c(400, 3100),
+    limits = c(500, 3000),
     expand = c(0, 0),
     breaks = seq(500, 3000, 500)
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(size = 15, hjust = 0.5),
-    legend.title = element_text(size = 13),
-    legend.text = element_text(size = 12),
-    axis.title.y = element_text(size = 13),
-    axis.title.x = element_text(size = 13),
-    axis.text.y = element_text(size = 13),
-    axis.text.x = element_text(size = 13)
+    plot.title = element_text(size = 17, hjust = 0.5),
+    legend.title = element_text(size = 15),
+    legend.text = element_text(size = 15),
+    axis.title.y = element_text(size = 15),
+    axis.title.x = element_text(size = 15),
+    axis.text.y = element_text(size = 15),
+    axis.text.x = element_text(size = 15, vjust = 0.2),
+    plot.margin = margin(r = 1, unit = "cm")
   ) +
   guides(
     color = guide_legend(title = "Body mass index category:"),
@@ -113,19 +115,20 @@ BA_GRF_res_hip <- cv_res_GRF_models$hip %>%
     breaks = seq(-600, 600, 200)
   ) +
   scale_x_continuous(
-    limits = c(400, 3100),
+    limits = c(500, 3000),
     expand = c(0, 0),
     breaks = seq(500, 3000, 500)
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(size = 15, hjust = 0.5),
-    legend.title = element_text(size = 13),
-    legend.text = element_text(size = 12),
-    axis.title.y = element_text(size = 13),
-    axis.title.x = element_text(size = 13),
-    axis.text.y = element_text(size = 13),
-    axis.text.x = element_text(size = 13)
+    plot.title = element_text(size = 17, hjust = 0.5),
+    legend.title = element_text(size = 15),
+    legend.text = element_text(size = 15),
+    axis.title.y = element_text(size = 15),
+    axis.title.x = element_text(size = 15),
+    axis.text.y = element_text(size = 15),
+    axis.text.x = element_text(size = 15, vjust = 0.2),
+    plot.margin = margin(r = 1, unit = "cm")
   ) +
   guides(
     color = guide_legend(title = "Body mass index category:"),
@@ -148,19 +151,20 @@ BA_GRF_ver_ankle <- cv_ver_GRF_models$ankle %>%
     breaks = seq(-600, 600, 300)
   ) +
   scale_x_continuous(
-    limits = c(400, 3100),
+    limits = c(500, 3000),
     expand = c(0, 0),
     breaks = seq(500, 3000, 500)
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(size = 15, hjust = 0.5),
-    legend.title = element_text(size = 13),
-    legend.text = element_text(size = 12),
-    axis.title.y = element_text(size = 13),
-    axis.title.x = element_text(size = 13),
-    axis.text.y = element_text(size = 13),
-    axis.text.x = element_text(size = 13)
+    plot.title = element_text(size = 17, hjust = 0.5),
+    legend.title = element_text(size = 15),
+    legend.text = element_text(size = 15),
+    axis.title.y = element_text(size = 15),
+    axis.title.x = element_text(size = 15),
+    axis.text.y = element_text(size = 15),
+    axis.text.x = element_text(size = 15, vjust = 0.2),
+    plot.margin = margin(r = 1, unit = "cm")
   ) +
   guides(
     color = guide_legend(title = "Body mass index category:"),
@@ -183,19 +187,20 @@ BA_GRF_ver_back <- cv_ver_GRF_models$lower_back %>%
     breaks = seq(-600, 600, 200)
   ) +
   scale_x_continuous(
-    limits = c(400, 3100),
+    limits = c(500, 3000),
     expand = c(0, 0),
     breaks = seq(500, 3000, 500)
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(size = 15, hjust = 0.5),
-    legend.title = element_text(size = 13),
-    legend.text = element_text(size = 12),
-    axis.title.y = element_text(size = 13),
-    axis.title.x = element_text(size = 13),
-    axis.text.y = element_text(size = 13),
-    axis.text.x = element_text(size = 13)
+    plot.title = element_text(size = 17, hjust = 0.5),
+    legend.title = element_text(size = 15),
+    legend.text = element_text(size = 15),
+    axis.title.y = element_text(size = 15),
+    axis.title.x = element_text(size = 15),
+    axis.text.y = element_text(size = 15),
+    axis.text.x = element_text(size = 15, vjust = 0.2),
+    plot.margin = margin(r = 1, unit = "cm")
   ) +
   guides(
     color = guide_legend(title = "Body mass index category:"),
@@ -218,19 +223,20 @@ BA_GRF_ver_hip <- cv_ver_GRF_models$hip %>%
     breaks = seq(-600, 600, 200)
   ) +
   scale_x_continuous(
-    limits = c(400, 3100),
+    limits = c(500, 3000),
     expand = c(0, 0),
     breaks = seq(500, 3000, 500)
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(size = 15, hjust = 0.5),
-    legend.title = element_text(size = 13),
-    legend.text = element_text(size = 12),
-    axis.title.y = element_text(size = 13),
-    axis.title.x = element_text(size = 13),
-    axis.text.y = element_text(size = 13),
-    axis.text.x = element_text(size = 13)
+    plot.title = element_text(size = 17, hjust = 0.5),
+    legend.title = element_text(size = 15),
+    legend.text = element_text(size = 15),
+    axis.title.y = element_text(size = 15),
+    axis.title.x = element_text(size = 15),
+    axis.text.y = element_text(size = 15),
+    axis.text.x = element_text(size = 15, vjust = 0.2),
+    plot.margin = margin(r = 1, unit = "cm")
   ) +
   guides(
     color = guide_legend(title = "Body mass index category:"),
@@ -257,17 +263,6 @@ figS3 <- BA_GRF_res_ankle +
     legend.position = "bottom",
     plot.tag = element_text(size = 16)
   )
-
-agg_png(
-  here("figures", "figS3.png"),
-  width = 120,
-  height = 50,
-  units = "cm",
-  res = 100,
-  scaling = 2
-)
-plot(figS3)
-dev.off()
 
 agg_tiff(
   here("figures", "figS3.tiff"),

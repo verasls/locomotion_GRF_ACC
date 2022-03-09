@@ -28,10 +28,11 @@ scatterplot_LR_res_ankle <- mechanical_load_data %>%
   ) +
   geom_smooth(
     aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat),
-    method = "lm", se = FALSE
+    method = "lm", se = FALSE, show.legend = FALSE
   ) +
   scale_color_nejm() +
   scale_y_continuous(
+    labels = scales::label_number(),
     limits = c(0, 60000),
     expand = c(0, 0),
     breaks = seq(0, 60000, 10000)
@@ -39,17 +40,18 @@ scatterplot_LR_res_ankle <- mechanical_load_data %>%
   scale_x_continuous(
     limits = c(0, 400),
     expand = c(0, 0),
-    breaks = seq(50, 350, 50)
+    breaks = seq(0, 400, 50)
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(size = 15, hjust = 0.5),
-    legend.title = element_text(size = 13),
-    legend.text = element_text(size = 12),
-    axis.title.y = element_text(size = 13),
-    axis.title.x = element_text(size = 13),
-    axis.text.y = element_text(size = 13),
-    axis.text.x = element_text(size = 13)
+    plot.title = element_text(size = 17, hjust = 0.5),
+    legend.title = element_text(size = 15),
+    legend.text = element_text(size = 15),
+    axis.title.y = element_text(size = 15),
+    axis.title.x = element_text(size = 15),
+    axis.text.y = element_text(size = 15),
+    axis.text.x = element_text(size = 15, vjust = 0.2),
+    plot.margin = margin(r = 1, unit = "cm")
   ) +
   guides(
     color = guide_legend(title = "Body mass index category:"),
@@ -70,10 +72,11 @@ scatterplot_LR_res_back <- mechanical_load_data %>%
   ) +
   geom_smooth(
     aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat),
-    method = "lm", se = FALSE
+    method = "lm", se = FALSE, show.legend = FALSE
   ) +
   scale_color_nejm() +
   scale_y_continuous(
+    labels = scales::label_number(),
     limits = c(0, 60000),
     expand = c(0, 0),
     breaks = seq(0, 60000, 10000)
@@ -81,17 +84,18 @@ scatterplot_LR_res_back <- mechanical_load_data %>%
   scale_x_continuous(
     limits = c(0, 250),
     expand = c(0, 0),
-    breaks = seq(50, 200, 50)
+    breaks = seq(0, 250, 50)
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(size = 15, hjust = 0.5),
-    legend.title = element_text(size = 13),
-    legend.text = element_text(size = 12),
-    axis.title.y = element_text(size = 13),
-    axis.title.x = element_text(size = 13),
-    axis.text.y = element_text(size = 13),
-    axis.text.x = element_text(size = 13)
+    plot.title = element_text(size = 17, hjust = 0.5),
+    legend.title = element_text(size = 15),
+    legend.text = element_text(size = 15),
+    axis.title.y = element_text(size = 15),
+    axis.title.x = element_text(size = 15),
+    axis.text.y = element_text(size = 15),
+    axis.text.x = element_text(size = 15, vjust = 0.2),
+    plot.margin = margin(r = 1, unit = "cm")
   ) +
   guides(
     color = guide_legend(title = "Body mass index category:"),
@@ -112,10 +116,11 @@ scatterplot_LR_res_hip <- mechanical_load_data %>%
   ) +
   geom_smooth(
     aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat),
-    method = "lm", se = FALSE
+    method = "lm", se = FALSE, show.legend = FALSE
   ) +
   scale_color_nejm() +
   scale_y_continuous(
+    labels = scales::label_number(),
     limits = c(0, 60000),
     expand = c(0, 0),
     breaks = seq(0, 60000, 10000)
@@ -123,17 +128,18 @@ scatterplot_LR_res_hip <- mechanical_load_data %>%
   scale_x_continuous(
     limits = c(0, 250),
     expand = c(0, 0),
-    breaks = seq(50, 200, 50)
+    breaks = seq(0, 250, 50)
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(size = 15, hjust = 0.5),
-    legend.title = element_text(size = 13),
-    legend.text = element_text(size = 12),
-    axis.title.y = element_text(size = 13),
-    axis.title.x = element_text(size = 13),
-    axis.text.y = element_text(size = 13),
-    axis.text.x = element_text(size = 13)
+    plot.title = element_text(size = 17, hjust = 0.5),
+    legend.title = element_text(size = 15),
+    legend.text = element_text(size = 15),
+    axis.title.y = element_text(size = 15),
+    axis.title.x = element_text(size = 15),
+    axis.text.y = element_text(size = 15),
+    axis.text.x = element_text(size = 15, vjust = 0.2),
+    plot.margin = margin(r = 1, unit = "cm")
   ) +
   guides(
     color = guide_legend(title = "Body mass index category:"),
@@ -154,10 +160,11 @@ scatterplot_LR_ver_ankle <- mechanical_load_data %>%
   ) +
   geom_smooth(
     aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat),
-    method = "lm", se = FALSE
+    method = "lm", se = FALSE, show.legend = FALSE
   ) +
   scale_color_nejm() +
   scale_y_continuous(
+    labels = scales::label_number(),
     limits = c(0, 60000),
     expand = c(0, 0),
     breaks = seq(0, 60000, 10000)
@@ -165,17 +172,18 @@ scatterplot_LR_ver_ankle <- mechanical_load_data %>%
   scale_x_continuous(
     limits = c(0, 350),
     expand = c(0, 0),
-    breaks = seq(50, 300, 50)
+    breaks = seq(0, 350, 50)
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(size = 15, hjust = 0.5),
-    legend.title = element_text(size = 13),
-    legend.text = element_text(size = 12),
-    axis.title.y = element_text(size = 13),
-    axis.title.x = element_text(size = 13),
-    axis.text.y = element_text(size = 13),
-    axis.text.x = element_text(size = 13)
+    plot.title = element_text(size = 17, hjust = 0.5),
+    legend.title = element_text(size = 15),
+    legend.text = element_text(size = 15),
+    axis.title.y = element_text(size = 15),
+    axis.title.x = element_text(size = 15),
+    axis.text.y = element_text(size = 15),
+    axis.text.x = element_text(size = 15, vjust = 0.2),
+    plot.margin = margin(r = 1, unit = "cm")
   ) +
   guides(
     color = guide_legend(title = "Body mass index category:"),
@@ -196,10 +204,11 @@ scatterplot_LR_ver_back <- mechanical_load_data %>%
   ) +
   geom_smooth(
     aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat),
-    method = "lm", se = FALSE
+    method = "lm", se = FALSE, show.legend = FALSE
   ) +
   scale_color_nejm() +
   scale_y_continuous(
+    labels = scales::label_number(),
     limits = c(0, 60000),
     expand = c(0, 0),
     breaks = seq(0, 60000, 10000)
@@ -207,17 +216,18 @@ scatterplot_LR_ver_back <- mechanical_load_data %>%
   scale_x_continuous(
     limits = c(0, 350),
     expand = c(0, 0),
-    breaks = seq(50, 300, 50)
+    breaks = seq(0, 350, 50)
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(size = 15, hjust = 0.5),
-    legend.title = element_text(size = 13),
-    legend.text = element_text(size = 12),
-    axis.title.y = element_text(size = 13),
-    axis.title.x = element_text(size = 13),
-    axis.text.y = element_text(size = 13),
-    axis.text.x = element_text(size = 13)
+    plot.title = element_text(size = 17, hjust = 0.5),
+    legend.title = element_text(size = 15),
+    legend.text = element_text(size = 15),
+    axis.title.y = element_text(size = 15),
+    axis.title.x = element_text(size = 15),
+    axis.text.y = element_text(size = 15),
+    axis.text.x = element_text(size = 15, vjust = 0.2),
+    plot.margin = margin(r = 1, unit = "cm")
   ) +
   guides(
     color = guide_legend(title = "Body mass index category:"),
@@ -238,10 +248,11 @@ scatterplot_LR_ver_hip <- mechanical_load_data %>%
   ) +
   geom_smooth(
     aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat),
-    method = "lm", se = FALSE
+    method = "lm", se = FALSE, show.legend = FALSE
   ) +
   scale_color_nejm() +
   scale_y_continuous(
+    labels = scales::label_number(),
     limits = c(0, 60000),
     expand = c(0, 0),
     breaks = seq(0, 60000, 10000)
@@ -249,17 +260,18 @@ scatterplot_LR_ver_hip <- mechanical_load_data %>%
   scale_x_continuous(
     limits = c(0, 300),
     expand = c(0, 0),
-    breaks = seq(50, 250, 50)
+    breaks = seq(0, 300, 50)
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(size = 15, hjust = 0.5),
-    legend.title = element_text(size = 13),
-    legend.text = element_text(size = 12),
-    axis.title.y = element_text(size = 13),
-    axis.title.x = element_text(size = 13),
-    axis.text.y = element_text(size = 13),
-    axis.text.x = element_text(size = 13)
+    plot.title = element_text(size = 17, hjust = 0.5),
+    legend.title = element_text(size = 15),
+    legend.text = element_text(size = 15),
+    axis.title.y = element_text(size = 15),
+    axis.title.x = element_text(size = 15),
+    axis.text.y = element_text(size = 15),
+    axis.text.x = element_text(size = 15, vjust = 0.2),
+    plot.margin = margin(r = 1, unit = "cm")
   ) +
   guides(
     color = guide_legend(title = "Body mass index category:"),
@@ -285,17 +297,6 @@ figS2 <- scatterplot_LR_res_ankle +
     legend.position = "bottom",
     plot.tag = element_text(size = 16)
   )
-
-agg_png(
-  here("figures", "figS2.png"),
-  width = 120,
-  height = 50,
-  units = "cm",
-  res = 100,
-  scaling = 2
-)
-plot(figS2)
-dev.off()
 
 agg_tiff(
   here("figures", "figS2.tiff"),
