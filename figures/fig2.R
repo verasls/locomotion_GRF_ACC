@@ -67,10 +67,6 @@ scatterplot_GRF_res_hip <- mechanical_load_data %>%
   theme(
     legend.position = "none",
     plot.title = element_text(size = 17, hjust = 0.5),
-    # legend.title = element_text(size = 15),
-    # legend.title = element_blank(),
-    # legend.text = element_text(size = 14),
-    # legend.text = element_blank(),
     axis.title.y = element_text(size = 15),
     axis.title.x = element_text(size = 15),
     axis.text.y = element_text(size = 15),
@@ -115,10 +111,6 @@ scatterplot_LR_res_hip <- mechanical_load_data %>%
   theme(
     legend.position = "none",
     plot.title = element_text(size = 17, hjust = 0.5),
-    # legend.title = element_text(size = 15),
-    # legend.title = element_blank(),
-    # legend.text = element_text(size = 14),
-    # legend.text = element_blank(),
     axis.title.y = element_text(size = 15),
     axis.title.x = element_text(size = 15),
     axis.text.y = element_text(size = 15),
@@ -224,11 +216,7 @@ BA_plots <- BA_GRF_res_hip +
 
 fig2 <- scatterplots / BA_plots +
   plot_annotation(tag_levels = "A") &
-  # plot_layout(guides = "collect") &
-  theme(
-    # legend.position = "bottom",
-    plot.tag = element_text(size = 16)
-  )
+  theme(plot.tag = element_text(size = 16))
 
 agg_tiff(
   here("figures", "fig2.tiff"),
