@@ -47,9 +47,10 @@ fig1 <- mechanical_load_data %>%
   ) +
   theme_light() +
   theme(
-    axis.title.y = element_text(size = 18),
-    axis.text.y = element_text(size = 16),
-    axis.text.x = element_text(size = 16)
+    axis.title.y = element_text(size = 22),
+    axis.text.y = element_text(size = 19),
+    axis.text.x = element_text(size = 19),
+    plot.margin = margin(t = 1, unit = "cm")
   ) +
   labs(
     x = "",
@@ -58,20 +59,9 @@ fig1 <- mechanical_load_data %>%
 
 # Save plot ---------------------------------------------------------------
 
-agg_png(
-  here("figures", "fig1.png"),
-  width = 80,
-  height = 50,
-  units = "cm",
-  res = 100,
-  scaling = 2
-)
-plot(fig1)
-dev.off()
-
 agg_tiff(
   here("figures", "fig1.tiff"),
-  width = 80,
+  width = 90,
   height = 50,
   units = "cm",
   res = 100,
