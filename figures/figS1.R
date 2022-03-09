@@ -308,3 +308,14 @@ agg_tiff(
 )
 plot(figS1)
 dev.off()
+
+agg_png(
+  here("figures", "figS1.png"),
+  width = 120,
+  height = 50,
+  units = "cm",
+  res = 100,
+  scaling = 2
+)
+plot(figS1)
+dev.off()
