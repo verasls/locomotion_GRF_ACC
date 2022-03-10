@@ -285,7 +285,7 @@ scatterplot_LR_ver_hip <- mechanical_load_data %>%
 
 # Combine and save plots --------------------------------------------------
 
-figS2 <- scatterplot_LR_res_ankle +
+figS3 <- scatterplot_LR_res_ankle +
   scatterplot_LR_res_back +
   scatterplot_LR_res_hip +
   scatterplot_LR_ver_ankle +
@@ -299,23 +299,23 @@ figS2 <- scatterplot_LR_res_ankle +
   )
 
 agg_tiff(
-  here("figures", "figS2.tiff"),
+  here("figures", "figS3.tiff"),
   width = 120,
   height = 50,
   units = "cm",
   res = 100,
   scaling = 2
 )
-plot(figS2)
+plot(figS3)
 dev.off()
 
 agg_png(
-  here("figures", "figS2.png"),
+  here("figures", "figS3.png"),
   width = 120,
   height = 50,
   units = "cm",
   res = 100,
   scaling = 2
 )
-plot(figS2)
+plot(figS3)
 dev.off()
