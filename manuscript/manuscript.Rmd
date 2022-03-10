@@ -327,6 +327,8 @@ This study was funded by the Fundação para a Ciência e a Tecnologia (FCT) (gr
 \end{figure}
 \footnotesize \textbf{Supplemental Figure S1.} Example of the ground reaction force and acceleration signals during the stance phase. Signals were mean centered and scaled to units of standard deviation to fit in the same plot window. In this image, the peak of each signal (star mark) represents the maximum impact between the foot and the ground. The circles mark the beginning of the curve, i.e., the start of the ascending phase of the signal that culminates in its peak. The region of the acceleration signal between the circle and the star marks was used to compute the acceleration rate, and the same region on the ground reaction force signal was used to compute the loading rate.
 
+\newpage
+
 \begin{figure}[ht]
 	\captionsetup{singlelinecheck = false, format = hang, justification = raggedright, font = footnotesize, labelsep = space}
 	\centering
@@ -344,6 +346,8 @@ This study was funded by the Fundação para a Ciência e a Tecnologia (FCT) (gr
 	\end{measuredfigure}
 \end{figure}
 \footnotesize \textbf{Supplemental Figure S3.} Relationship between peak loading and acceleration rates. Data from accelerometers worn at ankle (Panels A and D), lower back (Panels B and E) and hip (Panels C and F), for both the resultant vector (Panels A to C) and its vertical component (Panels D to F). Linear trends for each body mass index category are also depicted. Abbreviations: pAR, peak acceleration rate; pLR, peak loading rate.
+
+\newpage
 
 \begin{figure}[ht]
 	\captionsetup{singlelinecheck = false, format = hang, justification = raggedright, font = footnotesize, labelsep = space}
