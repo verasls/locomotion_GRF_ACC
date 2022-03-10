@@ -10,8 +10,8 @@ library(ragg)
 # Load data ---------------------------------------------------------------
 
 load(here("output", "loocv_data.rda"))
-cv_res_LR_models <- map(
-  cv_res_LR_models,
+cv_res_GRF_models <- map(
+  cv_res_GRF_models,
   ~ mutate(
     .x,
     activity = fct_relevel(
@@ -20,8 +20,8 @@ cv_res_LR_models <- map(
     )
   )
 )
-cv_ver_LR_models <- map(
-  cv_ver_LR_models,
+cv_ver_GRF_models <- map(
+  cv_ver_GRF_models,
   ~ mutate(
     .x,
     activity = fct_relevel(
@@ -31,22 +31,21 @@ cv_ver_LR_models <- map(
   )
 )
 
-# LR plots ----------------------------------------------------------------
+# GRF plots ---------------------------------------------------------------
 
 # Resultant: Ankle
-BA_LR_res_ankle <- cv_res_LR_models$ankle %>%
+BA_GRF_res_ankle <- cv_res_GRF_models$ankle %>%
   plot_bland_altman(color = BMI_cat, shape = activity, alpha = 0.5) +
   scale_color_nejm() +
   scale_y_continuous(
-    labels = scales::label_number(),
-    limits = c(-30000, 30000),
+    limits = c(-600, 600),
     expand = c(0, 0),
-    breaks = seq(-30000, 30000, 10000)
+    breaks = seq(-600, 600, 300)
   ) +
   scale_x_continuous(
-    limits = c(0, 50000),
+    limits = c(500, 3000),
     expand = c(0, 0),
-    breaks = seq(0, 50000, 10000)
+    breaks = seq(500, 3000, 500)
   ) +
   theme_light() +
   theme(
@@ -66,24 +65,23 @@ BA_LR_res_ankle <- cv_res_LR_models$ankle %>%
   ) +
   labs(
     title = "Resultant vector - Ankle placement",
-    x = quote("Mean of Actual and Predicted pLR" ~ (N %.% s^-1)),
-    y = quote("Actual - Predicted pLR" ~ (N %.% s^-1))
+    x = "Mean of Actual and Predicted pGRF (N)",
+    y = "Actual - Predicted pGRF (N)"
   )
 
 # Resultant: Lower back
-BA_LR_res_back <- cv_res_LR_models$lower_back %>%
+BA_GRF_res_back <- cv_res_GRF_models$lower_back %>%
   plot_bland_altman(color = BMI_cat, shape = activity, alpha = 0.5) +
   scale_color_nejm() +
   scale_y_continuous(
-    labels = scales::label_number(),
-    limits = c(-30000, 30000),
+    limits = c(-600, 600),
     expand = c(0, 0),
-    breaks = seq(-30000, 30000, 10000)
+    breaks = seq(-600, 600, 200)
   ) +
   scale_x_continuous(
-    limits = c(0, 50000),
+    limits = c(500, 3000),
     expand = c(0, 0),
-    breaks = seq(0, 50000, 10000)
+    breaks = seq(500, 3000, 500)
   ) +
   theme_light() +
   theme(
@@ -103,24 +101,23 @@ BA_LR_res_back <- cv_res_LR_models$lower_back %>%
   ) +
   labs(
     title = "Resultant vector - Lower back placement",
-    x = quote("Mean of Actual and Predicted pLR" ~ (N %.% s^-1)),
-    y = quote("Actual - Predicted pLR" ~ (N %.% s^-1))
+    x = "Mean of Actual and Predicted pGRF (N)",
+    y = "Actual - Predicted pGRF (N)"
   )
 
 # Resultant: Hip
-BA_LR_res_hip <- cv_res_LR_models$hip %>%
+BA_GRF_res_hip <- cv_res_GRF_models$hip %>%
   plot_bland_altman(color = BMI_cat, shape = activity, alpha = 0.5) +
   scale_color_nejm() +
   scale_y_continuous(
-    labels = scales::label_number(),
-    limits = c(-30000, 30000),
+    limits = c(-600, 600),
     expand = c(0, 0),
-    breaks = seq(-30000, 30000, 10000)
+    breaks = seq(-600, 600, 200)
   ) +
   scale_x_continuous(
-    limits = c(0, 50000),
+    limits = c(500, 3000),
     expand = c(0, 0),
-    breaks = seq(0, 50000, 10000)
+    breaks = seq(500, 3000, 500)
   ) +
   theme_light() +
   theme(
@@ -140,24 +137,23 @@ BA_LR_res_hip <- cv_res_LR_models$hip %>%
   ) +
   labs(
     title = "Resultant vector - Hip placement",
-    x = quote("Mean of Actual and Predicted pLR" ~ (N %.% s^-1)),
-    y = quote("Actual - Predicted pLR" ~ (N %.% s^-1))
+    x = "Mean of Actual and Predicted pGRF (N)",
+    y = "Actual - Predicted pGRF (N)"
   )
 
 # Vertical: Ankle
-BA_LR_ver_ankle <- cv_ver_LR_models$ankle %>%
+BA_GRF_ver_ankle <- cv_ver_GRF_models$ankle %>%
   plot_bland_altman(color = BMI_cat, shape = activity, alpha = 0.5) +
   scale_color_nejm() +
   scale_y_continuous(
-    labels = scales::label_number(),
-    limits = c(-30000, 30000),
+    limits = c(-600, 600),
     expand = c(0, 0),
-    breaks = seq(-30000, 30000, 10000)
+    breaks = seq(-600, 600, 300)
   ) +
   scale_x_continuous(
-    limits = c(0, 50000),
+    limits = c(500, 3000),
     expand = c(0, 0),
-    breaks = seq(0, 50000, 10000)
+    breaks = seq(500, 3000, 500)
   ) +
   theme_light() +
   theme(
@@ -177,24 +173,23 @@ BA_LR_ver_ankle <- cv_ver_LR_models$ankle %>%
   ) +
   labs(
     title = "Vertical vector - Ankle placement",
-    x = quote("Mean of Actual and Predicted pLR" ~ (N %.% s^-1)),
-    y = quote("Actual - Predicted pLR" ~ (N %.% s^-1))
+    x = "Mean of Actual and Predicted pGRF (N)",
+    y = "Actual - Predicted pGRF (N)"
   )
 
 # Vertical: Lower back
-BA_LR_ver_back <- cv_ver_LR_models$lower_back %>%
+BA_GRF_ver_back <- cv_ver_GRF_models$lower_back %>%
   plot_bland_altman(color = BMI_cat, shape = activity, alpha = 0.5) +
   scale_color_nejm() +
   scale_y_continuous(
-    labels = scales::label_number(),
-    limits = c(-30000, 30000),
+    limits = c(-600, 600),
     expand = c(0, 0),
-    breaks = seq(-30000, 30000, 10000)
+    breaks = seq(-600, 600, 200)
   ) +
   scale_x_continuous(
-    limits = c(0, 60000),
+    limits = c(500, 3000),
     expand = c(0, 0),
-    breaks = seq(0, 60000, 10000)
+    breaks = seq(500, 3000, 500)
   ) +
   theme_light() +
   theme(
@@ -214,24 +209,23 @@ BA_LR_ver_back <- cv_ver_LR_models$lower_back %>%
   ) +
   labs(
     title = "Vertical vector - Lower back placement",
-    x = quote("Mean of Actual and Predicted pLR" ~ (N %.% s^-1)),
-    y = quote("Actual - Predicted pLR" ~ (N %.% s^-1))
+    x = "Mean of Actual and Predicted pGRF (N)",
+    y = "Actual - Predicted pGRF (N)"
   )
 
 # Vertical: Hip
-BA_LR_ver_hip <- cv_ver_LR_models$hip %>%
+BA_GRF_ver_hip <- cv_ver_GRF_models$hip %>%
   plot_bland_altman(color = BMI_cat, shape = activity, alpha = 0.5) +
   scale_color_nejm() +
   scale_y_continuous(
-    labels = scales::label_number(),
-    limits = c(-30000, 30000),
+    limits = c(-600, 600),
     expand = c(0, 0),
-    breaks = seq(-30000, 30000, 10000)
+    breaks = seq(-600, 600, 200)
   ) +
   scale_x_continuous(
-    limits = c(0, 50000),
+    limits = c(500, 3000),
     expand = c(0, 0),
-    breaks = seq(0, 50000, 10000)
+    breaks = seq(500, 3000, 500)
   ) +
   theme_light() +
   theme(
@@ -241,7 +235,7 @@ BA_LR_ver_hip <- cv_ver_LR_models$hip %>%
     axis.title.y = element_text(size = 15),
     axis.title.x = element_text(size = 15),
     axis.text.y = element_text(size = 15),
-    axis.text.x = element_text(size = 15),
+    axis.text.x = element_text(size = 15, vjust = 0.2),
     plot.margin = margin(r = 1, unit = "cm")
   ) +
   guides(
@@ -251,18 +245,18 @@ BA_LR_ver_hip <- cv_ver_LR_models$hip %>%
   ) +
   labs(
     title = "Vertical vector - Hip placement",
-    x = quote("Mean of Actual and Predicted pLR" ~ (N %.% s^-1)),
-    y = quote("Actual - Predicted pLR" ~ (N %.% s^-1))
+    x = "Mean of Actual and Predicted pGRF (N)",
+    y = "Actual - Predicted pGRF (N)"
   )
 
 # Combine and save plots --------------------------------------------------
 
-figS4 <- BA_LR_res_ankle +
-  BA_LR_res_back +
-  BA_LR_res_hip +
-  BA_LR_ver_ankle +
-  BA_LR_ver_back +
-  BA_LR_ver_hip +
+figS3 <- BA_GRF_res_ankle +
+  BA_GRF_res_back +
+  BA_GRF_res_hip +
+  BA_GRF_ver_ankle +
+  BA_GRF_ver_back +
+  BA_GRF_ver_hip +
   plot_annotation(tag_levels = "A") +
   plot_layout(guides = "collect") &
   theme(
@@ -271,23 +265,23 @@ figS4 <- BA_LR_res_ankle +
   )
 
 agg_tiff(
-  here("figures", "figS4.tiff"),
+  here("figures", "figS3.tiff"),
   width = 120,
   height = 50,
   units = "cm",
   res = 100,
   scaling = 2
 )
-plot(figS4)
+plot(figS3)
 dev.off()
 
 agg_png(
-  here("figures", "figS4.png"),
+  here("figures", "figS3.png"),
   width = 120,
   height = 50,
   units = "cm",
   res = 100,
   scaling = 2
 )
-plot(figS4)
+plot(figS3)
 dev.off()

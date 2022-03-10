@@ -2,44 +2,51 @@
 
 library(here)
 library(tidyverse)
+library(lvmisc)
 library(ggsci)
 library(patchwork)
 library(ragg)
 
 # Load data ---------------------------------------------------------------
 
-load(here("data", "mechanical_load_data.rda"))
-mechanical_load_data <- mechanical_load_data %>%
-  mutate(
+load(here("output", "loocv_data.rda"))
+cv_res_LR_models <- map(
+  cv_res_LR_models,
+  ~ mutate(
+    .x,
     activity = fct_relevel(
       as.factor(ifelse(speed %in% 1:6, "Walking", "Running")),
       "Walking"
     )
   )
+)
+cv_ver_LR_models <- map(
+  cv_ver_LR_models,
+  ~ mutate(
+    .x,
+    activity = fct_relevel(
+      as.factor(ifelse(speed %in% 1:6, "Walking", "Running")),
+      "Walking"
+    )
+  )
+)
 
-# GRF x ACC plots ---------------------------------------------------------
+# LR plots ----------------------------------------------------------------
 
 # Resultant: Ankle
-scatterplot_GRF_res_ankle <- mechanical_load_data %>%
-  filter(vector == "resultant" & acc_placement == "ankle") %>%
-  ggplot() +
-  geom_point(
-    aes(x = pACC_g, y = pGRF_N, color = BMI_cat, shape = activity), alpha = 0.5
-  ) +
-  geom_smooth(
-    aes(x = pACC_g, y = pGRF_N, color = BMI_cat),
-    method = "lm", se = FALSE, show.legend = FALSE
-  ) +
+BA_LR_res_ankle <- cv_res_LR_models$ankle %>%
+  plot_bland_altman(color = BMI_cat, shape = activity, alpha = 0.5) +
   scale_color_nejm() +
   scale_y_continuous(
-    limits = c(0, 3500),
+    labels = scales::label_number(),
+    limits = c(-30000, 30000),
     expand = c(0, 0),
-    breaks = seq(0, 3500, 500)
+    breaks = seq(-30000, 30000, 10000)
   ) +
   scale_x_continuous(
-    limits = c(0, 14),
+    limits = c(0, 50000),
     expand = c(0, 0),
-    breaks = seq(0, 14, 2)
+    breaks = seq(0, 50000, 10000)
   ) +
   theme_light() +
   theme(
@@ -59,31 +66,24 @@ scatterplot_GRF_res_ankle <- mechanical_load_data %>%
   ) +
   labs(
     title = "Resultant vector - Ankle placement",
-    x = quote("pACC" ~ (italic(g))),
-    y = "pGRF (N)"
+    x = quote("Mean of Actual and Predicted pLR" ~ (N %.% s^-1)),
+    y = quote("Actual - Predicted pLR" ~ (N %.% s^-1))
   )
 
 # Resultant: Lower back
-scatterplot_GRF_res_back <- mechanical_load_data %>%
-  filter(vector == "resultant" & acc_placement == "lower_back") %>%
-  ggplot() +
-  geom_point(
-    aes(x = pACC_g, y = pGRF_N, color = BMI_cat, shape = activity), alpha = 0.5
-  ) +
-  geom_smooth(
-    aes(x = pACC_g, y = pGRF_N, color = BMI_cat),
-    method = "lm", se = FALSE, show.legend = FALSE
-  ) +
+BA_LR_res_back <- cv_res_LR_models$lower_back %>%
+  plot_bland_altman(color = BMI_cat, shape = activity, alpha = 0.5) +
   scale_color_nejm() +
   scale_y_continuous(
-    limits = c(0, 3500),
+    labels = scales::label_number(),
+    limits = c(-30000, 30000),
     expand = c(0, 0),
-    breaks = seq(0, 3500, 500)
+    breaks = seq(-30000, 30000, 10000)
   ) +
   scale_x_continuous(
-    limits = c(1, 9),
+    limits = c(0, 50000),
     expand = c(0, 0),
-    breaks = seq(1, 9, 1)
+    breaks = seq(0, 50000, 10000)
   ) +
   theme_light() +
   theme(
@@ -103,31 +103,24 @@ scatterplot_GRF_res_back <- mechanical_load_data %>%
   ) +
   labs(
     title = "Resultant vector - Lower back placement",
-    x = quote("pACC" ~ (italic(g))),
-    y = "pGRF (N)"
+    x = quote("Mean of Actual and Predicted pLR" ~ (N %.% s^-1)),
+    y = quote("Actual - Predicted pLR" ~ (N %.% s^-1))
   )
 
 # Resultant: Hip
-scatterplot_GRF_res_hip <- mechanical_load_data %>%
-  filter(vector == "resultant" & acc_placement == "hip") %>%
-  ggplot() +
-  geom_point(
-    aes(x = pACC_g, y = pGRF_N, color = BMI_cat, shape = activity), alpha = 0.5
-  ) +
-  geom_smooth(
-    aes(x = pACC_g, y = pGRF_N, color = BMI_cat),
-    method = "lm", se = FALSE, show.legend = FALSE
-  ) +
+BA_LR_res_hip <- cv_res_LR_models$hip %>%
+  plot_bland_altman(color = BMI_cat, shape = activity, alpha = 0.5) +
   scale_color_nejm() +
   scale_y_continuous(
-    limits = c(0, 3500),
+    labels = scales::label_number(),
+    limits = c(-30000, 30000),
     expand = c(0, 0),
-    breaks = seq(0, 3500, 500)
+    breaks = seq(-30000, 30000, 10000)
   ) +
   scale_x_continuous(
-    limits = c(1, 9),
+    limits = c(0, 50000),
     expand = c(0, 0),
-    breaks = seq(1, 9, 1)
+    breaks = seq(0, 50000, 10000)
   ) +
   theme_light() +
   theme(
@@ -147,31 +140,24 @@ scatterplot_GRF_res_hip <- mechanical_load_data %>%
   ) +
   labs(
     title = "Resultant vector - Hip placement",
-    x = quote("pACC" ~ (italic(g))),
-    y = "pGRF (N)"
+    x = quote("Mean of Actual and Predicted pLR" ~ (N %.% s^-1)),
+    y = quote("Actual - Predicted pLR" ~ (N %.% s^-1))
   )
 
 # Vertical: Ankle
-scatterplot_GRF_ver_ankle <- mechanical_load_data %>%
-  filter(vector == "vertical" & acc_placement == "ankle") %>%
-  ggplot() +
-  geom_point(
-    aes(x = pACC_g, y = pGRF_N, color = BMI_cat, shape = activity), alpha = 0.5
-  ) +
-  geom_smooth(
-    aes(x = pACC_g, y = pGRF_N, color = BMI_cat),
-    method = "lm", se = FALSE, show.legend = FALSE
-  ) +
+BA_LR_ver_ankle <- cv_ver_LR_models$ankle %>%
+  plot_bland_altman(color = BMI_cat, shape = activity, alpha = 0.5) +
   scale_color_nejm() +
   scale_y_continuous(
-    limits = c(0, 3500),
+    labels = scales::label_number(),
+    limits = c(-30000, 30000),
     expand = c(0, 0),
-    breaks = seq(0, 3500, 500)
+    breaks = seq(-30000, 30000, 10000)
   ) +
   scale_x_continuous(
-    limits = c(0, 10),
+    limits = c(0, 50000),
     expand = c(0, 0),
-    breaks = seq(0, 10, 1)
+    breaks = seq(0, 50000, 10000)
   ) +
   theme_light() +
   theme(
@@ -191,31 +177,24 @@ scatterplot_GRF_ver_ankle <- mechanical_load_data %>%
   ) +
   labs(
     title = "Vertical vector - Ankle placement",
-    x = quote("pACC" ~ (italic(g))),
-    y = "pGRF (N)"
+    x = quote("Mean of Actual and Predicted pLR" ~ (N %.% s^-1)),
+    y = quote("Actual - Predicted pLR" ~ (N %.% s^-1))
   )
 
 # Vertical: Lower back
-scatterplot_GRF_ver_back <- mechanical_load_data %>%
-  filter(vector == "vertical" & acc_placement == "lower_back") %>%
-  ggplot() +
-  geom_point(
-    aes(x = pACC_g, y = pGRF_N, color = BMI_cat, shape = activity), alpha = 0.5
-  ) +
-  geom_smooth(
-    aes(x = pACC_g, y = pGRF_N, color = BMI_cat),
-    method = "lm", se = FALSE, show.legend = FALSE
-  ) +
+BA_LR_ver_back <- cv_ver_LR_models$lower_back %>%
+  plot_bland_altman(color = BMI_cat, shape = activity, alpha = 0.5) +
   scale_color_nejm() +
   scale_y_continuous(
-    limits = c(0, 3500),
+    labels = scales::label_number(),
+    limits = c(-30000, 30000),
     expand = c(0, 0),
-    breaks = seq(0, 3500, 500)
+    breaks = seq(-30000, 30000, 10000)
   ) +
   scale_x_continuous(
-    limits = c(1, 8),
+    limits = c(0, 60000),
     expand = c(0, 0),
-    breaks = seq(1, 8, 1)
+    breaks = seq(0, 60000, 10000)
   ) +
   theme_light() +
   theme(
@@ -235,31 +214,24 @@ scatterplot_GRF_ver_back <- mechanical_load_data %>%
   ) +
   labs(
     title = "Vertical vector - Lower back placement",
-    x = quote("pACC" ~ (italic(g))),
-    y = "pGRF (N)"
+    x = quote("Mean of Actual and Predicted pLR" ~ (N %.% s^-1)),
+    y = quote("Actual - Predicted pLR" ~ (N %.% s^-1))
   )
 
 # Vertical: Hip
-scatterplot_GRF_ver_hip <- mechanical_load_data %>%
-  filter(vector == "vertical" & acc_placement == "hip") %>%
-  ggplot() +
-  geom_point(
-    aes(x = pACC_g, y = pGRF_N, color = BMI_cat, shape = activity), alpha = 0.5
-  ) +
-  geom_smooth(
-    aes(x = pACC_g, y = pGRF_N, color = BMI_cat),
-    method = "lm", se = FALSE, show.legend = FALSE
-  ) +
+BA_LR_ver_hip <- cv_ver_LR_models$hip %>%
+  plot_bland_altman(color = BMI_cat, shape = activity, alpha = 0.5) +
   scale_color_nejm() +
   scale_y_continuous(
-    limits = c(0, 3500),
+    labels = scales::label_number(),
+    limits = c(-30000, 30000),
     expand = c(0, 0),
-    breaks = seq(0, 3500, 500)
+    breaks = seq(-30000, 30000, 10000)
   ) +
   scale_x_continuous(
-    limits = c(1, 8),
+    limits = c(0, 50000),
     expand = c(0, 0),
-    breaks = seq(1, 8, 1)
+    breaks = seq(0, 50000, 10000)
   ) +
   theme_light() +
   theme(
@@ -269,7 +241,7 @@ scatterplot_GRF_ver_hip <- mechanical_load_data %>%
     axis.title.y = element_text(size = 15),
     axis.title.x = element_text(size = 15),
     axis.text.y = element_text(size = 15),
-    axis.text.x = element_text(size = 15, vjust = 0.2),
+    axis.text.x = element_text(size = 15),
     plot.margin = margin(r = 1, unit = "cm")
   ) +
   guides(
@@ -279,18 +251,18 @@ scatterplot_GRF_ver_hip <- mechanical_load_data %>%
   ) +
   labs(
     title = "Vertical vector - Hip placement",
-    x = quote("pACC" ~ (italic(g))),
-    y = "pGRF (N)"
+    x = quote("Mean of Actual and Predicted pLR" ~ (N %.% s^-1)),
+    y = quote("Actual - Predicted pLR" ~ (N %.% s^-1))
   )
 
 # Combine and save plots --------------------------------------------------
 
-figS1 <- scatterplot_GRF_res_ankle +
-  scatterplot_GRF_res_back +
-  scatterplot_GRF_res_hip +
-  scatterplot_GRF_ver_ankle +
-  scatterplot_GRF_ver_back +
-  scatterplot_GRF_ver_hip +
+figS4 <- BA_LR_res_ankle +
+  BA_LR_res_back +
+  BA_LR_res_hip +
+  BA_LR_ver_ankle +
+  BA_LR_ver_back +
+  BA_LR_ver_hip +
   plot_annotation(tag_levels = "A") +
   plot_layout(guides = "collect") &
   theme(
@@ -299,23 +271,23 @@ figS1 <- scatterplot_GRF_res_ankle +
   )
 
 agg_tiff(
-  here("figures", "figS1.tiff"),
+  here("figures", "figS4.tiff"),
   width = 120,
   height = 50,
   units = "cm",
   res = 100,
   scaling = 2
 )
-plot(figS1)
+plot(figS4)
 dev.off()
 
 agg_png(
-  here("figures", "figS1.png"),
+  here("figures", "figS4.png"),
   width = 120,
   height = 50,
   units = "cm",
   res = 100,
   scaling = 2
 )
-plot(figS1)
+plot(figS4)
 dev.off()

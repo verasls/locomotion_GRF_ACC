@@ -17,30 +17,29 @@ mechanical_load_data <- mechanical_load_data %>%
     )
   )
 
-# LR x AR plots -----------------------------------------------------------
+# GRF x ACC plots ---------------------------------------------------------
 
 # Resultant: Ankle
-scatterplot_LR_res_ankle <- mechanical_load_data %>%
+scatterplot_GRF_res_ankle <- mechanical_load_data %>%
   filter(vector == "resultant" & acc_placement == "ankle") %>%
   ggplot() +
   geom_point(
-    aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat, shape = activity), alpha = 0.5
+    aes(x = pACC_g, y = pGRF_N, color = BMI_cat, shape = activity), alpha = 0.5
   ) +
   geom_smooth(
-    aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat),
+    aes(x = pACC_g, y = pGRF_N, color = BMI_cat),
     method = "lm", se = FALSE, show.legend = FALSE
   ) +
   scale_color_nejm() +
   scale_y_continuous(
-    labels = scales::label_number(),
-    limits = c(0, 60000),
+    limits = c(0, 3500),
     expand = c(0, 0),
-    breaks = seq(0, 60000, 10000)
+    breaks = seq(0, 3500, 500)
   ) +
   scale_x_continuous(
-    limits = c(0, 400),
+    limits = c(0, 14),
     expand = c(0, 0),
-    breaks = seq(0, 400, 50)
+    breaks = seq(0, 14, 2)
   ) +
   theme_light() +
   theme(
@@ -55,36 +54,36 @@ scatterplot_LR_res_ankle <- mechanical_load_data %>%
   ) +
   guides(
     color = guide_legend(title = "Body mass index category:"),
-    shape = guide_legend(title = "Locomotion type:")
+    shape = guide_legend(title = "Locomotion type:"),
+    alpha = FALSE
   ) +
   labs(
     title = "Resultant vector - Ankle placement",
-    x = quote("pAR" ~ (italic(g) %.% s^-1)),
-    y = quote("pLR" ~ (N %.% s^-1))
+    x = quote("pACC" ~ (italic(g))),
+    y = "pGRF (N)"
   )
 
 # Resultant: Lower back
-scatterplot_LR_res_back <- mechanical_load_data %>%
+scatterplot_GRF_res_back <- mechanical_load_data %>%
   filter(vector == "resultant" & acc_placement == "lower_back") %>%
   ggplot() +
   geom_point(
-    aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat, shape = activity), alpha = 0.5
+    aes(x = pACC_g, y = pGRF_N, color = BMI_cat, shape = activity), alpha = 0.5
   ) +
   geom_smooth(
-    aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat),
+    aes(x = pACC_g, y = pGRF_N, color = BMI_cat),
     method = "lm", se = FALSE, show.legend = FALSE
   ) +
   scale_color_nejm() +
   scale_y_continuous(
-    labels = scales::label_number(),
-    limits = c(0, 60000),
+    limits = c(0, 3500),
     expand = c(0, 0),
-    breaks = seq(0, 60000, 10000)
+    breaks = seq(0, 3500, 500)
   ) +
   scale_x_continuous(
-    limits = c(0, 250),
+    limits = c(1, 9),
     expand = c(0, 0),
-    breaks = seq(0, 250, 50)
+    breaks = seq(1, 9, 1)
   ) +
   theme_light() +
   theme(
@@ -99,36 +98,36 @@ scatterplot_LR_res_back <- mechanical_load_data %>%
   ) +
   guides(
     color = guide_legend(title = "Body mass index category:"),
-    shape = guide_legend(title = "Locomotion type:")
+    shape = guide_legend(title = "Locomotion type:"),
+    alpha = FALSE
   ) +
   labs(
     title = "Resultant vector - Lower back placement",
-    x = quote("pAR" ~ (italic(g) %.% s^-1)),
-    y = quote("pLR" ~ (N %.% s^-1))
+    x = quote("pACC" ~ (italic(g))),
+    y = "pGRF (N)"
   )
 
 # Resultant: Hip
-scatterplot_LR_res_hip <- mechanical_load_data %>%
+scatterplot_GRF_res_hip <- mechanical_load_data %>%
   filter(vector == "resultant" & acc_placement == "hip") %>%
   ggplot() +
   geom_point(
-    aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat, shape = activity), alpha = 0.5
+    aes(x = pACC_g, y = pGRF_N, color = BMI_cat, shape = activity), alpha = 0.5
   ) +
   geom_smooth(
-    aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat),
+    aes(x = pACC_g, y = pGRF_N, color = BMI_cat),
     method = "lm", se = FALSE, show.legend = FALSE
   ) +
   scale_color_nejm() +
   scale_y_continuous(
-    labels = scales::label_number(),
-    limits = c(0, 60000),
+    limits = c(0, 3500),
     expand = c(0, 0),
-    breaks = seq(0, 60000, 10000)
+    breaks = seq(0, 3500, 500)
   ) +
   scale_x_continuous(
-    limits = c(0, 250),
+    limits = c(1, 9),
     expand = c(0, 0),
-    breaks = seq(0, 250, 50)
+    breaks = seq(1, 9, 1)
   ) +
   theme_light() +
   theme(
@@ -143,36 +142,36 @@ scatterplot_LR_res_hip <- mechanical_load_data %>%
   ) +
   guides(
     color = guide_legend(title = "Body mass index category:"),
-    shape = guide_legend(title = "Locomotion type:")
+    shape = guide_legend(title = "Locomotion type:"),
+    alpha = FALSE
   ) +
   labs(
     title = "Resultant vector - Hip placement",
-    x = quote("pAR" ~ (italic(g) %.% s^-1)),
-    y = quote("pLR" ~ (N %.% s^-1))
+    x = quote("pACC" ~ (italic(g))),
+    y = "pGRF (N)"
   )
 
 # Vertical: Ankle
-scatterplot_LR_ver_ankle <- mechanical_load_data %>%
+scatterplot_GRF_ver_ankle <- mechanical_load_data %>%
   filter(vector == "vertical" & acc_placement == "ankle") %>%
   ggplot() +
   geom_point(
-    aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat, shape = activity), alpha = 0.5
+    aes(x = pACC_g, y = pGRF_N, color = BMI_cat, shape = activity), alpha = 0.5
   ) +
   geom_smooth(
-    aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat),
+    aes(x = pACC_g, y = pGRF_N, color = BMI_cat),
     method = "lm", se = FALSE, show.legend = FALSE
   ) +
   scale_color_nejm() +
   scale_y_continuous(
-    labels = scales::label_number(),
-    limits = c(0, 60000),
+    limits = c(0, 3500),
     expand = c(0, 0),
-    breaks = seq(0, 60000, 10000)
+    breaks = seq(0, 3500, 500)
   ) +
   scale_x_continuous(
-    limits = c(0, 350),
+    limits = c(0, 10),
     expand = c(0, 0),
-    breaks = seq(0, 350, 50)
+    breaks = seq(0, 10, 1)
   ) +
   theme_light() +
   theme(
@@ -187,36 +186,36 @@ scatterplot_LR_ver_ankle <- mechanical_load_data %>%
   ) +
   guides(
     color = guide_legend(title = "Body mass index category:"),
-    shape = guide_legend(title = "Locomotion type:")
+    shape = guide_legend(title = "Locomotion type:"),
+    alpha = FALSE
   ) +
   labs(
     title = "Vertical vector - Ankle placement",
-    x = quote("pAR" ~ (italic(g) %.% s^-1)),
-    y = quote("pLR" ~ (N %.% s^-1))
+    x = quote("pACC" ~ (italic(g))),
+    y = "pGRF (N)"
   )
 
 # Vertical: Lower back
-scatterplot_LR_ver_back <- mechanical_load_data %>%
+scatterplot_GRF_ver_back <- mechanical_load_data %>%
   filter(vector == "vertical" & acc_placement == "lower_back") %>%
   ggplot() +
   geom_point(
-    aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat, shape = activity), alpha = 0.5
+    aes(x = pACC_g, y = pGRF_N, color = BMI_cat, shape = activity), alpha = 0.5
   ) +
   geom_smooth(
-    aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat),
+    aes(x = pACC_g, y = pGRF_N, color = BMI_cat),
     method = "lm", se = FALSE, show.legend = FALSE
   ) +
   scale_color_nejm() +
   scale_y_continuous(
-    labels = scales::label_number(),
-    limits = c(0, 60000),
+    limits = c(0, 3500),
     expand = c(0, 0),
-    breaks = seq(0, 60000, 10000)
+    breaks = seq(0, 3500, 500)
   ) +
   scale_x_continuous(
-    limits = c(0, 350),
+    limits = c(1, 8),
     expand = c(0, 0),
-    breaks = seq(0, 350, 50)
+    breaks = seq(1, 8, 1)
   ) +
   theme_light() +
   theme(
@@ -231,36 +230,36 @@ scatterplot_LR_ver_back <- mechanical_load_data %>%
   ) +
   guides(
     color = guide_legend(title = "Body mass index category:"),
-    shape = guide_legend(title = "Locomotion type:")
+    shape = guide_legend(title = "Locomotion type:"),
+    alpha = FALSE
   ) +
   labs(
     title = "Vertical vector - Lower back placement",
-    x = quote("pAR" ~ (italic(g) %.% s^-1)),
-    y = quote("pLR" ~ (N %.% s^-1))
+    x = quote("pACC" ~ (italic(g))),
+    y = "pGRF (N)"
   )
 
 # Vertical: Hip
-scatterplot_LR_ver_hip <- mechanical_load_data %>%
+scatterplot_GRF_ver_hip <- mechanical_load_data %>%
   filter(vector == "vertical" & acc_placement == "hip") %>%
   ggplot() +
   geom_point(
-    aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat, shape = activity), alpha = 0.5
+    aes(x = pACC_g, y = pGRF_N, color = BMI_cat, shape = activity), alpha = 0.5
   ) +
   geom_smooth(
-    aes(x = pAR_gs, y = pLR_Ns, color = BMI_cat),
+    aes(x = pACC_g, y = pGRF_N, color = BMI_cat),
     method = "lm", se = FALSE, show.legend = FALSE
   ) +
   scale_color_nejm() +
   scale_y_continuous(
-    labels = scales::label_number(),
-    limits = c(0, 60000),
+    limits = c(0, 3500),
     expand = c(0, 0),
-    breaks = seq(0, 60000, 10000)
+    breaks = seq(0, 3500, 500)
   ) +
   scale_x_continuous(
-    limits = c(0, 300),
+    limits = c(1, 8),
     expand = c(0, 0),
-    breaks = seq(0, 300, 50)
+    breaks = seq(1, 8, 1)
   ) +
   theme_light() +
   theme(
@@ -275,22 +274,23 @@ scatterplot_LR_ver_hip <- mechanical_load_data %>%
   ) +
   guides(
     color = guide_legend(title = "Body mass index category:"),
-    shape = guide_legend(title = "Locomotion type:")
+    shape = guide_legend(title = "Locomotion type:"),
+    alpha = FALSE
   ) +
   labs(
     title = "Vertical vector - Hip placement",
-    x = quote("pAR" ~ (italic(g) %.% s^-1)),
-    y = quote("pLR" ~ (N %.% s^-1))
+    x = quote("pACC" ~ (italic(g))),
+    y = "pGRF (N)"
   )
 
 # Combine and save plots --------------------------------------------------
 
-figS2 <- scatterplot_LR_res_ankle +
-  scatterplot_LR_res_back +
-  scatterplot_LR_res_hip +
-  scatterplot_LR_ver_ankle +
-  scatterplot_LR_ver_back +
-  scatterplot_LR_ver_hip +
+figS1 <- scatterplot_GRF_res_ankle +
+  scatterplot_GRF_res_back +
+  scatterplot_GRF_res_hip +
+  scatterplot_GRF_ver_ankle +
+  scatterplot_GRF_ver_back +
+  scatterplot_GRF_ver_hip +
   plot_annotation(tag_levels = "A") +
   plot_layout(guides = "collect") &
   theme(
@@ -299,23 +299,23 @@ figS2 <- scatterplot_LR_res_ankle +
   )
 
 agg_tiff(
-  here("figures", "figS2.tiff"),
+  here("figures", "figS1.tiff"),
   width = 120,
   height = 50,
   units = "cm",
   res = 100,
   scaling = 2
 )
-plot(figS2)
+plot(figS1)
 dev.off()
 
 agg_png(
-  here("figures", "figS2.png"),
+  here("figures", "figS1.png"),
   width = 120,
   height = 50,
   units = "cm",
   res = 100,
   scaling = 2
 )
-plot(figS2)
+plot(figS1)
 dev.off()
