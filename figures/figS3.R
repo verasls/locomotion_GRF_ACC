@@ -44,13 +44,13 @@ scatterplot_LR_res_ankle <- mechanical_load_data %>%
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(size = 17, hjust = 0.5),
-    legend.title = element_text(size = 15),
-    legend.text = element_text(size = 15),
-    axis.title.y = element_text(size = 15),
-    axis.title.x = element_text(size = 15),
-    axis.text.y = element_text(size = 15),
-    axis.text.x = element_text(size = 15, vjust = 0.2),
+    plot.title = element_text(size = 18, hjust = 0.5),
+    legend.title = element_text(size = 18),
+    legend.text = element_text(size = 18),
+    axis.title.y = element_text(size = 16),
+    axis.title.x = element_text(size = 16),
+    axis.text.y = element_text(size = 16),
+    axis.text.x = element_text(size = 16, vjust = 0.2),
     plot.margin = margin(r = 1, unit = "cm")
   ) +
   guides(
@@ -88,13 +88,13 @@ scatterplot_LR_res_back <- mechanical_load_data %>%
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(size = 17, hjust = 0.5),
-    legend.title = element_text(size = 15),
-    legend.text = element_text(size = 15),
-    axis.title.y = element_text(size = 15),
-    axis.title.x = element_text(size = 15),
-    axis.text.y = element_text(size = 15),
-    axis.text.x = element_text(size = 15, vjust = 0.2),
+    plot.title = element_text(size = 18, hjust = 0.5),
+    legend.title = element_text(size = 18),
+    legend.text = element_text(size = 18),
+    axis.title.y = element_text(size = 16),
+    axis.title.x = element_text(size = 16),
+    axis.text.y = element_text(size = 16),
+    axis.text.x = element_text(size = 16, vjust = 0.2),
     plot.margin = margin(r = 1, unit = "cm")
   ) +
   guides(
@@ -132,13 +132,13 @@ scatterplot_LR_res_hip <- mechanical_load_data %>%
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(size = 17, hjust = 0.5),
-    legend.title = element_text(size = 15),
-    legend.text = element_text(size = 15),
-    axis.title.y = element_text(size = 15),
-    axis.title.x = element_text(size = 15),
-    axis.text.y = element_text(size = 15),
-    axis.text.x = element_text(size = 15, vjust = 0.2),
+    plot.title = element_text(size = 18, hjust = 0.5),
+    legend.title = element_text(size = 18),
+    legend.text = element_text(size = 18),
+    axis.title.y = element_text(size = 16),
+    axis.title.x = element_text(size = 16),
+    axis.text.y = element_text(size = 16),
+    axis.text.x = element_text(size = 16, vjust = 0.2),
     plot.margin = margin(r = 1, unit = "cm")
   ) +
   guides(
@@ -176,13 +176,13 @@ scatterplot_LR_ver_ankle <- mechanical_load_data %>%
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(size = 17, hjust = 0.5),
-    legend.title = element_text(size = 15),
-    legend.text = element_text(size = 15),
-    axis.title.y = element_text(size = 15),
-    axis.title.x = element_text(size = 15),
-    axis.text.y = element_text(size = 15),
-    axis.text.x = element_text(size = 15, vjust = 0.2),
+    plot.title = element_text(size = 18, hjust = 0.5),
+    legend.title = element_text(size = 18),
+    legend.text = element_text(size = 18),
+    axis.title.y = element_text(size = 16),
+    axis.title.x = element_text(size = 16),
+    axis.text.y = element_text(size = 16),
+    axis.text.x = element_text(size = 16, vjust = 0.2),
     plot.margin = margin(r = 1, unit = "cm")
   ) +
   guides(
@@ -220,13 +220,13 @@ scatterplot_LR_ver_back <- mechanical_load_data %>%
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(size = 17, hjust = 0.5),
-    legend.title = element_text(size = 15),
-    legend.text = element_text(size = 15),
-    axis.title.y = element_text(size = 15),
-    axis.title.x = element_text(size = 15),
-    axis.text.y = element_text(size = 15),
-    axis.text.x = element_text(size = 15, vjust = 0.2),
+    plot.title = element_text(size = 18, hjust = 0.5),
+    legend.title = element_text(size = 18),
+    legend.text = element_text(size = 18),
+    axis.title.y = element_text(size = 16),
+    axis.title.x = element_text(size = 16),
+    axis.text.y = element_text(size = 16),
+    axis.text.x = element_text(size = 16, vjust = 0.2),
     plot.margin = margin(r = 1, unit = "cm")
   ) +
   guides(
@@ -264,13 +264,13 @@ scatterplot_LR_ver_hip <- mechanical_load_data %>%
   ) +
   theme_light() +
   theme(
-    plot.title = element_text(size = 17, hjust = 0.5),
-    legend.title = element_text(size = 15),
-    legend.text = element_text(size = 15),
-    axis.title.y = element_text(size = 15),
-    axis.title.x = element_text(size = 15),
-    axis.text.y = element_text(size = 15),
-    axis.text.x = element_text(size = 15, vjust = 0.2),
+    plot.title = element_text(size = 18, hjust = 0.5),
+    legend.title = element_text(size = 18),
+    legend.text = element_text(size = 18),
+    axis.title.y = element_text(size = 16),
+    axis.title.x = element_text(size = 16),
+    axis.text.y = element_text(size = 16),
+    axis.text.x = element_text(size = 16, vjust = 0.2),
     plot.margin = margin(r = 1, unit = "cm")
   ) +
   guides(
