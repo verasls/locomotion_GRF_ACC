@@ -2,11 +2,13 @@
 
 This repository contains data analysis resources from the manuscript entitled "Mechanical loading prediction through accelerometry data during walking and running".
 
+The manuscript is published in the European Journal of Sport Science. The paper can be accessed through this [link](https://doi.org/10.1080/17461391.2022.2102437).
+
 ---
 
 **Manuscript authors:**
 
-Lucas Veras, Florêncio Diniz-Sousa, Giorjines Boppre, Edgar Moutinho-Ribeiro, Ana Resende-Coelho, Vítor Devezas, Hugo Santos-Sousa, John Preto, João Paulo Vilas-Boas, Leandro Machado, José Oliveira, Hélder Fonseca
+Lucas Veras, Florêncio Diniz-Sousa, Giorjines Boppre, Ana Resende-Coelho, Edgar Moutinho-Ribeiro, Vítor Devezas, Hugo Santos-Sousa, John Preto, João Paulo Vilas-Boas, Leandro Machado, José Oliveira, Hélder Fonseca
 
 ---
 
